@@ -1,0 +1,25 @@
+# Excel出力設定
+export:
+  output_dir: "output"   # 出力先フォルダ（日付入りExcelファイルが保存される）
+
+# HTML出力設定（GitHub Pages用）
+html_export:
+  output_dir: "docs"           # HTML出力先フォルダ
+  template_dir: "templates"    # Jinja2テンプレートフォルダ
+  days_back: 7                    # デフォルト表示日数
+  selectable_days_range: [1, 30]  # 選択可能な日数範囲（スライダーUI：1〜30日）
+  # selectable_days: [7, 14, 30] # 個別指定（ドロップダウンUI）も引き続き利用可能
+  # ※ selectable_days_range が設定されている場合はそちらが優先されます
+
+# データベース設定
+database:
+  path: "data/papers.db"
+
+# ジャーナルリスト設定（Excelファイル）
+journals:
+  excel_path: "Accounting_Journals_URL_List.xlsx"
+
+# 取得設定
+fetch:
+  days_back: 7           # 何日前までの論文を取得するか
+  timeout: 30            # HTTPリクエストのタイムアウト（秒）
