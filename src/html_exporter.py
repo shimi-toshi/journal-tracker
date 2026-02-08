@@ -115,6 +115,7 @@ class HtmlExporter:
                     "authors": authors,
                     "published": published,
                     "published_iso": paper.published_date.strftime("%Y-%m-%d") if paper.published_date else "",
+                    "fetched_iso": paper.fetched_at.strftime("%Y-%m-%d") if paper.fetched_at else "",
                     "doi": paper.doi,
                     "url": paper.url,
                 })
