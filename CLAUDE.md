@@ -73,6 +73,15 @@ DOIがあればDOIを使用。なければ `"{title}:{journal_name}"` のMD5ハ�
 - 著者: `Author\(s\):\s*([^<\n]+)`
 - 発行日: `Publication date:\s*([A-Za-z]+\s*\d{4})`
 
+### 「直近N日」フィルタリング基準
+
+HTML出力（GitHub Pages）のスライダーUIによる「直近N日」フィルタは、`published_date`（出版日）ではなく **`fetched_at`（DB登録日）** を基準にしている。
+CrossRef APIの日付が `YYYY/MM` のみ（日が欠落）の場合、`day=1` にデフォルト設定されるため、`published_date` 基準では同月の論文が1日に集中し件数が不正確になる問題を回避するため。
+
+- バックエンド（`storage.get_recent_papers()`）: `fetched_at` 基準でDBから取得
+- フロントエンド（`templates/index.html` の `filterByDays()`）: `data-fetched` 属性（`fetched_at`）基準でフィルタ
+- 表示上の出版日（`YYYY/MM/DD`）は従来通り `published_date` を使用
+
 ### レート制限
 
 ジャーナル間で `time.sleep(1)` を挿入。APIレート制限とサーバー負荷軽減のため。
