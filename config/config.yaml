@@ -23,3 +23,5 @@ journals:
 fetch:
   days_back: 7           # 何日前までの論文を取得するか
   timeout: 30            # HTTPリクエストのタイムアウト（秒）
+
+google_analytics: G-QJXZKZBS7D
