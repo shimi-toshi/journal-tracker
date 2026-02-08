@@ -16,6 +16,7 @@ class Paper:
     doi: str = ""
     url: str = ""
     published_date: Optional[datetime] = None
+    fetched_at: Optional[datetime] = None
 
     @property
     def unique_id(self) -> str:
@@ -34,6 +35,7 @@ class Paper:
             "doi": self.doi,
             "url": self.url,
             "published_date": self.published_date.isoformat() if self.published_date else None,
+            "fetched_at": self.fetched_at.isoformat() if self.fetched_at else None,
             "unique_id": self.unique_id,
         }
 

@@ -112,6 +112,7 @@ class PaperStorage:
                     doi=row["doi"] or "",
                     url=row["url"] or "",
                     published_date=datetime.fromisoformat(row["published_date"]) if row["published_date"] else None,
+                    fetched_at=datetime.fromisoformat(row["fetched_at"]) if row["fetched_at"] else None,
                 )
 
     def get_recent_papers(self, days: int = 7) -> list[Paper]:
@@ -133,6 +134,7 @@ class PaperStorage:
                     doi=row["doi"] or "",
                     url=row["url"] or "",
                     published_date=datetime.fromisoformat(row["published_date"]) if row["published_date"] else None,
+                    fetched_at=datetime.fromisoformat(row["fetched_at"]) if row["fetched_at"] else None,
                 ))
             return papers
 

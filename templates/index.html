@@ -299,7 +299,7 @@
                 </div>
                 {% if group.papers %}
                 {% for paper in group.papers %}
-                <div class="paper-item" data-published="{{ paper.published_iso }}">
+                <div class="paper-item" data-published="{{ paper.published_iso }}" data-fetched="{{ paper.fetched_iso }}">
                     <div class="paper-title">
                         {% if paper.url %}
                         <a href="{{ paper.url }}" target="_blank" rel="noopener">{{ paper.title }}</a>
@@ -354,18 +354,18 @@
             var sections = document.querySelectorAll('.journal-section');
 
             sections.forEach(function(section) {
-                var papers = section.querySelectorAll('.paper-item[data-published]');
+                var papers = section.querySelectorAll('.paper-item[data-published], .paper-item[data-fetched]');
                 var emptyMsg = section.querySelector('[data-empty-msg]');
                 var countBadge = section.querySelector('.count');
                 var visibleCount = 0;
 
                 papers.forEach(function(paper) {
-                    var pubDate = paper.getAttribute('data-published');
-                    if (!pubDate) {
+                    var fetchedDate = paper.getAttribute('data-fetched');
+                    if (!fetchedDate) {
                         paper.style.display = '';
                         visibleCount++;
                     } else {
-                        var d = new Date(pubDate + 'T00:00:00');
+                        var d = new Date(fetchedDate + 'T00:00:00');
                         if (d >= cutoff) {
                             paper.style.display = '';
                             visibleCount++;

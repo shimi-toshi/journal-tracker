@@ -101,7 +101,7 @@ GitHub Actionsによる日次自動更新に対応しています。
 - **RSS/CrossRef対応**: RSSフィードまたはCrossRef APIから論文情報を取得
 - **重複チェック**: SQLiteデータベースで既読管理し、新着論文のみを出力
 - **Excel出力**: ジャーナル名、発行日、タイトル、著者、DOI、URLを一覧化
-- **HTML出力**: GitHub Pages用のHTML一覧ページを生成（日数スライダーUI付き）
+- **HTML出力**: GitHub Pages用のHTML一覧ページを生成（日数スライダーUI付き、DB登録日基準でフィルタ）
 - **日次自動更新**: GitHub Actionsで毎日自動実行し、GitHub Pagesを更新
 
 ## セットアップ
@@ -237,6 +237,7 @@ journal-tracker/
 ### HTML出力
 
 `docs/index.html` にジャーナル別の論文一覧HTMLが生成されます。GitHub Pagesで公開可能です。
+スライダーUIで表示期間を変更できます。フィルタはDB登録日（`fetched_at`）基準で行われます（出版日が月単位のみの論文でも正確にカウントされます）。
 
 ## GitHub Actions（自動更新）
 
