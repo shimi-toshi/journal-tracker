@@ -31,6 +31,7 @@ class HtmlExporter:
         else:
             self.selectable_days = html_config.get("selectable_days", [7, 14, 30])
             self.selectable_days_range = None
+        self.google_analytics_id = config.get("google_analytics")
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
     @property
@@ -81,6 +82,7 @@ class HtmlExporter:
                 selectable_days=self.selectable_days,
                 selectable_days_range=self.selectable_days_range,
                 generated_at=generated_at,
+                google_analytics_id=self.google_analytics_id,
             )
 
             output_path.write_text(html_content, encoding="utf-8")
