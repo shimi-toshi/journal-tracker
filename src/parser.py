@@ -4,6 +4,17 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional
 import hashlib
+import re
+
+
+DOI_PREFIX_PATTERN = re.compile(r"^(?:https?://(?:dx\.)?doi\.org/|doi:)", re.IGNORECASE)
+
+
+def normalize_doi(doi: str) -> str:
+    """DOIを正規化（プレフィックス除去・trim・小文字化）"""
+    if not doi:
+        return ""
+    return DOI_PREFIX_PATTERN.sub("", doi.strip()).lower()
 
 
 @dataclass
@@ -21,9 +32,13 @@ class Paper:
     @property
     def unique_id(self) -> str:
         """論文の一意識別子を生成（DOIがあればDOI、なければタイトルのハッシュ）"""
-        if self.doi:
-            return self.doi
-        return hashlib.md5(f"{self.title}:{self.journal_name}".encode()).hexdigest()
+        normalized_doi = normalize_doi(self.doi)
+        if normalized_doi:
+            return normalized_doi
+
+        normalized_title = " ".join(self.title.split()).lower()
+        normalized_journal = " ".join(self.journal_name.split()).lower()
+        return hashlib.md5(f"{normalized_title}:{normalized_journal}".encode()).hexdigest()
 
     def to_dict(self) -> dict:
         """辞書形式に変換"""

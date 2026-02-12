@@ -153,6 +153,7 @@ journals:
 fetch:
   days_back: 7                    # 何日前までの論文を取得するか
   timeout: 30                     # HTTPタイムアウト（秒）
+  rate_limit_seconds: 1.0         # ジャーナル間の待機秒（0で無効）
 ```
 
 ## 使い方
@@ -171,6 +172,7 @@ python -m src.main
 | `--stats` | 統計情報を表示 |
 | `--list-journals` | ジャーナル一覧を表示 |
 | `--config <path>` | 設定ファイルを指定 |
+| `--self-check` | 設定・Excel・DB・テンプレートの自己診断を実施 |
 
 ### Windows での実行
 
@@ -239,10 +241,89 @@ journal-tracker/
 `docs/index.html` にジャーナル別の論文一覧HTMLが生成されます。GitHub Pagesで公開可能です。
 スライダーUIで表示期間を変更できます。フィルタはDB登録日（`fetched_at`）基準で行われます（出版日が月単位のみの論文でも正確にカウントされます）。
 
+
+## 重複検知・DB移行に関する実装メモ（LLM/開発者向け）
+
+以下は 2026-02 の優先改善で導入した仕様です。後続のLLMや開発者が修正しやすいよう、運用ルールを明記します。
+
+1. **DOI正規化の単一責務**
+   - 実装は `src/parser.py` の `normalize_doi()` に集約。
+   - `Paper.unique_id` と `PaperStorage.save_batch()` の両方がこの関数を利用。
+   - DOIが空（または `doi:` のように正規化後空）なら、`title + journal_name` 正規化ハッシュへフォールバック。
+
+2. **SQLiteスキーマ拡張と自動移行**
+   - `papers` テーブルに `normalized_doi` カラムを保持。
+   - `metadata` テーブルで `schema_version` を管理し、必要な移行のみ実行する（毎回全件移行しない）。
+   - バックフィル時は `normalized_doi` が空の行だけを対象にする。
+   - 同一DOIが複数行ある場合、先頭行のみ `normalized_doi` を埋め、残りは空のまま（履歴保全優先）。
+
+3. **DB制約による重複防止**
+   - `normalized_doi` に部分ユニークインデックス（NULL/空は除外）を設定。
+   - 保存処理は `INSERT OR IGNORE` を使用し、アプリ側の二重チェックを簡素化。
+   - 事前判定 `is_new()` も `unique_id` と `normalized_doi` の両方を評価し、保存結果と整合するようにする。
+
+4. **CrossRef通信の回復性**
+   - `CrossRefFetcher` は `requests.Session` + `Retry` を使用し、`429/5xx` を自動リトライ。
+   - `Retry-After` を尊重してバックオフする。
+
+### 変更時の注意
+- DOI関連ロジックを変更する場合は、`src/parser.py` と `src/storage.py` の両方を確認する。
+- スキーマ変更を入れる場合は、`PaperStorage._init_db()` の `schema_version` を更新し、**後方互換マイグレーション**を追加する。
+- 回帰防止として `tests/test_regressions.py` を更新する。
+
 ## GitHub Actions（自動更新）
 
 `.github/workflows/update-pages.yml` により、毎日 UTC 9:00（JST 18:00）に自動実行されます。
 手動実行（`workflow_dispatch`）にも対応しています。
+
+## 全体エラーの検討メモ（運用チェック観点）
+
+最新の回帰テストとCLI確認の観点では、致命的な例外で処理全体が停止する経路は限定的です。
+
+- 単体/回帰テスト（`tests/test_regressions.py`）で、DOI正規化・DB移行・重複判定・CrossRef日付フォールバックの主要経路をカバー。
+- `python -m src.main --list-journals` はローカル環境で正常終了することを確認。
+- `python -m src.main --dry-run` は、ネットワーク制限下でも個別フェッチ失敗をログ出力しつつ継続可能（`main()` 全体が即時クラッシュしない）。
+
+### 実装済みの改善（2026-02 追加）
+
+1. **取得品質の可視化**
+   - 実行終了時に `logs/run_report_*.json` を出力し、`fetched_count`, `inserted_count`, `failed_journals`, `skipped_journals`, `duration_sec` を保存。
+
+2. **接続エラー種別ごとの分類**
+   - CrossRefの通信例外を `http_auth_error`, `http_server_error`, `proxy_error`, `dns_error`, `tls_error` などに分類してログ出力。
+   - リトライは `429/5xx` のHTTPステータスに限定（接続エラーの無駄リトライを抑制）。
+
+3. **CLI自己診断モード**
+   - `--self-check` で、設定読込・ジャーナルExcel必須列・DB初期化/移行・HTMLテンプレート存在/構文に加えて、出力ディレクトリ（Excel/HTML/ログ）の書き込み可否を事前確認。
+
+4. **統合テスト（疑似レスポンス）**
+   - `requests` モックを用いた最小統合テストを追加し、`PaperFetcher -> PaperStorage` の結合経路を検証。
+
+5. **DB健全性チェックSQLの標準化**
+   - 以下のSQLを定期確認用として運用する。
+
+```sql
+-- 1) normalized_doi 重複疑い（本来0件）
+SELECT normalized_doi, COUNT(*) AS c
+FROM papers
+WHERE normalized_doi IS NOT NULL AND normalized_doi <> ''
+GROUP BY normalized_doi
+HAVING c > 1;
+
+-- 2) published_date 欠損率
+SELECT
+  COUNT(*) AS total,
+  SUM(CASE WHEN published_date IS NULL OR published_date = '' THEN 1 ELSE 0 END) AS missing,
+  ROUND(100.0 * SUM(CASE WHEN published_date IS NULL OR published_date = '' THEN 1 ELSE 0 END) / COUNT(*), 2) AS missing_pct
+FROM papers;
+
+-- 3) authors がJSON配列でない件数（legacy残件確認）
+SELECT COUNT(*) AS non_json_authors
+FROM papers
+WHERE authors IS NOT NULL
+  AND TRIM(authors) <> ''
+  AND SUBSTR(TRIM(authors), 1, 1) <> '[';
+```
 
 ## ライセンス
 
