@@ -8,15 +8,20 @@ import requests
 
 from src.fetcher import CrossRefFetcher, PaperFetcher
 from src.main import run_self_check
-from src.parser import Journal, Paper, normalize_doi
+from src.parser import Journal, Paper, normalize_doi, normalize_url
 from src.storage import PaperStorage, SCHEMA_VERSION
 
 
-def test_normalize_doi_and_unique_id_fallback():
+def test_normalize_doi_url_and_unique_id_fallback():
     assert normalize_doi(" https://doi.org/10.1234/ABC ") == "10.1234/abc"
+    assert normalize_url(" HTTPS://EXAMPLE.com/paper?a=1#frag ") == "https://example.com/paper?a=1"
 
-    p = Paper(title="  Sample   Title  ", journal_name="  Journal X ", doi="doi:")
-    assert p.unique_id == Paper(title="sample title", journal_name="journal x", doi="").unique_id
+    p = Paper(title="  Sample   Title  ", journal_name="  Journal X ", doi="doi:", url="")
+    assert p.unique_id == Paper(title="sample title", journal_name="journal x", doi="", url="").unique_id
+
+    u1 = Paper(title="Title A", journal_name="J", doi="", url="https://example.com/paper")
+    u2 = Paper(title="Title B", journal_name="J", doi="", url="https://example.com/paper")
+    assert u1.unique_id == u2.unique_id
 
 
 def test_storage_authors_json_roundtrip_and_backward_compat():
@@ -93,6 +98,7 @@ def test_storage_migrates_old_schema_backfills_and_sets_version():
         with sqlite3.connect(db_path) as conn:
             cols = {row[1] for row in conn.execute("PRAGMA table_info(papers)")}
             assert "normalized_doi" in cols
+            assert "normalized_url" in cols
             normalized = conn.execute(
                 "SELECT normalized_doi FROM papers WHERE unique_id = ?", ("legacy-1",)
             ).fetchone()[0]
@@ -122,6 +128,22 @@ def test_unique_index_on_normalized_doi_blocks_duplicate_legacy_rows_and_is_new_
         inserted = storage.save_batch([duplicate])
         assert inserted == []
         assert storage.is_new(duplicate) is False
+
+
+def test_storage_deduplicates_same_url_without_doi():
+    with tempfile.TemporaryDirectory() as td:
+        db_path = Path(td) / "papers.db"
+        storage = PaperStorage(db_path)
+
+        first = Paper(title="Version A", journal_name="J", url="https://example.com/paper")
+        second = Paper(title="Version B", journal_name="J", url="https://example.com/paper")
+
+        inserted_first = storage.save_batch([first])
+        inserted_second = storage.save_batch([second])
+
+        assert len(inserted_first) == 1
+        assert inserted_second == []
+        assert storage.is_new(second) is False
 
 
 def test_crossref_fetcher_configures_retry_for_transient_status_codes():

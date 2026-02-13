@@ -7,10 +7,10 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from typing import Iterator
 
-from .parser import Paper, normalize_doi
+from .parser import Paper, normalize_doi, normalize_url
 
 logger = logging.getLogger(__name__)
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 
 class PaperStorage:
@@ -28,6 +28,7 @@ class PaperStorage:
                 CREATE TABLE IF NOT EXISTS papers (
                     unique_id TEXT PRIMARY KEY,
                     normalized_doi TEXT,
+                    normalized_url TEXT,
                     title TEXT NOT NULL,
                     journal_name TEXT NOT NULL,
                     authors TEXT,
@@ -44,6 +45,8 @@ class PaperStorage:
             columns = {row[1] for row in conn.execute("PRAGMA table_info(papers)").fetchall()}
             if "normalized_doi" not in columns:
                 conn.execute("ALTER TABLE papers ADD COLUMN normalized_doi TEXT")
+            if "normalized_url" not in columns:
+                conn.execute("ALTER TABLE papers ADD COLUMN normalized_url TEXT")
 
             conn.execute("""
                 CREATE INDEX IF NOT EXISTS idx_journal ON papers(journal_name)
@@ -55,11 +58,17 @@ class PaperStorage:
             current_version = self._get_schema_version(conn)
             if current_version < SCHEMA_VERSION:
                 self._backfill_normalized_doi(conn)
+                self._backfill_normalized_url(conn)
 
             conn.execute("""
                 CREATE UNIQUE INDEX IF NOT EXISTS idx_unique_normalized_doi
                 ON papers(normalized_doi)
                 WHERE normalized_doi IS NOT NULL AND normalized_doi != ''
+            """)
+            conn.execute("""
+                CREATE UNIQUE INDEX IF NOT EXISTS idx_unique_normalized_url
+                ON papers(normalized_url)
+                WHERE normalized_url IS NOT NULL AND normalized_url != ''
             """)
 
             self._set_schema_version(conn, SCHEMA_VERSION)
@@ -121,14 +130,52 @@ class PaperStorage:
             )
             existing.add(normalized)
 
+    @staticmethod
+    def _backfill_normalized_url(conn: sqlite3.Connection):
+        """旧データのnormalized_urlを必要行のみバックフィル"""
+        rows = conn.execute(
+            """
+            SELECT rowid, url, normalized_url
+            FROM papers
+            WHERE normalized_url IS NULL OR normalized_url = ''
+            ORDER BY rowid
+            """
+        ).fetchall()
+        existing = {
+            row[0] for row in conn.execute(
+                "SELECT normalized_url FROM papers WHERE normalized_url IS NOT NULL AND normalized_url != ''"
+            ).fetchall()
+        }
+
+        for rowid, url, existing_normalized in rows:
+            normalized = normalize_url(existing_normalized or url or "")
+            if not normalized or normalized in existing:
+                continue
+            conn.execute(
+                "UPDATE papers SET normalized_url = ? WHERE rowid = ?",
+                (normalized, rowid),
+            )
+            existing.add(normalized)
+
     def is_new(self, paper: Paper) -> bool:
         """論文が新着かどうかをチェック（unique_id と normalized_doi の両方を評価）"""
         normalized_doi = normalize_doi(paper.doi)
+        normalized_url = normalize_url(paper.url)
         with sqlite3.connect(self.db_path) as conn:
-            if normalized_doi:
+            if normalized_doi and normalized_url:
+                cursor = conn.execute(
+                    "SELECT 1 FROM papers WHERE unique_id = ? OR normalized_doi = ? OR normalized_url = ? LIMIT 1",
+                    (paper.unique_id, normalized_doi, normalized_url),
+                )
+            elif normalized_doi:
                 cursor = conn.execute(
                     "SELECT 1 FROM papers WHERE unique_id = ? OR normalized_doi = ? LIMIT 1",
                     (paper.unique_id, normalized_doi),
+                )
+            elif normalized_url:
+                cursor = conn.execute(
+                    "SELECT 1 FROM papers WHERE unique_id = ? OR normalized_url = ? LIMIT 1",
+                    (paper.unique_id, normalized_url),
                 )
             else:
                 cursor = conn.execute(
@@ -144,13 +191,15 @@ class PaperStorage:
             for paper in papers:
                 normalized_authors = [str(author).strip() for author in paper.authors if str(author).strip()]
                 normalized_doi = normalize_doi(paper.doi)
+                normalized_url = normalize_url(paper.url)
                 cursor = conn.execute("""
                     INSERT OR IGNORE INTO papers
-                    (unique_id, normalized_doi, title, journal_name, authors, abstract, doi, url, published_date, fetched_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    (unique_id, normalized_doi, normalized_url, title, journal_name, authors, abstract, doi, url, published_date, fetched_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """, (
                     paper.unique_id,
                     normalized_doi,
+                    normalized_url,
                     paper.title,
                     paper.journal_name,
                     json.dumps(normalized_authors, ensure_ascii=False),
