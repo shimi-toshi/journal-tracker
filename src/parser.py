@@ -5,6 +5,7 @@ from datetime import datetime
 from typing import Optional
 import hashlib
 import re
+from urllib.parse import urlsplit, urlunsplit
 
 
 DOI_PREFIX_PATTERN = re.compile(r"^(?:https?://(?:dx\.)?doi\.org/|doi:)", re.IGNORECASE)
@@ -15,6 +16,19 @@ def normalize_doi(doi: str) -> str:
     if not doi:
         return ""
     return DOI_PREFIX_PATTERN.sub("", doi.strip()).lower()
+
+
+def normalize_url(url: str) -> str:
+    """URLを正規化（trim・フラグメント除去・スキーム/ホスト小文字化）"""
+    if not url:
+        return ""
+
+    stripped = url.strip()
+    parts = urlsplit(stripped)
+    if not parts.scheme or not parts.netloc:
+        return stripped
+
+    return urlunsplit((parts.scheme.lower(), parts.netloc.lower(), parts.path, parts.query, ""))
 
 
 @dataclass
@@ -31,10 +45,14 @@ class Paper:
 
     @property
     def unique_id(self) -> str:
-        """論文の一意識別子を生成（DOIがあればDOI、なければタイトルのハッシュ）"""
+        """論文の一意識別子を生成（DOI→URL→タイトル+ジャーナルの順で採用）"""
         normalized_doi = normalize_doi(self.doi)
         if normalized_doi:
             return normalized_doi
+
+        normalized_url = normalize_url(self.url)
+        if normalized_url:
+            return hashlib.md5(normalized_url.encode()).hexdigest()
 
         normalized_title = " ".join(self.title.split()).lower()
         normalized_journal = " ".join(self.journal_name.split()).lower()
