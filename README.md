@@ -325,6 +325,39 @@ WHERE authors IS NOT NULL
   AND SUBSTR(TRIM(authors), 1, 1) <> '[';
 ```
 
+## 重複データの安全な削除手順（SQLite）
+
+過去データに重複が残っている場合は、`docs/safe_deduplicate_papers.sql` を使用してください。
+
+### 実行手順（そのままコピペでOK）
+
+```bash
+# 1) リポジトリ直下へ移動
+cd /workspace/journal-tracker
+
+# 2) DBファイルがあることを確認
+ls -l data/papers.db
+
+# 3) 重複削除SQLを実行
+sqlite3 data/papers.db ".read docs/safe_deduplicate_papers.sql"
+```
+
+### 実行後に確認すること
+
+- バックアップファイル `data/papers.backup.before_dedup.db` が生成されていること
+- SQLの出力で、以下が `0` になっていること
+  - `after_normalized_doi_duplicates`
+  - `after_normalized_url_duplicates`
+
+### 補足
+
+- このSQLは次を一括実行します。
+  1. `VACUUM INTO` によるバックアップ作成（`data/papers.backup.before_dedup.db`）
+  2. `normalized_doi` / `normalized_url` の重複件数を削除前に確認
+  3. 同一キー内で `rowid` 最小の1件だけ残して重複削除
+  4. 削除後の重複件数を再確認
+- `VACUUM INTO` が失敗する場合は、`sqlite3 --version` でSQLiteのバージョンを確認してください（3.27+ 推奨）。
+
 ## ライセンス
 
 MIT License
