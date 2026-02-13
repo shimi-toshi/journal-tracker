@@ -50,7 +50,7 @@ FROM (
 -- 1-4) raw URL 重複数（normalized_url が空の legacy データ向け）
 SELECT 'before_raw_url_duplicates' AS check_name, COUNT(*) AS duplicate_groups
 FROM (
-  SELECT LOWER(TRIM(url)) AS url_key
+  SELECT TRIM(url) AS url_key
   FROM papers
   WHERE (normalized_url IS NULL OR TRIM(normalized_url) = '')
     AND url IS NOT NULL AND TRIM(url) <> ''
@@ -89,6 +89,7 @@ WHERE rowid IN (
 );
 
 -- 2-B) URL重複を解消（normalized_url 優先、空なら raw URL で代替）
+-- NOTE: URL は normalize_url と同様に path/query の大文字小文字を維持する。
 DELETE FROM papers
 WHERE rowid IN (
   SELECT rowid
@@ -96,15 +97,15 @@ WHERE rowid IN (
     SELECT rowid,
            ROW_NUMBER() OVER (
              PARTITION BY CASE
-               WHEN normalized_url IS NOT NULL AND TRIM(normalized_url) <> '' THEN LOWER(TRIM(normalized_url))
-               WHEN url IS NOT NULL AND TRIM(url) <> '' THEN LOWER(TRIM(url))
+               WHEN normalized_url IS NOT NULL AND TRIM(normalized_url) <> '' THEN TRIM(normalized_url)
+               WHEN url IS NOT NULL AND TRIM(url) <> '' THEN TRIM(url)
                ELSE NULL
              END
              ORDER BY rowid ASC
            ) AS rn,
            CASE
-             WHEN normalized_url IS NOT NULL AND TRIM(normalized_url) <> '' THEN LOWER(TRIM(normalized_url))
-             WHEN url IS NOT NULL AND TRIM(url) <> '' THEN LOWER(TRIM(url))
+             WHEN normalized_url IS NOT NULL AND TRIM(normalized_url) <> '' THEN TRIM(normalized_url)
+             WHEN url IS NOT NULL AND TRIM(url) <> '' THEN TRIM(url)
              ELSE NULL
            END AS url_key
     FROM papers
@@ -148,7 +149,7 @@ FROM (
 
 SELECT 'after_raw_url_duplicates' AS check_name, COUNT(*) AS duplicate_groups
 FROM (
-  SELECT LOWER(TRIM(url)) AS url_key
+  SELECT TRIM(url) AS url_key
   FROM papers
   WHERE (normalized_url IS NULL OR TRIM(normalized_url) = '')
     AND url IS NOT NULL AND TRIM(url) <> ''
