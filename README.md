@@ -329,7 +329,22 @@ WHERE authors IS NOT NULL
 
 過去データに重複が残っている場合は、`docs/safe_deduplicate_papers.sql` を使用してください。
 
+### 前準備（必須）
+
+- `sqlite3` コマンドが使えること
+- 対象DB `data/papers.db` が存在すること
+- `data/` 配下にバックアップファイルを書き込めること（`VACUUM INTO` で `data/papers.backup.before_dedup.db` を作成）
+
+確認コマンド:
+
+```bash
+sqlite3 --version
+ls -l data/papers.db
+```
+
 ### 実行手順（そのままコピペでOK）
+
+※ 実行は **ターミナル（コマンドライン）** で行います。
 
 ```bash
 # 1) リポジトリ直下へ移動
@@ -348,14 +363,16 @@ sqlite3 data/papers.db ".read docs/safe_deduplicate_papers.sql"
 - SQLの出力で、以下が `0` になっていること
   - `after_normalized_doi_duplicates`
   - `after_normalized_url_duplicates`
+  - `after_raw_doi_duplicates`
+  - `after_raw_url_duplicates`
 
 ### 補足
 
 - このSQLは次を一括実行します。
   1. `VACUUM INTO` によるバックアップ作成（`data/papers.backup.before_dedup.db`）
-  2. `normalized_doi` / `normalized_url` の重複件数を削除前に確認
-  3. 同一キー内で `rowid` 最小の1件だけ残して重複削除
-  4. 削除後の重複件数を再確認
+  2. `normalized_doi` / `normalized_url` に加えて raw `doi` / `url`（legacyデータ向け）の重複件数を削除前に確認
+  3. 同一キー内で `rowid` 最小の1件だけ残して重複削除（normalized優先、空ならraw値で判定）
+  4. 削除後の重複件数（normalized/raw）を再確認
 - `VACUUM INTO` が失敗する場合は、`sqlite3 --version` でSQLiteのバージョンを確認してください（3.27+ 推奨）。
 
 ## ライセンス
