@@ -84,6 +84,22 @@ def run_self_check(config: dict) -> list[str]:
     except Exception as exc:
         issues.append(f"HTMLテンプレート検証に失敗: {exc}")
 
+    # ジャーナル設定の論理チェック（取得元の取り違え・取得手段なしを早期検知）
+    if excel_path:
+        try:
+            journals = load_journals_from_excel(excel_path)
+        except Exception:
+            journals = []
+        issn_owners: dict[str, list[str]] = {}
+        for journal in journals:
+            if not journal.has_rss and not journal.issn:
+                issues.append(f"取得手段がありません（RSSもISSNもなし）: {journal.name}")
+            if journal.issn:
+                issn_owners.setdefault(journal.issn, []).append(journal.name)
+        for issn, names in issn_owners.items():
+            if len(names) > 1:
+                issues.append(f"ISSN重複（取得元ジャーナルの取り違えの恐れ）: {issn} -> {', '.join(names)}")
+
     return issues
 
 
