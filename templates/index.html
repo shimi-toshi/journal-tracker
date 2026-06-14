@@ -218,6 +218,35 @@
             font-size: 0.9rem;
             font-style: italic;
         }
+        /* 長期エラーで取得できていないジャーナル */
+        .journal-section.journal-error {
+            border-color: #e0c0a0;
+        }
+        .journal-error .journal-header {
+            background-color: #8a6d3b;
+        }
+        .count.error-badge {
+            background-color: rgba(0,0,0,0.18);
+            font-size: 0.78rem;
+        }
+        .error-message {
+            color: #8a6d3b;
+            font-size: 0.88rem;
+            background-color: #fcf8e3;
+        }
+        .error-message a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+        .error-message a:hover { text-decoration: underline; }
+        .nav-count.nav-error {
+            color: #b8860b;
+            font-weight: 600;
+        }
+        .failing-note {
+            color: #8a6d3b;
+            font-weight: 600;
+        }
         .sidebar-links {
             padding: 0 16px 8px;
         }
@@ -270,7 +299,11 @@
                     <li>
                         <a href="#journal-{{ loop.index }}">
                             <span class="nav-journal-name">{{ group.journal_name }}</span>
+                            {% if group.is_failing %}
+                            <span class="nav-count nav-error" title="取得エラー">⚠️</span>
+                            {% else %}
                             <span class="nav-count{% if group.count > 0 %} has-papers{% endif %}">{{ group.count }}件</span>
+                            {% endif %}
                         </a>
                         {% if group.journal_url %}
                         <div class="sidebar-links">
@@ -293,11 +326,11 @@
             <div class="summary">
                 <span>合計 <span id="visible-count">{{ total_count }}</span> 件の論文（直近{% if selectable_days_range %}<span class="days-slider-wrap"><input type="range" id="days-slider" class="days-slider" min="{{ selectable_days_range[0] }}" max="{{ selectable_days_range[1] }}" value="{{ days_back }}"><span id="days-value" class="days-value">{{ days_back }}</span></span>{% else %}<select id="days-select" class="days-select">
                     {% for d in selectable_days %}<option value="{{ d }}"{% if d == days_back %} selected{% endif %}>{{ d }}</option>{% endfor %}
-                </select>{% endif %}日間） | {{ total_journals }}誌中 <span id="visible-journals">{{ journals_with_papers }}</span>誌で更新あり | 最終更新: {{ generated_at }}</span>
+                </select>{% endif %}日間） | {{ total_journals }}誌中 <span id="visible-journals">{{ journals_with_papers }}</span>誌で更新あり{% if failing_count %} | <span class="failing-note">⚠️ {{ failing_count }}誌が取得エラー</span>{% endif %} | 最終更新: {{ generated_at }}</span>
             </div>
 
             {% for group in grouped_papers %}
-            <div class="journal-section" id="journal-{{ loop.index }}">
+            <div class="journal-section{% if group.is_failing %} journal-error{% endif %}" id="journal-{{ loop.index }}"{% if group.is_failing %} data-journal-error{% endif %}>
                 <div class="journal-header">
                     <div class="journal-name-area">
                         <span>{{ group.journal_name }}</span>
@@ -305,9 +338,18 @@
                         <a href="{{ group.journal_url }}" target="_blank" rel="noopener" class="journal-home-link">HP</a>
                         {% endif %}
                     </div>
+                    {% if group.is_failing %}
+                    <span class="count error-badge">取得エラー</span>
+                    {% else %}
                     <span class="count">{{ group.count }} 件</span>
+                    {% endif %}
                 </div>
-                {% if group.papers %}
+                {% if group.is_failing %}
+                <div class="paper-item error-message">
+                    ⚠️ 長期間、提供元のエラー（{{ group.error_reason }}）により新着論文を取得できていません。
+                    最新情報は{% if group.journal_url %} <a href="{{ group.journal_url }}" target="_blank" rel="noopener">Journal HP</a> {% else %}Journal HP{% endif %}をご確認ください。
+                </div>
+                {% elif group.papers %}
                 {% for paper in group.papers %}
                 <div class="paper-item" data-published="{{ paper.published_iso }}" data-fetched="{{ paper.fetched_iso }}">
                     <div class="paper-title">
@@ -364,6 +406,8 @@
             var sections = document.querySelectorAll('.journal-section');
 
             sections.forEach(function(section) {
+                // 長期エラー誌は日数フィルタの対象外（名称＋HP＋注意書きを常に表示）
+                if (section.hasAttribute('data-journal-error')) return;
                 var papers = section.querySelectorAll('.paper-item[data-published], .paper-item[data-fetched]');
                 var emptyMsg = section.querySelector('[data-empty-msg]');
                 var countBadge = section.querySelector('.count');
@@ -418,6 +462,7 @@
             // サイドバーのカウントも更新
             var navItems = document.querySelectorAll('.sidebar-list li');
             sections.forEach(function(section, i) {
+                if (section.hasAttribute('data-journal-error')) return;
                 if (navItems[i]) {
                     var countSpan = navItems[i].querySelector('.nav-count');
                     var badge = section.querySelector('.count');

@@ -8,6 +8,8 @@ html_export:
   template_dir: "templates"    # Jinja2テンプレートフォルダ
   days_back: 7                    # デフォルト表示日数
   selectable_days_range: [1, 30]  # 選択可能な日数範囲（スライダーUI：1〜30日）
+  max_publication_lag_days: 60    # 取得日よりこの日数以上前に公表された論文は新着扱いしない（CrossRef等のバックカタログ再登録対策）
+  failure_threshold: 7            # 連続失敗がこの回数以上で「長期エラー」と表示（毎日1回実行のため回数≒日数）
   # selectable_days: [7, 14, 30] # 個別指定（ドロップダウンUI）も引き続き利用可能
   # ※ selectable_days_range が設定されている場合はそちらが優先されます
 
