@@ -41,6 +41,35 @@ def test_crossref_uses_works_endpoint_with_issn_and_created_date_filter():
     assert captured["params"]["sort"] == "created"
 
 
+def test_crossref_queries_both_online_and_print_issn_with_or():
+    # Online/Print 双方を持つ誌は両ISSNを issn: フィルタで併記する（CrossRefはORで解釈）。
+    # works が一方のISSN（多くのpublisherでPrint）にしか紐づかない誌の取りこぼし防止。
+    fetcher = CrossRefFetcher(email="x@y.com")
+    journal = Journal(name="AOS", issn="1873-6289", issn_print="0361-3682")
+
+    captured = {}
+
+    def fake_get(url, params=None, headers=None, timeout=None):
+        captured["params"] = params
+        resp = Mock()
+        resp.raise_for_status.return_value = None
+        resp.json.return_value = {"message": {"items": []}}
+        return resp
+
+    with patch.object(fetcher.session, "get", side_effect=fake_get):
+        list(fetcher.fetch(journal, days_back=7))
+
+    assert captured["params"]["filter"].startswith("issn:1873-6289,issn:0361-3682,from-created-date:")
+
+
+def test_journal_issns_dedupes_and_keeps_order():
+    # Online優先・重複/空白除去。Print のみの誌は1つ、Online==Print は1つに畳む。
+    assert Journal(name="J", issn="A", issn_print="B").issns == ["A", "B"]
+    assert Journal(name="J", issn="P", issn_print="P").issns == ["P"]
+    assert Journal(name="J", issn="O").issns == ["O"]
+    assert Journal(name="J").issns == []
+
+
 def test_normalize_doi_url_and_unique_id_fallback():
     assert normalize_doi(" https://doi.org/10.1234/ABC ") == "10.1234/abc"
     assert normalize_url(" HTTPS://EXAMPLE.com/paper?a=1#frag ") == "https://example.com/paper?a=1"

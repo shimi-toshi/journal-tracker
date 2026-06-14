@@ -78,6 +78,7 @@ def load_journals_from_excel(excel_path: str) -> list[Journal]:
             journal_url=str(row.get("Journal URL", "")),
             rss_url=rss_url if rss_url != "-" else "",
             issn=issn,
+            issn_print=print_issn,  # Online と Print 双方を取得時にORで併用（fetcher）
             status=str(row.get("Status", "")),
         )
         journals.append(journal)
