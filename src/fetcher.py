@@ -107,7 +107,8 @@ class CrossRefFetcher:
         self.last_error_type = None
         self.last_status_code = None
 
-        if not journal.issn:
+        issns = journal.issns
+        if not issns:
             logger.warning(f"No ISSN for {journal.name}")
             return
 
@@ -120,8 +121,13 @@ class CrossRefFetcher:
             # 「直近N日」を fetched_at 基準とする設計とも整合する。
             from_date = (datetime.now() - timedelta(days=days_back)).strftime("%Y-%m-%d")
 
+            # Online/Print 両ISSNを `issn:` フィルタで併記する。CrossRefは同名フィルタを
+            # ORで解釈するため、works が一方のISSN（多くのpublisherでPrint）にしか紐づかない
+            # 誌でも取りこぼさない。from-created-date は別名フィルタなのでANDで効く。
+            issn_filter = ",".join(f"issn:{issn}" for issn in issns)
+
             params = {
-                "filter": f"issn:{journal.issn},from-created-date:{from_date}",
+                "filter": f"{issn_filter},from-created-date:{from_date}",
                 "rows": 100,
                 "sort": "created",
                 "order": "desc",
@@ -146,7 +152,7 @@ class CrossRefFetcher:
             self.last_status_code = status_code
             logger.error(
                 f"Failed to fetch from CrossRef for {journal.name}: {e}"
-                f" (error_type={error_type}, status={status_code}, issn={journal.issn})"
+                f" (error_type={error_type}, status={status_code}, issn={','.join(issns)})"
             )
         except Exception as e:
             self.last_error = str(e)
@@ -237,7 +243,7 @@ class PaperFetcher:
             logger.info(f"Fetching papers from {journal.name}...")
 
             fetched_from_journal = 0
-            if journal.issn:
+            if journal.issns:
                 for paper in self.crossref_fetcher.fetch(journal, self.days_back):
                     fetched_from_journal += 1
                     self.last_run_stats.fetched_count += 1

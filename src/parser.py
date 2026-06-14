@@ -81,5 +81,22 @@ class Journal:
     publisher: str = ""
     journal_url: str = ""
     rss_url: str = ""   # 現在は未使用（Excel列との互換のため保持）
-    issn: str = ""
+    issn: str = ""          # 主ISSN（Online優先、無ければPrint）
+    issn_print: str = ""    # Print ISSN（取得時にissnとORで併用。issnと同一/空なら無視）
     status: str = ""    # 現在は未使用（Excel列との互換のため保持）
+
+    @property
+    def issns(self) -> list[str]:
+        """取得クエリに使う全ISSN（主→Printの順、空白・重複を除去）。
+
+        CrossRefは works の `issn:` フィルタを同名指定でORするため、Online/Print 両方を
+        渡すことで「片方のISSNにしか works が無い」publisher（Elsevier等、works が
+        Print ISSN にのみ紐づく）でも取りこぼさない。Online ISSNを優先採用していた旧実装では
+        これらの誌が CrossRef で恒久的に0件になっていた。
+        """
+        result: list[str] = []
+        for value in (self.issn, self.issn_print):
+            value = (value or "").strip()
+            if value and value not in result:
+                result.append(value)
+        return result

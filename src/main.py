@@ -92,13 +92,17 @@ def run_self_check(config: dict) -> list[str]:
             journals = []
         issn_owners: dict[str, list[str]] = {}
         for journal in journals:
-            if not journal.issn:
+            if not journal.issns:
                 issues.append(f"取得手段がありません（ISSNがありません）: {journal.name}")
-            if journal.issn:
-                issn_owners.setdefault(journal.issn, []).append(journal.name)
+            # Online/Print 双方を取得に併用するため、両ISSNを取り違え検査の対象にする
+            for issn in journal.issns:
+                issn_owners.setdefault(issn, []).append(journal.name)
         for issn, names in issn_owners.items():
-            if len(names) > 1:
-                issues.append(f"ISSN重複（取得元ジャーナルの取り違えの恐れ）: {issn} -> {', '.join(names)}")
+            unique_names = sorted(set(names))
+            if len(unique_names) > 1:
+                issues.append(
+                    f"ISSN重複（取得元ジャーナルの取り違えの恐れ）: {issn} -> {', '.join(unique_names)}"
+                )
 
     return issues
 
