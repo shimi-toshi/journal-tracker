@@ -190,9 +190,22 @@ def main():
         else:
             print("新着論文はありませんでした。")
 
+        # ジャーナル別の取得成否を記録（長期エラー検知用）。dry-runでは状態を汚さない。
+        attempted_journals = [j.name for j in journals if j.has_rss or j.issn]
+        if not args.dry_run:
+            storage.update_journal_status(attempted_journals, fetcher.last_run_stats.failed_journals)
+
         html_exporter = HtmlExporter(config)
-        recent_papers = storage.get_recent_papers(days=html_exporter.max_days)
-        html_exporter.export(recent_papers, dry_run=args.dry_run, journals=journals)
+        recent_papers = storage.get_recent_papers(
+            days=html_exporter.max_days,
+            max_publication_lag_days=html_exporter.max_publication_lag_days,
+        )
+        failing_journals = storage.get_failing_journals(threshold=html_exporter.failure_threshold)
+        if failing_journals:
+            logger.warning(f"Long-term failing journals: {len(failing_journals)} -> {', '.join(failing_journals)}")
+        html_exporter.export(
+            recent_papers, dry_run=args.dry_run, journals=journals, failing_journals=failing_journals
+        )
 
         duration_sec = round(time.perf_counter() - start_time, 3)
         report = {
@@ -205,6 +218,8 @@ def main():
             "failed_journals_count": len(fetcher.last_run_stats.failed_journals),
             "skipped_journals": fetcher.last_run_stats.skipped_journals,
             "skipped_journals_count": len(fetcher.last_run_stats.skipped_journals),
+            "long_term_failing_journals": list(failing_journals),
+            "long_term_failing_journals_count": len(failing_journals),
             "crossref_retry_total": fetcher.crossref_fetcher.session.get_adapter("https://api.crossref.org").max_retries.total,
             "dry_run": args.dry_run,
         }

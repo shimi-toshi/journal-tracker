@@ -41,6 +41,7 @@ class PaperStorage:
                 )
             """)
             self._init_meta_table(conn)
+            self._init_journal_status_table(conn)
 
             columns = {row[1] for row in conn.execute("PRAGMA table_info(papers)").fetchall()}
             if "normalized_doi" not in columns:
@@ -80,6 +81,20 @@ class PaperStorage:
             CREATE TABLE IF NOT EXISTS metadata (
                 key TEXT PRIMARY KEY,
                 value TEXT NOT NULL
+            )
+        """)
+
+    @staticmethod
+    def _init_journal_status_table(conn: sqlite3.Connection):
+        """ジャーナル別の取得成否を継続記録するテーブル（長期エラー検知用）"""
+        conn.execute("""
+            CREATE TABLE IF NOT EXISTS journal_status (
+                journal_name TEXT PRIMARY KEY,
+                last_success_at TEXT,
+                last_error_at TEXT,
+                last_error_type TEXT,
+                consecutive_failures INTEGER DEFAULT 0,
+                updated_at TEXT
             )
         """)
 
@@ -260,8 +275,13 @@ class PaperStorage:
                     fetched_at=datetime.fromisoformat(row["fetched_at"]) if row["fetched_at"] else None,
                 )
 
-    def get_recent_papers(self, days: int = 7) -> list[Paper]:
-        """直近N日分の論文を取得（fetched_at基準）"""
+    def get_recent_papers(self, days: int = 7, max_publication_lag_days: int | None = None) -> list[Paper]:
+        """直近N日分の論文を取得（fetched_at基準）
+
+        max_publication_lag_days を指定すると、取得日(fetched_at)より大きく前に公表された論文
+        （= CrossRef等のバックカタログ再登録で古い論文が直近に紛れ込むケース）を除外する。
+        月のみ日付(YYYY-MM→1日扱い)の正規の新着は公表日と取得日が近いため残る。
+        """
         with sqlite3.connect(self.db_path) as conn:
             conn.row_factory = sqlite3.Row
             cutoff = (datetime.now() - timedelta(days=days)).isoformat()
@@ -271,6 +291,18 @@ class PaperStorage:
             )
             papers = []
             for row in cursor:
+                published_date = datetime.fromisoformat(row["published_date"]) if row["published_date"] else None
+                fetched_at = datetime.fromisoformat(row["fetched_at"]) if row["fetched_at"] else None
+
+                # バックカタログ再登録ガード: 公表が取得より大幅に前なら新着扱いしない
+                if (
+                    max_publication_lag_days is not None
+                    and published_date is not None
+                    and fetched_at is not None
+                    and (fetched_at - published_date).days > max_publication_lag_days
+                ):
+                    continue
+
                 papers.append(Paper(
                     title=row["title"],
                     journal_name=row["journal_name"],
@@ -278,10 +310,99 @@ class PaperStorage:
                     abstract=row["abstract"] or "",
                     doi=row["doi"] or "",
                     url=row["url"] or "",
-                    published_date=datetime.fromisoformat(row["published_date"]) if row["published_date"] else None,
-                    fetched_at=datetime.fromisoformat(row["fetched_at"]) if row["fetched_at"] else None,
+                    published_date=published_date,
+                    fetched_at=fetched_at,
                 ))
             return papers
+
+    def update_journal_status(
+        self,
+        attempted_journals: list[str],
+        failed_journals: list[dict[str, str]],
+    ) -> None:
+        """各ジャーナルの取得成否を記録し、連続失敗回数を更新する。
+
+        attempted_journals: 今回取得を試みたジャーナル名（RSS/CrossRefを実行したもの）
+        failed_journals: 今回失敗したジャーナル情報（{"journal", "source", "error_type"}）
+        """
+        now = datetime.now().isoformat()
+        error_by_journal = {f["journal"]: f.get("error_type", "unknown") for f in failed_journals}
+
+        with sqlite3.connect(self.db_path) as conn:
+            for name in attempted_journals:
+                if name in error_by_journal:
+                    conn.execute(
+                        """
+                        INSERT INTO journal_status
+                            (journal_name, last_error_at, last_error_type, consecutive_failures, updated_at)
+                        VALUES (?, ?, ?, 1, ?)
+                        ON CONFLICT(journal_name) DO UPDATE SET
+                            last_error_at = excluded.last_error_at,
+                            last_error_type = excluded.last_error_type,
+                            consecutive_failures = journal_status.consecutive_failures + 1,
+                            updated_at = excluded.updated_at
+                        """,
+                        (name, now, error_by_journal[name], now),
+                    )
+                else:
+                    conn.execute(
+                        """
+                        INSERT INTO journal_status
+                            (journal_name, last_success_at, consecutive_failures, updated_at)
+                        VALUES (?, ?, 0, ?)
+                        ON CONFLICT(journal_name) DO UPDATE SET
+                            last_success_at = excluded.last_success_at,
+                            consecutive_failures = 0,
+                            updated_at = excluded.updated_at
+                        """,
+                        (name, now, now),
+                    )
+            conn.commit()
+
+    def get_failing_journals(self, threshold: int = 7) -> dict[str, dict]:
+        """長期エラーで取得できていないジャーナルを返す。
+
+        判定: 連続失敗が threshold 回以上、または、直近の取得が失敗していて(連続失敗>=1)、
+        最後に取得できた時点（journal_status の last_success_at、無ければ papers の最新 fetched_at を代用）
+        から threshold 日以上経過しているもの。後者により履歴が浅い導入直後でも即座に検知できる。
+        戻り値: {journal_name: {"error_type", "consecutive_failures", "last_success_at", "days_since_success"}}
+        """
+        now = datetime.now()
+        result: dict[str, dict] = {}
+        with sqlite3.connect(self.db_path) as conn:
+            conn.row_factory = sqlite3.Row
+            last_paper = dict(
+                conn.execute(
+                    "SELECT journal_name, MAX(fetched_at) FROM papers GROUP BY journal_name"
+                ).fetchall()
+            )
+            for row in conn.execute("SELECT * FROM journal_status"):
+                name = row["journal_name"]
+                consecutive = row["consecutive_failures"] or 0
+                if consecutive < 1:
+                    continue  # 直近で成功しているジャーナルは対象外
+
+                proxy_success = row["last_success_at"] or last_paper.get(name)
+                days_since_success = None
+                if proxy_success:
+                    try:
+                        days_since_success = (now - datetime.fromisoformat(proxy_success)).days
+                    except (TypeError, ValueError):
+                        days_since_success = None
+
+                long_term = consecutive >= threshold or (
+                    days_since_success is not None and days_since_success >= threshold
+                )
+                if not long_term:
+                    continue
+
+                result[name] = {
+                    "error_type": row["last_error_type"] or "unknown",
+                    "consecutive_failures": consecutive,
+                    "last_success_at": proxy_success,
+                    "days_since_success": days_since_success,
+                }
+        return result
 
     def get_stats(self) -> dict:
         """統計情報を取得"""

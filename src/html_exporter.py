@@ -31,6 +31,10 @@ class HtmlExporter:
         else:
             self.selectable_days = html_config.get("selectable_days", [7, 14, 30])
             self.selectable_days_range = None
+        # バックカタログ再登録ガード（公表が取得よりこの日数より前なら新着扱いしない）
+        self.max_publication_lag_days = html_config.get("max_publication_lag_days", 60)
+        # 連続失敗がこの回数以上で「長期エラー」と表示する
+        self.failure_threshold = html_config.get("failure_threshold", 7)
         self.google_analytics_id = config.get("google_analytics")
         self.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -43,7 +47,8 @@ class HtmlExporter:
             return max(self.selectable_days)
         return self.days_back
 
-    def export(self, papers: list[Paper], dry_run: bool = False, journals: list[Journal] | None = None) -> Path | None:
+    def export(self, papers: list[Paper], dry_run: bool = False, journals: list[Journal] | None = None,
+               failing_journals: dict[str, dict] | None = None) -> Path | None:
         """論文一覧をHTMLに出力"""
         output_path = self.output_dir / "index.html"
 
@@ -52,6 +57,7 @@ class HtmlExporter:
             print(f"\n--- HTML Export Preview ---")
             print(f"Output: {output_path}")
             print(f"Papers: {len(papers)}")
+            print(f"Long-term failing journals: {len(failing_journals or {})}")
             print("--- End HTML Preview ---\n")
             return output_path
 
@@ -69,15 +75,19 @@ class HtmlExporter:
                     if j.journal_url:
                         journal_url_map[j.name] = j.journal_url
 
-            grouped_papers = self._group_by_journal(papers, journal_url_map, all_journals=journals)
+            grouped_papers = self._group_by_journal(
+                papers, journal_url_map, all_journals=journals, failing_journals=failing_journals
+            )
             generated_at = datetime.now().strftime("%Y-%m-%d %H:%M")
 
             journals_with_papers = sum(1 for g in grouped_papers if g["count"] > 0)
+            failing_count = sum(1 for g in grouped_papers if g["is_failing"])
             html_content = template.render(
                 grouped_papers=grouped_papers,
                 total_count=len(papers),
                 total_journals=len(grouped_papers),
                 journals_with_papers=journals_with_papers,
+                failing_count=failing_count,
                 days_back=self.days_back,
                 selectable_days=self.selectable_days,
                 selectable_days_range=self.selectable_days_range,
@@ -95,10 +105,12 @@ class HtmlExporter:
             return None
 
     def _group_by_journal(self, papers: list[Paper], journal_url_map: dict | None = None,
-                          all_journals: list[Journal] | None = None) -> list[dict]:
+                          all_journals: list[Journal] | None = None,
+                          failing_journals: dict[str, dict] | None = None) -> list[dict]:
         """論文をジャーナル別にグルーピング（全ジャーナルを含む）"""
         sorted_papers = sorted(papers, key=attrgetter("journal_name"))
         journal_url_map = journal_url_map or {}
+        failing_journals = failing_journals or {}
 
         # 論文があるジャーナルをグルーピング
         papers_by_journal: dict[str, list[dict]] = {}
@@ -130,21 +142,50 @@ class HtmlExporter:
             for j in all_journals:
                 seen_journals.add(j.name)
                 paper_list = papers_by_journal.get(j.name, [])
-                grouped.append({
-                    "journal_name": j.name,
-                    "journal_url": j.journal_url or "",
-                    "count": len(paper_list),
-                    "papers": paper_list,
-                })
+                grouped.append(self._build_group(
+                    j.name, j.journal_url or "", paper_list, failing_journals
+                ))
 
         # Excelリストにないジャーナル名で論文がある場合も追加
         for journal_name, paper_list in papers_by_journal.items():
             if journal_name not in seen_journals:
-                grouped.append({
-                    "journal_name": journal_name,
-                    "journal_url": journal_url_map.get(journal_name, ""),
-                    "count": len(paper_list),
-                    "papers": paper_list,
-                })
+                grouped.append(self._build_group(
+                    journal_name, journal_url_map.get(journal_name, ""), paper_list, failing_journals
+                ))
 
         return grouped
+
+    # error_type を利用者向けの説明に変換
+    _ERROR_DESCRIPTIONS = {
+        "rss_parse_error": "フィードの解析に失敗",
+        "rss_fetch_error": "フィードの取得に失敗",
+        "http_auth_error": "アクセスが拒否されています",
+        "http_client_error": "提供元からエラー応答",
+        "http_server_error": "提供元サーバーのエラー",
+        "http_error": "提供元からエラー応答",
+        "timeout_error": "応答がタイムアウト",
+        "dns_error": "提供元に接続できません",
+        "connection_refused": "提供元に接続できません",
+        "connection_error": "提供元に接続できません",
+        "tls_error": "通信(TLS)エラー",
+        "proxy_error": "通信エラー",
+        "crossref_unknown_error": "取得処理でエラー",
+    }
+
+    def _build_group(self, name: str, url: str, paper_list: list[dict],
+                     failing_journals: dict[str, dict]) -> dict:
+        """テンプレート用のジャーナルグループ辞書を構築（長期エラー判定を含む）"""
+        status = failing_journals.get(name)
+        is_failing = status is not None
+        error_reason = ""
+        if is_failing:
+            error_reason = self._ERROR_DESCRIPTIONS.get(status.get("error_type", ""), "取得エラー")
+        return {
+            "journal_name": name,
+            "journal_url": url,
+            # 長期エラー誌は論文欄を出さず、名称＋HP＋注意書きのみ表示する
+            "count": 0 if is_failing else len(paper_list),
+            "papers": [] if is_failing else paper_list,
+            "is_failing": is_failing,
+            "error_reason": error_reason,
+        }
