@@ -6,10 +6,99 @@ from unittest.mock import Mock, patch
 import pandas as pd
 import requests
 
-from src.fetcher import CrossRefFetcher, PaperFetcher
+from src.fetcher import CrossRefFetcher, PaperFetcher, RSSFetcher, sanitize_feed_text
 from src.main import run_self_check
 from src.parser import Journal, Paper, normalize_doi, normalize_url
 from src.storage import PaperStorage, SCHEMA_VERSION
+
+
+def _mock_rss_response(body: bytes, encoding=None, apparent="utf-8"):
+    resp = Mock()
+    resp.raise_for_status.return_value = None
+    resp.content = body
+    resp.encoding = encoding
+    resp.apparent_encoding = apparent
+    return resp
+
+
+def test_sanitize_feed_text_fixes_common_breakages():
+    # 裸の & はエンティティ化（既存エンティティ・数値参照は維持）
+    assert sanitize_feed_text("Audit & Tax &amp; More &#38; &#x26;") == "Audit &amp; Tax &amp; More &#38; &#x26;"
+    # 既にデコード済みのためencoding宣言は除去（宣言不一致のbozo回避）
+    assert 'encoding=' not in sanitize_feed_text('<?xml version="1.0" encoding="us-ascii"?><rss/>')
+    # XMLで許容されない制御文字は除去、タブ/改行/復帰は保持
+    assert sanitize_feed_text("a\x00b\x08c") == "abc"
+    assert sanitize_feed_text("tab\tnl\ncr\r") == "tab\tnl\ncr\r"
+
+
+def test_rss_fetcher_recovers_malformed_feed_with_bare_amp_and_bad_encoding():
+    # us-ascii宣言だが実体はutf-8、かつ裸の & を含む（T&F/Oxfordで実際に起きた壊れ方）
+    body = (
+        '<?xml version="1.0" encoding="us-ascii"?>'
+        "<rss version=\"2.0\"><channel><title>News & Views</title>"
+        "<item><title>Audit Fees & Risk</title><link>https://ex.com/a</link></item>"
+        "<item><title>Café Earnings</title><link>https://ex.com/b</link></item>"
+        "</channel></rss>"
+    ).encode("utf-8")
+
+    fetcher = RSSFetcher()
+    journal = Journal(name="J", rss_url="https://ex.com/feed", status="Working")
+    with patch.object(fetcher.session, "get", return_value=_mock_rss_response(body, encoding="us-ascii")):
+        papers = list(fetcher.fetch(journal))
+
+    assert [p.title for p in papers] == ["Audit Fees & Risk", "Café Earnings"]
+    assert fetcher.last_error is None
+
+
+def test_rss_fetcher_flags_unrecoverable_feed_as_failure():
+    fetcher = RSSFetcher()
+    journal = Journal(name="J", rss_url="https://ex.com/feed", status="Working")
+    with patch.object(fetcher.session, "get", return_value=_mock_rss_response(b"\x00\x01 not xml at all")):
+        papers = list(fetcher.fetch(journal))
+
+    assert papers == []
+    assert fetcher.last_error_type == "rss_parse_error"
+
+
+def test_rss_fetcher_classifies_network_errors_for_visibility():
+    fetcher = RSSFetcher()
+    journal = Journal(name="J", rss_url="https://ex.com/feed", status="Working")
+
+    resp = Mock()
+    resp.raise_for_status.side_effect = requests.exceptions.ProxyError("proxy down")
+    with patch.object(fetcher.session, "get", return_value=resp):
+        papers = list(fetcher.fetch(journal))
+
+    assert papers == []
+    assert fetcher.last_error_type == "proxy_error"
+
+
+def test_classify_request_exception_handles_proxy_and_ssl_errors():
+    # requests.ProxyError / SSLError は requests.exceptions 経由でのみ存在する（トップレベルには無い）
+    assert CrossRefFetcher.classify_request_exception(requests.exceptions.ProxyError("x")) == "proxy_error"
+    assert CrossRefFetcher.classify_request_exception(requests.exceptions.SSLError("x")) == "tls_error"
+
+
+def test_crossref_uses_works_endpoint_with_issn_and_index_date_filter():
+    fetcher = CrossRefFetcher(email="x@y.com")
+    journal = Journal(name="C", issn="2380-2871")
+
+    captured = {}
+
+    def fake_get(url, params=None, headers=None, timeout=None):
+        captured["url"] = url
+        captured["params"] = params
+        resp = Mock()
+        resp.raise_for_status.return_value = None
+        resp.json.return_value = {"message": {"items": []}}
+        return resp
+
+    with patch.object(fetcher.session, "get", side_effect=fake_get):
+        list(fetcher.fetch(journal, days_back=7))
+
+    assert captured["url"] == "https://api.crossref.org/works"
+    assert captured["params"]["filter"].startswith("issn:2380-2871,from-index-date:")
+    assert captured["params"]["sort"] == "indexed"
 
 
 def test_normalize_doi_url_and_unique_id_fallback():
@@ -286,3 +375,41 @@ def test_run_self_check_detects_invalid_template():
 
         issues = run_self_check(config)
         assert any("HTMLテンプレート検証に失敗" in issue for issue in issues)
+
+
+def test_run_self_check_detects_duplicate_issn_and_missing_fetch_method():
+    with tempfile.TemporaryDirectory() as td:
+        td_path = Path(td)
+        excel_path = td_path / "journals.xlsx"
+        # 同一Online ISSNを持つ2誌（取得元の取り違え）と、RSS/ISSNいずれも無い1誌
+        df = pd.DataFrame(
+            [
+                {"Journal Title": "Journal A", "Abbrev": "A", "Publisher": "P", "Journal URL": "",
+                 "RSS Feed": "—", "Online ISSN": "1758-7743", "Print ISSN": "1111-1111", "Status": "No RSS"},
+                {"Journal Title": "Journal B", "Abbrev": "B", "Publisher": "P", "Journal URL": "",
+                 "RSS Feed": "—", "Online ISSN": "1758-7743", "Print ISSN": "2222-2222", "Status": "No RSS"},
+                {"Journal Title": "Journal C", "Abbrev": "C", "Publisher": "P", "Journal URL": "",
+                 "RSS Feed": "—", "Online ISSN": "", "Print ISSN": "", "Status": "No RSS"},
+            ],
+            columns=[
+                "Journal Title", "Abbrev", "Publisher", "Journal URL", "RSS Feed",
+                "Online ISSN", "Print ISSN", "Status",
+            ],
+        )
+        df.to_excel(excel_path, index=False)
+
+        template_dir = td_path / "templates"
+        template_dir.mkdir(parents=True, exist_ok=True)
+        (template_dir / "index.html").write_text("<html></html>", encoding="utf-8")
+
+        config = {
+            "journals": {"excel_path": str(excel_path)},
+            "database": {"path": str(td_path / "papers.db")},
+            "export": {"output_dir": str(td_path / "output")},
+            "logs": {"output_dir": str(td_path / "logs")},
+            "html_export": {"template_dir": str(template_dir), "output_dir": str(td_path / "docs")},
+        }
+
+        issues = run_self_check(config)
+        assert any("ISSN重複" in issue and "1758-7743" in issue for issue in issues)
+        assert any("取得手段がありません" in issue and "Journal C" in issue for issue in issues)
