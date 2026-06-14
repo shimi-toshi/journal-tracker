@@ -1,80 +1,14 @@
 """Excel出力モジュール"""
 
 import logging
-import re
 from pathlib import Path
 from datetime import datetime
-from html import unescape
 
 import pandas as pd
 
 from .parser import Paper
 
 logger = logging.getLogger(__name__)
-
-
-MONTH_MAP = {
-    "january": "01", "february": "02", "march": "03", "april": "04",
-    "may": "05", "june": "06", "july": "07", "august": "08",
-    "september": "09", "october": "10", "november": "11", "december": "12",
-    "jan": "01", "feb": "02", "mar": "03", "apr": "04",
-    "jun": "06", "jul": "07", "aug": "08", "sep": "09", "oct": "10", "nov": "11", "dec": "12",
-}
-
-
-def normalize_date(date_str: str) -> str:
-    """日付を YYYY/MM 形式に正規化"""
-    if not date_str:
-        return ""
-
-    # 既に YYYY-MM-DD 形式の場合
-    match = re.match(r'(\d{4})-(\d{2})-\d{2}', date_str)
-    if match:
-        return f"{match.group(1)}/{match.group(2)}"
-
-    # YYYY-MM 形式の場合
-    match = re.match(r'(\d{4})-(\d{2})', date_str)
-    if match:
-        return f"{match.group(1)}/{match.group(2)}"
-
-    # "June 2026" 形式の場合
-    match = re.match(r'([A-Za-z]+)\s*(\d{4})', date_str)
-    if match:
-        month_name = match.group(1).lower()
-        year = match.group(2)
-        month = MONTH_MAP.get(month_name, "01")
-        return f"{year}/{month}"
-
-    return date_str
-
-
-def extract_metadata_from_abstract(abstract: str) -> dict:
-    """Abstractからメタデータ（著者、発行日）を抽出"""
-    result = {
-        "authors": "",
-        "published": "",
-    }
-
-    if not abstract:
-        return result
-
-    # HTMLエンティティをデコード
-    text = unescape(abstract)
-    # HTMLタグを除去
-    text = re.sub(r'<[^>]+>', ' ', text)
-
-    # Publication date を抽出 (例: "Publication date: June 2026")
-    pub_match = re.search(r'Publication date:\s*([A-Za-z]+\s*\d{4})', text, re.IGNORECASE)
-    if pub_match:
-        result["published"] = normalize_date(pub_match.group(1).strip())
-
-    # Author(s) を抽出 (例: "Author(s): Name1, Name2, Name3")
-    author_match = re.search(r'Author\(s\):\s*([^<\n]+)', text, re.IGNORECASE)
-    if author_match:
-        authors = author_match.group(1).strip()
-        result["authors"] = authors
-
-    return result
 
 
 class ExcelExporter:
@@ -115,17 +49,8 @@ class ExcelExporter:
             # DataFrameに変換
             data = []
             for paper in papers:
-                # Abstractからメタデータを抽出
-                metadata = extract_metadata_from_abstract(paper.abstract)
-
-                # 著者: paperにあればそれを使用、なければAbstractから抽出
-                authors = ", ".join(paper.authors) if paper.authors else metadata["authors"]
-
-                # 発行日: paperにあればそれを使用、なければAbstractから抽出
-                if paper.published_date:
-                    published = paper.published_date.strftime("%Y/%m")
-                else:
-                    published = metadata["published"]
+                authors = ", ".join(paper.authors)
+                published = paper.published_date.strftime("%Y/%m") if paper.published_date else ""
 
                 data.append({
                     "Journal": paper.journal_name,

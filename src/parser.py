@@ -80,11 +80,6 @@ class Journal:
     abbreviation: str = ""
     publisher: str = ""
     journal_url: str = ""
-    rss_url: str = ""
+    rss_url: str = ""   # 現在は未使用（Excel列との互換のため保持）
     issn: str = ""
-    status: str = ""  # Working / No RSS
-
-    @property
-    def has_rss(self) -> bool:
-        """RSSフィードが利用可能か"""
-        return self.rss_url and self.rss_url != "-" and self.status == "Working"
+    status: str = ""    # 現在は未使用（Excel列との互換のため保持）

@@ -98,7 +98,7 @@ GitHub Actionsによる日次自動更新に対応しています。
 
 ## 機能
 
-- **RSS/CrossRef対応**: RSSフィードまたはCrossRef APIから論文情報を取得
+- **CrossRef対応**: CrossRef APIから論文情報を取得（全ジャーナルをISSNで横断取得）
 - **重複チェック**: SQLiteデータベースで既読管理し、新着論文のみを出力
 - **Excel出力**: ジャーナル名、発行日、タイトル、著者、DOI、URLを一覧化
 - **HTML出力**: GitHub Pages用のHTML一覧ページを生成（日数スライダーUI付き、DB登録日基準でフィルタ）
@@ -184,7 +184,7 @@ python -m src.main
 journal-tracker/
 ├── src/
 │   ├── main.py           # メインエントリーポイント
-│   ├── fetcher.py        # 論文取得（RSS/CrossRef）
+│   ├── fetcher.py        # 論文取得（CrossRef API）
 │   ├── parser.py         # データクラス定義
 │   ├── storage.py        # SQLite既読管理
 │   ├── exporter.py       # Excel出力
@@ -216,10 +216,12 @@ journal-tracker/
 | Abbrev | 略称 |
 | Publisher | 出版社 |
 | Journal URL | ジャーナルのURL |
-| RSS Feed | RSSフィードURL（なければ「-」） |
-| Online ISSN | オンラインISSN |
-| Print ISSN | 印刷版ISSN |
-| Status | 「Working」でRSS有効 |
+| RSS Feed | （現在未使用）旧RSS方式の名残。互換のため列は保持 |
+| Online ISSN | オンラインISSN（取得のキー。Print ISSNより優先） |
+| Print ISSN | 印刷版ISSN（Online ISSNが無い場合に使用） |
+| Status | （現在未使用）旧RSS方式の名残。互換のため列は保持 |
+
+> 取得は全ジャーナルCrossRef API経由です。Online ISSN（無ければPrint ISSN）が取得キーになります。
 
 ## 出力形式
 

@@ -9,7 +9,6 @@ from operator import attrgetter
 from jinja2 import Environment, FileSystemLoader
 
 from .parser import Journal, Paper
-from .exporter import extract_metadata_from_abstract
 from .utils import resolve_path
 
 logger = logging.getLogger(__name__)
@@ -117,12 +116,8 @@ class HtmlExporter:
         for journal_name, group in groupby(sorted_papers, key=attrgetter("journal_name")):
             paper_list = []
             for paper in group:
-                metadata = extract_metadata_from_abstract(paper.abstract)
-                authors = ", ".join(paper.authors) if paper.authors else metadata["authors"]
-                if paper.published_date:
-                    published = paper.published_date.strftime("%Y/%m/%d")
-                else:
-                    published = metadata["published"] or ""
+                authors = ", ".join(paper.authors)
+                published = paper.published_date.strftime("%Y/%m/%d") if paper.published_date else ""
 
                 paper_list.append({
                     "title": paper.title,

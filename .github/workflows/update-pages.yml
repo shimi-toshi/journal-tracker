@@ -27,6 +27,10 @@ jobs:
 
       - name: Run Journal Tracker
         run: python -m src.main
+        env:
+          # CrossRefのpolite pool（高速・低エラー）を受けるためのメール。
+          # リポジトリ Secrets に CROSSREF_EMAIL を設定すると有効化（未設定なら空＝従来動作）。
+          CROSSREF_EMAIL: ${{ secrets.CROSSREF_EMAIL }}
 
       - name: Commit and push changes
         run: |
