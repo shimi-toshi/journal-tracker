@@ -92,8 +92,8 @@ def run_self_check(config: dict) -> list[str]:
             journals = []
         issn_owners: dict[str, list[str]] = {}
         for journal in journals:
-            if not journal.has_rss and not journal.issn:
-                issues.append(f"取得手段がありません（RSSもISSNもなし）: {journal.name}")
+            if not journal.issn:
+                issues.append(f"取得手段がありません（ISSNがありません）: {journal.name}")
             if journal.issn:
                 issn_owners.setdefault(journal.issn, []).append(journal.name)
         for issn, names in issn_owners.items():
@@ -167,8 +167,9 @@ def main():
         if args.list_journals:
             print(f"\n=== ジャーナル一覧 ({len(journals)}件) ===")
             for j in journals:
-                rss_status = "RSS" if j.has_rss else "CrossRef/Other"
-                print(f"  [{rss_status:12}] {j.abbreviation:8} - {j.name}")
+                source = "CrossRef" if j.issn else "取得不可"
+                issn = j.issn or "-"
+                print(f"  [{source:9}] {issn:11} {j.abbreviation:8} - {j.name}")
             return 0
 
         fetcher = PaperFetcher(config)
@@ -191,7 +192,7 @@ def main():
             print("新着論文はありませんでした。")
 
         # ジャーナル別の取得成否を記録（長期エラー検知用）。dry-runでは状態を汚さない。
-        attempted_journals = [j.name for j in journals if j.has_rss or j.issn]
+        attempted_journals = [j.name for j in journals if j.issn]
         if not args.dry_run:
             storage.update_journal_status(attempted_journals, fetcher.last_run_stats.failed_journals)
 

@@ -65,8 +65,10 @@ def load_journals_from_excel(excel_path: str) -> list[Journal]:
     for _, row in df.iterrows():
         rss_url = str(row.get("RSS Feed", "")) if pd.notna(row.get("RSS Feed")) else ""
 
-        online_issn = str(row.get("Online ISSN", "")) if pd.notna(row.get("Online ISSN")) else ""
-        print_issn = str(row.get("Print ISSN", "")) if pd.notna(row.get("Print ISSN")) else ""
+        # ISSNは取得クエリのキー。Excel由来の前後空白・タブ（例: "1879-0585\t"）を除去する。
+        # CrossRefフィルタに混入すると当該誌が丸ごと取得不能になるため。
+        online_issn = str(row.get("Online ISSN", "")).strip() if pd.notna(row.get("Online ISSN")) else ""
+        print_issn = str(row.get("Print ISSN", "")).strip() if pd.notna(row.get("Print ISSN")) else ""
         issn = online_issn if online_issn else print_issn
 
         journal = Journal(
