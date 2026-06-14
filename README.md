@@ -7,7 +7,7 @@ GitHub Actionsによる日次自動更新に対応しています。
 
 > **免責事項**: 本ページの情報は最終更新日時点で最新かつ正確な内容を掲載するよう努めていますが、誤りが含まれる可能性があります。ご利用の際は、必ず一次情報をご確認ください。
 >
-> **最終更新日**: 2026年2月7日
+> **最終更新日**: 2026年6月14日
 
 ## 対象ジャーナル・ランキング一覧
 
@@ -98,8 +98,11 @@ GitHub Actionsによる日次自動更新に対応しています。
 
 ## 機能
 
-- **CrossRef対応**: CrossRef APIから論文情報を取得（全ジャーナルをISSNで横断取得）
+- **CrossRef対応**: CrossRef APIから論文情報を取得（全ジャーナルを横断取得）。Online/Print 両ISSNを併記して照会し、works が一方のISSNにしか紐づかない誌でも取りこぼさない
+- **初回デポジット日で新着判定**: 取得フィルタに `from-created-date` を使用。既存DOIの再デポジット（被引用数更新等）で古い論文が新着扱いされる流入を取得段階で防止
+- **バックカタログ再登録ガード**: 新規参入誌のアーカイブ一括登録など、公表日が古い論文（既定60日超）を新着一覧から除外（二重防御）
 - **重複チェック**: SQLiteデータベースで既読管理し、新着論文のみを出力
+- **長期エラー誌の明示**: 一定期間（既定7回連続）取得に失敗している誌は「新着なし」と誤解されないよう、論文欄を出さず誌名・HPリンク・注意書きのみを表示
 - **Excel出力**: ジャーナル名、発行日、タイトル、著者、DOI、URLを一覧化
 - **HTML出力**: GitHub Pages用のHTML一覧ページを生成（日数スライダーUI付き、DB登録日基準でフィルタ）
 - **日次自動更新**: GitHub Actionsで毎日自動実行し、GitHub Pagesを更新
@@ -143,6 +146,8 @@ html_export:
   template_dir: "templates"       # Jinja2テンプレートフォルダ
   days_back: 7                    # デフォルト表示日数
   selectable_days_range: [1, 30]  # スライダーUIの範囲
+  max_publication_lag_days: 60    # これ以上前に公表された論文は新着扱いしない（バックカタログ再登録対策）
+  failure_threshold: 7            # 連続失敗がこの回数以上で「長期エラー」表示（毎日実行のため回数≒日数）
 
 database:
   path: "data/papers.db"          # SQLiteデータベース
@@ -192,6 +197,9 @@ journal-tracker/
 │   └── utils.py          # ユーティリティ
 ├── config/
 │   └── config.yaml       # 設定ファイル
+├── scripts/
+│   ├── diagnose_issn.py      # ExcelのISSN妥当性診断（CrossRef照会・誌名一致チェック）
+│   └── prune_backcatalog.py  # 旧運用で流入した過去データの整理（一度きりの保守用）
 ├── templates/
 │   └── index.html        # HTML出力用Jinja2テンプレート
 ├── docs/                 # GitHub Pages公開ディレクトリ
@@ -217,11 +225,13 @@ journal-tracker/
 | Publisher | 出版社 |
 | Journal URL | ジャーナルのURL |
 | RSS Feed | （現在未使用）旧RSS方式の名残。互換のため列は保持 |
-| Online ISSN | オンラインISSN（取得のキー。Print ISSNより優先） |
-| Print ISSN | 印刷版ISSN（Online ISSNが無い場合に使用） |
+| Online ISSN | オンラインISSN（取得キー） |
+| Print ISSN | 印刷版ISSN（取得キー） |
 | Status | （現在未使用）旧RSS方式の名残。互換のため列は保持 |
 
-> 取得は全ジャーナルCrossRef API経由です。Online ISSN（無ければPrint ISSN）が取得キーになります。
+> 取得は全ジャーナルCrossRef API経由です。Online/Print **両方のISSN** を `issn:` フィルタで併記（OR）して照会するため、works が一方のISSN（Elsevier等はPrint ISSN）にしか紐づかない誌でも取りこぼしません。
+>
+> ExcelのISSNが別誌のものだとOR照会で別誌の論文が混入します。全ISSNの妥当性は `python -m scripts.diagnose_issn` で点検でき、`python -m src.main --self-check` でもISSNの取り違え（同一ISSNを複数誌が保持）を検知します。
 
 ## 出力形式
 
