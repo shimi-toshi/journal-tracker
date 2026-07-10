@@ -5,9 +5,10 @@ from unittest.mock import Mock, patch
 
 import pandas as pd
 import requests
+import yaml
 
 from src.fetcher import CrossRefFetcher, PaperFetcher
-from src.main import run_self_check
+from src.main import main, run_self_check
 from src.parser import Journal, Paper, normalize_doi, normalize_url
 from src.storage import PaperStorage, SCHEMA_VERSION
 
@@ -382,3 +383,58 @@ def test_run_self_check_detects_duplicate_issn_and_missing_fetch_method():
         issues = run_self_check(config)
         assert any("ISSN重複" in issue and "1758-7743" in issue for issue in issues)
         assert any("取得手段がありません" in issue and "Journal C" in issue for issue in issues)
+
+
+def test_dry_run_does_not_write_to_database():
+    # 回帰: --dry-run が save_batch でDBに書き込むと新着が「消費」され、
+    # 次回の本番実行で同じ論文が新着扱いされず出力から永久に漏れる
+    with tempfile.TemporaryDirectory() as td:
+        td_path = Path(td)
+        excel_path = td_path / "journals.xlsx"
+        pd.DataFrame(
+            [
+                {"Journal Title": "Dry Run Journal", "Abbrev": "DRJ", "Publisher": "P", "Journal URL": "",
+                 "RSS Feed": "—", "Online ISSN": "1234-5678", "Print ISSN": "", "Status": "No RSS"},
+            ],
+            columns=[
+                "Journal Title", "Abbrev", "Publisher", "Journal URL", "RSS Feed",
+                "Online ISSN", "Print ISSN", "Status",
+            ],
+        ).to_excel(excel_path, index=False)
+
+        template_dir = td_path / "templates"
+        template_dir.mkdir(parents=True, exist_ok=True)
+        (template_dir / "index.html").write_text("<html></html>", encoding="utf-8")
+
+        db_path = td_path / "papers.db"
+        config = {
+            "journals": {"excel_path": str(excel_path)},
+            "database": {"path": str(db_path)},
+            "export": {"output_dir": str(td_path / "output")},
+            "logs": {"output_dir": str(td_path / "logs")},
+            "html_export": {"template_dir": str(template_dir), "output_dir": str(td_path / "docs")},
+            "fetch": {"days_back": 7, "timeout": 10, "rate_limit_seconds": 0},
+        }
+        config_path = td_path / "config.yaml"
+        config_path.write_text(yaml.safe_dump(config), encoding="utf-8")
+
+        paper = Paper(title="Dry Paper", journal_name="Dry Run Journal", doi="10.1000/dry")
+
+        def run_main(argv):
+            with patch("src.fetcher.CrossRefFetcher.fetch", return_value=[paper]), \
+                 patch("sys.argv", argv):
+                return main()
+
+        def paper_count():
+            with sqlite3.connect(db_path) as conn:
+                return conn.execute("SELECT COUNT(*) FROM papers").fetchone()[0]
+
+        # dry-runではDBに保存されず、journal_statusも更新されない
+        assert run_main(["prog", "--config", str(config_path), "--dry-run"]) == 0
+        assert paper_count() == 0
+        with sqlite3.connect(db_path) as conn:
+            assert conn.execute("SELECT COUNT(*) FROM journal_status").fetchone()[0] == 0
+
+        # 本番実行では同じ論文が新着として保存される（dry-runに消費されていない）
+        assert run_main(["prog", "--config", str(config_path)]) == 0
+        assert paper_count() == 1

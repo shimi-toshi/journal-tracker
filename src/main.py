@@ -180,7 +180,11 @@ def main():
         papers = list(fetcher.fetch_all(journals))
         logger.info(f"Fetched {len(papers)} papers")
 
-        new_papers = storage.save_batch(papers)
+        # dry-runではDBに保存しない（保存すると新着が消費され、次回本番実行の出力から漏れる）
+        if args.dry_run:
+            new_papers = [p for p in papers if storage.is_new(p)]
+        else:
+            new_papers = storage.save_batch(papers)
         logger.info(f"Found {len(new_papers)} new papers")
 
         if new_papers:
