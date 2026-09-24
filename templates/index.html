@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accounting Journal Tracker</title>
+    <title>{{ site_title }}</title>
+    <meta name="description" content="{{ site_description }}">
+    <!-- 生成AI・スクリプト向けの軽量版（llms.txt に案内あり） -->
+    <link rel="alternate" type="text/markdown" href="latest.md" title="直近{{ days_back }}日の新着（Markdown）">
+    <link rel="alternate" type="application/json" href="papers.json" title="全データ（JSON）">
     {% if google_analytics_id %}
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id={{ google_analytics_id }}"></script>
@@ -95,10 +99,36 @@
             gap: 10px;
             min-width: 0;
         }
-        .journal-header .journal-name-area span {
+        .journal-header .journal-title {
+            font-size: inherit;
+            font-weight: inherit;
             overflow: hidden;
             text-overflow: ellipsis;
         }
+        .rank-badge {
+            font-size: 0.7rem;
+            padding: 0 6px;
+            border-radius: 3px;
+            background-color: rgba(255,255,255,0.18);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .sidebar-list .rank-badge {
+            background-color: #ecf0f1;
+            color: #555;
+            margin-left: 4px;
+        }
+        .search-box {
+            padding: 2px 8px;
+            font-size: 0.9rem;
+            border: 1px solid #bbb;
+            border-radius: 4px;
+            flex: 1 1 18em;
+            max-width: 28em;
+        }
+        .paper-abstract { margin-top: 4px; font-size: 0.85rem; color: #555; }
+        .paper-abstract summary { cursor: pointer; color: #2980b9; font-size: 0.8rem; }
+        .paper-abstract p { margin-top: 4px; }
         .journal-header .journal-home-link {
             color: rgba(255,255,255,0.7);
             text-decoration: none;
@@ -209,6 +239,8 @@
             font-weight: 600;
         }
         .sidebar-list .nav-journal-name {
+            flex: 1;
+            min-width: 0;
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
@@ -275,7 +307,8 @@
             .sidebar {
                 width: 100%;
                 position: static;
-                max-height: none;
+                /* 狭い画面では誌一覧が本文を押し下げないよう高さを抑えてスクロールさせる */
+                max-height: 40vh;
                 order: -1;
             }
         }
@@ -287,7 +320,7 @@
         }
     </style>
 </head>
-<body>
+<body data-generated="{{ generated_date }}">
     <div class="page-wrapper">
         <!-- サイドバーナビゲーション -->
         {% if grouped_papers %}
@@ -299,6 +332,7 @@
                     <li>
                         <a href="#journal-{{ loop.index }}">
                             <span class="nav-journal-name">{{ group.journal_name }}</span>
+                            {% if group.abdc %}<span class="rank-badge" title="ABDC">{{ group.abdc }}</span>{% endif %}
                             {% if group.is_failing %}
                             <span class="nav-count nav-error" title="取得エラー">⚠️</span>
                             {% else %}
@@ -320,20 +354,24 @@
         <!-- メインコンテンツ -->
         <div class="container">
             <header>
-                <h1>Accounting Journal Tracker</h1>
-                <p>会計学トップジャーナル 新着論文一覧</p>
+                <h1>{{ site_title }}</h1>
+                <p>会計・ファイナンス主要ジャーナル 新着論文一覧</p>
             </header>
             <div class="summary">
                 <span>合計 <span id="visible-count">{{ total_count }}</span> 件の論文（直近{% if selectable_days_range %}<span class="days-slider-wrap"><input type="range" id="days-slider" class="days-slider" min="{{ selectable_days_range[0] }}" max="{{ selectable_days_range[1] }}" value="{{ days_back }}"><span id="days-value" class="days-value">{{ days_back }}</span></span>{% else %}<select id="days-select" class="days-select">
                     {% for d in selectable_days %}<option value="{{ d }}"{% if d == days_back %} selected{% endif %}>{{ d }}</option>{% endfor %}
                 </select>{% endif %}日間） | {{ total_journals }}誌中 <span id="visible-journals">{{ journals_with_papers }}</span>誌で更新あり{% if failing_count %} | <span class="failing-note">⚠️ {{ failing_count }}誌が取得エラー</span>{% endif %} | 最終更新: {{ generated_at }}</span>
+                <input type="search" id="search-box" class="search-box" placeholder="タイトル・著者・アブストラクトを検索" aria-label="論文を検索">
             </div>
+            <noscript><div class="summary">JavaScriptが無効のため、直近{{ max_days }}日分をすべて表示しています。軽量版: <a href="latest.md">latest.md</a>（直近{{ days_back }}日・Markdown）</div></noscript>
 
             {% for group in grouped_papers %}
-            <div class="journal-section{% if group.is_failing %} journal-error{% endif %}" id="journal-{{ loop.index }}"{% if group.is_failing %} data-journal-error{% endif %}>
+            <section class="journal-section{% if group.is_failing %} journal-error{% endif %}" id="journal-{{ loop.index }}"{% if group.is_failing %} data-journal-error{% endif %}>
                 <div class="journal-header">
                     <div class="journal-name-area">
-                        <span>{{ group.journal_name }}</span>
+                        <h2 class="journal-title">{{ group.journal_name }}</h2>
+                        {% if group.abdc %}<span class="rank-badge" title="ABDC Journal Quality List">ABDC {{ group.abdc }}</span>{% endif %}
+                        {% if group.abs_rank %}<span class="rank-badge" title="CABS Academic Journal Guide">ABS {{ group.abs_rank }}</span>{% endif %}
                         {% if group.journal_url %}
                         <a href="{{ group.journal_url }}" target="_blank" rel="noopener" class="journal-home-link">HP</a>
                         {% endif %}
@@ -351,14 +389,14 @@
                 </div>
                 {% elif group.papers %}
                 {% for paper in group.papers %}
-                <div class="paper-item" data-published="{{ paper.published_iso }}" data-fetched="{{ paper.fetched_iso }}">
-                    <div class="paper-title">
+                <article class="paper-item" data-published="{{ paper.published_iso }}" data-fetched="{{ paper.fetched_iso }}">
+                    <h3 class="paper-title">
                         {% if paper.url %}
                         <a href="{{ paper.url }}" target="_blank" rel="noopener">{{ paper.title }}</a>
                         {% else %}
                         {{ paper.title }}
                         {% endif %}
-                    </div>
+                    </h3>
                     <div class="paper-meta">
                         {% if paper.authors %}
                         <div class="authors">{{ paper.authors }}</div>
@@ -369,15 +407,21 @@
                             | <span class="doi"><a href="https://doi.org/{{ paper.doi }}" target="_blank" rel="noopener">{{ paper.doi }}</a></span>
                             {% endif %}
                         </div>
+                        {% if paper.abstract %}
+                        <details class="paper-abstract">
+                            <summary>Abstract</summary>
+                            <p>{{ paper.abstract }}</p>
+                        </details>
+                        {% endif %}
                     </div>
-                </div>
+                </article>
                 {% endfor %}
                 {% else %}
                 <div class="paper-item no-papers-message" data-empty-msg>
                     直近<span class="empty-days">{{ days_back }}</span>日間の新着論文はありません。
                 </div>
                 {% endif %}
-            </div>
+            </section>
             {% endfor %}
 
             {% if not grouped_papers %}
@@ -389,94 +433,82 @@
             {% endif %}
 
             <footer>
-                Generated by Journal Tracker
+                Generated by Journal Tracker ・ 機械可読版: <a href="latest.md">latest.md</a> / <a href="papers.json">papers.json</a> / <a href="llms.txt">llms.txt</a>
             </footer>
         </div>
     </div>
     <script>
     (function() {
-        // フィルタリング処理（スライダー・ドロップダウン共通）
-        function filterByDays(days) {
-            var now = new Date();
-            now.setHours(23, 59, 59, 999);
-            var cutoff = new Date(now.getTime() - days * 24 * 60 * 60 * 1000);
+        // 「直近N日」は閲覧時刻ではなくページ生成日を起点にする（ページは1日1回しか生成されないため、
+        // 閲覧時刻基準だと翌朝に「直近1日」が0件になる）。日付は YYYY-MM-DD 文字列で比較する。
+        var generated = document.body.getAttribute('data-generated');
+        function cutoffDate(days) {
+            var base = generated ? new Date(generated + 'T00:00:00Z') : new Date();
+            base.setUTCDate(base.getUTCDate() - (days - 1));
+            return base.toISOString().slice(0, 10);
+        }
 
+        var sections = document.querySelectorAll('.journal-section');
+        var navItems = document.querySelectorAll('.sidebar-list li');
+        // 検索用テキスト（タイトル・著者・アブストラクト）を初回に一度だけ作る
+        document.querySelectorAll('.paper-item[data-fetched]').forEach(function(paper) {
+            paper._searchText = paper.textContent.toLowerCase();
+        });
+
+        var currentDays = null;
+        var currentQuery = '';
+
+        function applyFilters() {
+            var cutoff = currentDays ? cutoffDate(currentDays) : null;
+            var terms = currentQuery.toLowerCase().split(/\s+/).filter(Boolean);
             var totalVisible = 0;
             var journalsWithPapers = 0;
-            var sections = document.querySelectorAll('.journal-section');
 
-            sections.forEach(function(section) {
-                // 長期エラー誌は日数フィルタの対象外（名称＋HP＋注意書きを常に表示）
+            sections.forEach(function(section, i) {
+                // 長期エラー誌はフィルタ対象外（名称＋HP＋注意書きを常に表示）
                 if (section.hasAttribute('data-journal-error')) return;
-                var papers = section.querySelectorAll('.paper-item[data-published], .paper-item[data-fetched]');
-                var emptyMsg = section.querySelector('[data-empty-msg]');
-                var countBadge = section.querySelector('.count');
+                var papers = section.querySelectorAll('.paper-item[data-fetched]');
                 var visibleCount = 0;
 
                 papers.forEach(function(paper) {
-                    var fetchedDate = paper.getAttribute('data-fetched');
-                    if (!fetchedDate) {
-                        paper.style.display = '';
-                        visibleCount++;
-                    } else {
-                        var d = new Date(fetchedDate + 'T00:00:00');
-                        if (d >= cutoff) {
-                            paper.style.display = '';
-                            visibleCount++;
-                        } else {
-                            paper.style.display = 'none';
-                        }
-                    }
+                    var fetched = paper.getAttribute('data-fetched');
+                    var inWindow = !cutoff || !fetched || fetched >= cutoff;
+                    var matches = terms.every(function(t) { return paper._searchText.indexOf(t) !== -1; });
+                    var show = inWindow && matches;
+                    paper.style.display = show ? '' : 'none';
+                    if (show) visibleCount++;
                 });
 
                 totalVisible += visibleCount;
                 if (visibleCount > 0) journalsWithPapers++;
 
-                if (countBadge) {
-                    countBadge.textContent = visibleCount + ' 件';
-                }
+                var countBadge = section.querySelector('.count');
+                if (countBadge) countBadge.textContent = visibleCount + ' 件';
 
+                var emptyMsg = section.querySelector('[data-empty-msg]');
+                if (!emptyMsg && visibleCount === 0) {
+                    emptyMsg = document.createElement('div');
+                    emptyMsg.className = 'paper-item no-papers-message';
+                    emptyMsg.setAttribute('data-empty-msg', '');
+                    section.appendChild(emptyMsg);
+                }
                 if (emptyMsg) {
-                    emptyMsg.style.display = (visibleCount === 0 && papers.length === 0) ? '' : (visibleCount === 0 ? '' : 'none');
-                    var emptyDays = emptyMsg.querySelector('.empty-days');
-                    if (emptyDays) emptyDays.textContent = days;
+                    emptyMsg.style.display = visibleCount === 0 ? '' : 'none';
+                    emptyMsg.textContent = terms.length
+                        ? '条件に一致する論文はありません。'
+                        : '直近' + (currentDays || '') + '日間の新着論文はありません。';
                 }
 
-                // 論文はあるが全て非表示の場合、空メッセージを動的に表示
-                if (visibleCount === 0 && papers.length > 0) {
-                    if (!emptyMsg) {
-                        emptyMsg = document.createElement('div');
-                        emptyMsg.className = 'paper-item no-papers-message';
-                        emptyMsg.setAttribute('data-empty-msg', '');
-                        emptyMsg.innerHTML = '直近<span class="empty-days">' + days + '</span>日間の新着論文はありません。';
-                        section.appendChild(emptyMsg);
-                    } else {
-                        emptyMsg.style.display = '';
-                    }
+                // サイドバーの件数も連動
+                var navCount = navItems[i] && navItems[i].querySelector('.nav-count');
+                if (navCount) {
+                    navCount.textContent = visibleCount + '件';
+                    navCount.classList.toggle('has-papers', visibleCount > 0);
                 }
             });
 
             document.getElementById('visible-count').textContent = totalVisible;
             document.getElementById('visible-journals').textContent = journalsWithPapers;
-
-            // サイドバーのカウントも更新
-            var navItems = document.querySelectorAll('.sidebar-list li');
-            sections.forEach(function(section, i) {
-                if (section.hasAttribute('data-journal-error')) return;
-                if (navItems[i]) {
-                    var countSpan = navItems[i].querySelector('.nav-count');
-                    var badge = section.querySelector('.count');
-                    if (countSpan && badge) {
-                        var cnt = badge.textContent.replace(' 件', '');
-                        countSpan.textContent = cnt + '件';
-                        if (parseInt(cnt, 10) > 0) {
-                            countSpan.classList.add('has-papers');
-                        } else {
-                            countSpan.classList.remove('has-papers');
-                        }
-                    }
-                }
-            });
         }
 
         // レンジスライダー
@@ -484,21 +516,34 @@
         if (slider) {
             var valueDisplay = document.getElementById('days-value');
             slider.addEventListener('input', function() {
-                var days = parseInt(this.value, 10);
-                if (valueDisplay) valueDisplay.textContent = days;
-                filterByDays(days);
+                currentDays = parseInt(this.value, 10);
+                if (valueDisplay) valueDisplay.textContent = currentDays;
+                applyFilters();
             });
-            // 初回表示時にデフォルト値でフィルタリング
-            filterByDays(parseInt(slider.value, 10));
+            currentDays = parseInt(slider.value, 10);
         }
 
-        // ドロップダウン（後方互換）
+        // ドロップダウン（selectable_days 指定時）
         var select = document.getElementById('days-select');
         if (select) {
             select.addEventListener('change', function() {
-                filterByDays(parseInt(this.value, 10));
+                currentDays = parseInt(this.value, 10);
+                applyFilters();
+            });
+            currentDays = parseInt(select.value, 10);
+        }
+
+        // キーワード検索（スペース区切りでAND）
+        var searchBox = document.getElementById('search-box');
+        if (searchBox) {
+            searchBox.addEventListener('input', function() {
+                currentQuery = this.value;
+                applyFilters();
             });
         }
+
+        // 初回表示時にデフォルト日数でフィルタリング
+        if (sections.length) applyFilters();
     })();
     </script>
 </body>

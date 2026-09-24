@@ -2,7 +2,6 @@
 
 import logging
 import os
-import re
 import socket
 import ssl
 import time
@@ -14,12 +13,9 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-from .parser import Journal, Paper
+from .parser import Journal, Paper, clean_abstract, clean_markup
 
 logger = logging.getLogger(__name__)
-
-# HTMLタグ除去用の正規表現（コンパイル済み）
-HTML_TAG_PATTERN = re.compile(r"<[^>]+>")
 
 
 @dataclass
@@ -29,6 +25,7 @@ class FetchRunStats:
     fetched_count: int = 0
     failed_journals: list[dict[str, str]] = field(default_factory=list)
     skipped_journals: list[str] = field(default_factory=list)
+    catchup_journals: dict[str, int] = field(default_factory=dict)  # 誌名 -> 遡った日数
 
 
 class CrossRefFetcher:
@@ -38,6 +35,10 @@ class CrossRefFetcher:
     # 一致しないと404になるため、ISSNフィルタ付きの汎用worksエンドポイントを使う。
     # これによりprint/onlineどちらのISSNでもヒットし、404にならない。
     WORKS_URL = "https://api.crossref.org/works"
+    # CrossRefの1リクエスト上限。大量刊行誌やキャッチアップ取得でも1回で収まる
+    MAX_ROWS = 1000
+    # 必要なフィールドだけ返させて転送量を抑える
+    SELECT_FIELDS = "DOI,title,author,published,published-online,published-print,issued,abstract"
 
     def __init__(self, timeout: int = 30, email: str = ""):
         self.timeout = timeout
@@ -128,16 +129,23 @@ class CrossRefFetcher:
 
             params = {
                 "filter": f"{issn_filter},from-created-date:{from_date}",
-                "rows": 100,
+                "rows": self.MAX_ROWS,
                 "sort": "created",
                 "order": "desc",
+                "select": self.SELECT_FIELDS,
             }
 
             response = self.session.get(self.WORKS_URL, params=params, headers=self.headers, timeout=self.timeout)
             response.raise_for_status()
 
-            data = response.json()
-            items = data.get("message", {}).get("items", [])
+            message = response.json().get("message", {})
+            items = message.get("items", [])
+            total = message.get("total-results")
+            if isinstance(total, int) and total > len(items):
+                logger.warning(
+                    f"CrossRef returned {len(items)} of {total} works for {journal.name}"
+                    f" (days_back={days_back}); older items in the window were not fetched"
+                )
 
             for item in items:
                 paper = self._parse_item(item, journal)
@@ -174,7 +182,8 @@ class CrossRefFetcher:
             day = parts[2] if len(parts) > 2 else 1
             try:
                 return datetime(year, month, day)
-            except ValueError:
+            except (TypeError, ValueError):
+                # date-parts が [[null]] のように欠損値を含む場合もあるため次のキーへ
                 logger.warning(f"Invalid CrossRef date parts for key '{date_key}': {parts}")
                 continue
 
@@ -184,7 +193,7 @@ class CrossRefFetcher:
         """CrossRef APIレスポンスをPaperオブジェクトに変換"""
         try:
             title_list = item.get("title", [])
-            title = title_list[0] if title_list else ""
+            title = clean_markup(title_list[0]) if title_list else ""
             if not title:
                 return None
 
@@ -197,15 +206,15 @@ class CrossRefFetcher:
                     name_parts.append(author["family"])
                 if name_parts:
                     authors.append(" ".join(name_parts))
+                elif author.get("name"):
+                    authors.append(author["name"])  # 団体著者（コンソーシアム等）
 
             doi = item.get("DOI", "")
             url = f"https://doi.org/{doi}" if doi else ""
 
             published_date = self._extract_published_date(item)
 
-            abstract = item.get("abstract", "")
-            if abstract.startswith("<jats:"):
-                abstract = HTML_TAG_PATTERN.sub("", abstract)
+            abstract = clean_abstract(item.get("abstract", ""))
 
             return Paper(
                 title=title,
@@ -228,15 +237,35 @@ class PaperFetcher:
         fetch_config = config.get("fetch", {})
         self.timeout = fetch_config.get("timeout", 30)
         self.days_back = fetch_config.get("days_back", 7)
+        self.max_catchup_days = int(fetch_config.get("max_catchup_days", 30))
         self.rate_limit_seconds = float(fetch_config.get("rate_limit_seconds", 1.0))
 
-        email = os.environ.get("CROSSREF_EMAIL", config.get("email", {}).get("sender_email", ""))
+        email = os.environ.get("CROSSREF_EMAIL", "")
         self.crossref_fetcher = CrossRefFetcher(timeout=self.timeout, email=email)
         self.last_run_stats = FetchRunStats()
 
-    def fetch_all(self, journals: list[Journal]) -> Iterator[Paper]:
-        """全ジャーナルから論文を取得（ISSNがあればCrossRef、無ければスキップ）"""
+    def window_days(self, last_success: datetime | None, now: datetime | None = None) -> int:
+        """ジャーナルごとの取得日数を決める（キャッチアップ取得）。
+
+        通常は days_back。最後の取得成功から days_back 日以上空いている（Actions停止・長期エラー等）
+        場合は、その空白期間の登録分を取りこぼさないよう「最後の成功日の1日前」まで遡る。
+        遡りすぎを防ぐため max_catchup_days で頭打ちにする。
+        """
+        if last_success is None:
+            return self.days_back
+        now = now or datetime.now()
+        gap_days = (now - last_success).days + 1
+        return max(self.days_back, min(self.max_catchup_days, gap_days))
+
+    def fetch_all(
+        self, journals: list[Journal], last_success: dict[str, datetime] | None = None
+    ) -> Iterator[Paper]:
+        """全ジャーナルから論文を取得（ISSNがあればCrossRef、無ければスキップ）
+
+        last_success: {journal_name: 最後に取得成功した日時}。指定するとキャッチアップ取得を行う。
+        """
         self.last_run_stats = FetchRunStats()
+        last_success = last_success or {}
 
         total_journals = len(journals)
         for index, journal in enumerate(journals):
@@ -244,7 +273,11 @@ class PaperFetcher:
 
             fetched_from_journal = 0
             if journal.issns:
-                for paper in self.crossref_fetcher.fetch(journal, self.days_back):
+                days_back = self.window_days(last_success.get(journal.name))
+                if days_back > self.days_back:
+                    self.last_run_stats.catchup_journals[journal.name] = days_back
+                    logger.info(f"Catch-up fetch for {journal.name}: last {days_back} days")
+                for paper in self.crossref_fetcher.fetch(journal, days_back):
                     fetched_from_journal += 1
                     self.last_run_stats.fetched_count += 1
                     yield paper

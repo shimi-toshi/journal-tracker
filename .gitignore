@@ -1,6 +1,9 @@
 # Database
 data/papers.db
 data/*.db
+data/*.db-wal
+data/*.db-shm
+data/*.db-journal
 
 # Output files
 output/*.xlsx
@@ -28,7 +31,8 @@ logs/
 # IDE
 .vscode/
 .idea/
-.claude/
+.claude/*
+!.claude/settings.json
 *.swp
 *.swo
 

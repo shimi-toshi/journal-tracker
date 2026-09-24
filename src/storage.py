@@ -3,11 +3,13 @@
 import sqlite3
 import logging
 import json
+import re
+from contextlib import contextmanager
 from pathlib import Path
 from datetime import datetime, timedelta
 from typing import Iterator
 
-from .parser import Paper, normalize_doi, normalize_url
+from .parser import Paper, is_excluded_title, normalize_doi, normalize_url
 
 logger = logging.getLogger(__name__)
 SCHEMA_VERSION = 3
@@ -21,9 +23,27 @@ class PaperStorage:
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self._init_db()
 
+    @contextmanager
+    def _connect(self) -> Iterator[sqlite3.Connection]:
+        """接続を開き、正常終了でcommit・例外でrollbackし、最後に必ずcloseする。
+
+        `with sqlite3.connect(...)` はトランザクション管理のみで接続を閉じないため、
+        Windows でのファイルロックや一時DBの削除失敗を招く。全メソッドでこれを使う。
+        """
+        conn = sqlite3.connect(self.db_path)
+        try:
+            with conn:
+                yield conn
+        finally:
+            conn.close()
+
     def _init_db(self):
         """データベースを初期化"""
-        with sqlite3.connect(self.db_path) as conn:
+        with self._connect() as conn:
+            # DBファイルはgitにコミットされるため、-wal/-shm に未反映の変更が残るWALモードは使わない
+            # （過去の保守SQLがWALを永続化していた）。ロールバックジャーナルに戻して単一ファイルに保つ。
+            if conn.execute("PRAGMA journal_mode").fetchone()[0] != "delete":
+                conn.execute("PRAGMA journal_mode=DELETE")
             conn.execute("""
                 CREATE TABLE IF NOT EXISTS papers (
                     unique_id TEXT PRIMARY KEY,
@@ -72,7 +92,9 @@ class PaperStorage:
                 WHERE normalized_url IS NOT NULL AND normalized_url != ''
             """)
 
-            self._set_schema_version(conn, SCHEMA_VERSION)
+            # 移行済みなら何も書かない（DBファイルのバイト列を変えず、git に差分を出さない）
+            if current_version != SCHEMA_VERSION:
+                self._set_schema_version(conn, SCHEMA_VERSION)
             conn.commit()
 
     @staticmethod
@@ -176,7 +198,7 @@ class PaperStorage:
         """論文が新着かどうかをチェック（unique_id と normalized_doi の両方を評価）"""
         normalized_doi = normalize_doi(paper.doi)
         normalized_url = normalize_url(paper.url)
-        with sqlite3.connect(self.db_path) as conn:
+        with self._connect() as conn:
             if normalized_doi and normalized_url:
                 cursor = conn.execute(
                     "SELECT 1 FROM papers WHERE unique_id = ? OR normalized_doi = ? OR normalized_url = ? LIMIT 1",
@@ -202,7 +224,7 @@ class PaperStorage:
     def save_batch(self, papers: list[Paper]) -> list[Paper]:
         """複数の論文を保存し、新着のみを返す"""
         new_papers = []
-        with sqlite3.connect(self.db_path) as conn:
+        with self._connect() as conn:
             for paper in papers:
                 normalized_authors = [str(author).strip() for author in paper.authors if str(author).strip()]
                 normalized_doi = normalize_doi(paper.doi)
@@ -233,7 +255,7 @@ class PaperStorage:
 
     def mark_notified(self, papers: list[Paper]):
         """論文を通知済みとしてマーク"""
-        with sqlite3.connect(self.db_path) as conn:
+        with self._connect() as conn:
             for paper in papers:
                 conn.execute(
                     "UPDATE papers SET notified = 1 WHERE unique_id = ?",
@@ -258,7 +280,7 @@ class PaperStorage:
 
     def get_unnotified(self) -> Iterator[Paper]:
         """未通知の論文を取得"""
-        with sqlite3.connect(self.db_path) as conn:
+        with self._connect() as conn:
             conn.row_factory = sqlite3.Row
             cursor = conn.execute(
                 "SELECT * FROM papers WHERE notified = 0 ORDER BY fetched_at DESC"
@@ -275,14 +297,21 @@ class PaperStorage:
                     fetched_at=datetime.fromisoformat(row["fetched_at"]) if row["fetched_at"] else None,
                 )
 
-    def get_recent_papers(self, days: int = 7, max_publication_lag_days: int | None = None) -> list[Paper]:
+    def get_recent_papers(
+        self,
+        days: int = 7,
+        max_publication_lag_days: int | None = None,
+        exclude_title_patterns: list[re.Pattern] | None = None,
+    ) -> list[Paper]:
         """直近N日分の論文を取得（fetched_at基準）
 
         max_publication_lag_days を指定すると、取得日(fetched_at)より大きく前に公表された論文
         （= CrossRef等のバックカタログ再登録で古い論文が直近に紛れ込むケース）を除外する。
         月のみ日付(YYYY-MM→1日扱い)の正規の新着は公表日と取得日が近いため残る。
+        exclude_title_patterns に一致するタイトル（Editorial Board 等の論文以外）も除外する
+        （取得時にも除外しているが、導入前にDBへ入った既存行を表示から外すため）。
         """
-        with sqlite3.connect(self.db_path) as conn:
+        with self._connect() as conn:
             conn.row_factory = sqlite3.Row
             cutoff = (datetime.now() - timedelta(days=days)).isoformat()
             cursor = conn.execute(
@@ -291,6 +320,8 @@ class PaperStorage:
             )
             papers = []
             for row in cursor:
+                if exclude_title_patterns and is_excluded_title(row["title"], exclude_title_patterns):
+                    continue
                 published_date = datetime.fromisoformat(row["published_date"]) if row["published_date"] else None
                 fetched_at = datetime.fromisoformat(row["fetched_at"]) if row["fetched_at"] else None
 
@@ -322,13 +353,13 @@ class PaperStorage:
     ) -> None:
         """各ジャーナルの取得成否を記録し、連続失敗回数を更新する。
 
-        attempted_journals: 今回取得を試みたジャーナル名（RSS/CrossRefを実行したもの）
+        attempted_journals: 今回取得を試みたジャーナル名（ISSNがありCrossRefへ照会したもの）
         failed_journals: 今回失敗したジャーナル情報（{"journal", "source", "error_type"}）
         """
         now = datetime.now().isoformat()
         error_by_journal = {f["journal"]: f.get("error_type", "unknown") for f in failed_journals}
 
-        with sqlite3.connect(self.db_path) as conn:
+        with self._connect() as conn:
             for name in attempted_journals:
                 if name in error_by_journal:
                     conn.execute(
@@ -359,54 +390,85 @@ class PaperStorage:
                     )
             conn.commit()
 
+    @staticmethod
+    def _last_success_by_journal(conn: sqlite3.Connection) -> dict[str, str]:
+        """誌ごとの最後の取得成功日時（ISO文字列）。
+
+        journal_status.last_success_at を優先し、無ければ papers の最新 fetched_at を代用する
+        （journal_status 導入前から存在する誌でも即座に判定できるように）。
+        """
+        result = dict(
+            conn.execute("SELECT journal_name, MAX(fetched_at) FROM papers GROUP BY journal_name").fetchall()
+        )
+        for name, last_success_at in conn.execute("SELECT journal_name, last_success_at FROM journal_status"):
+            if last_success_at:
+                result[name] = last_success_at
+        return result
+
+    def get_last_success_map(self) -> dict[str, datetime]:
+        """誌ごとの最後の取得成功日時（キャッチアップ取得の起点）"""
+        with self._connect() as conn:
+            raw = self._last_success_by_journal(conn)
+        result: dict[str, datetime] = {}
+        for name, value in raw.items():
+            try:
+                result[name] = datetime.fromisoformat(value)
+            except (TypeError, ValueError):
+                continue
+        return result
+
     def get_failing_journals(self, threshold: int = 7) -> dict[str, dict]:
-        """長期エラーで取得できていないジャーナルを返す。
+        """長期エラーで取得できていないジャーナルを返す（判定は failing_journals_from_conn 参照）"""
+        with self._connect() as conn:
+            return self.failing_journals_from_conn(conn, threshold)
+
+    @classmethod
+    def failing_journals_from_conn(
+        cls, conn: sqlite3.Connection, threshold: int = 7, now: datetime | None = None
+    ) -> dict[str, dict]:
+        """長期エラー誌の判定本体（読み取り専用接続でも使えるよう接続を受け取る）。
 
         判定: 連続失敗が threshold 回以上、または、直近の取得が失敗していて(連続失敗>=1)、
         最後に取得できた時点（journal_status の last_success_at、無ければ papers の最新 fetched_at を代用）
         から threshold 日以上経過しているもの。後者により履歴が浅い導入直後でも即座に検知できる。
         戻り値: {journal_name: {"error_type", "consecutive_failures", "last_success_at", "days_since_success"}}
         """
-        now = datetime.now()
+        now = now or datetime.now()
         result: dict[str, dict] = {}
-        with sqlite3.connect(self.db_path) as conn:
-            conn.row_factory = sqlite3.Row
-            last_paper = dict(
-                conn.execute(
-                    "SELECT journal_name, MAX(fetched_at) FROM papers GROUP BY journal_name"
-                ).fetchall()
+        last_success = cls._last_success_by_journal(conn)
+        rows = conn.execute(
+            "SELECT journal_name, consecutive_failures, last_error_type FROM journal_status"
+        ).fetchall()
+        for name, consecutive, last_error_type in rows:
+            consecutive = consecutive or 0
+            if consecutive < 1:
+                continue  # 直近で成功しているジャーナルは対象外
+
+            proxy_success = last_success.get(name)
+            days_since_success = None
+            if proxy_success:
+                try:
+                    days_since_success = (now - datetime.fromisoformat(proxy_success)).days
+                except (TypeError, ValueError):
+                    days_since_success = None
+
+            long_term = consecutive >= threshold or (
+                days_since_success is not None and days_since_success >= threshold
             )
-            for row in conn.execute("SELECT * FROM journal_status"):
-                name = row["journal_name"]
-                consecutive = row["consecutive_failures"] or 0
-                if consecutive < 1:
-                    continue  # 直近で成功しているジャーナルは対象外
+            if not long_term:
+                continue
 
-                proxy_success = row["last_success_at"] or last_paper.get(name)
-                days_since_success = None
-                if proxy_success:
-                    try:
-                        days_since_success = (now - datetime.fromisoformat(proxy_success)).days
-                    except (TypeError, ValueError):
-                        days_since_success = None
-
-                long_term = consecutive >= threshold or (
-                    days_since_success is not None and days_since_success >= threshold
-                )
-                if not long_term:
-                    continue
-
-                result[name] = {
-                    "error_type": row["last_error_type"] or "unknown",
-                    "consecutive_failures": consecutive,
-                    "last_success_at": proxy_success,
-                    "days_since_success": days_since_success,
-                }
+            result[name] = {
+                "error_type": last_error_type or "unknown",
+                "consecutive_failures": consecutive,
+                "last_success_at": proxy_success,
+                "days_since_success": days_since_success,
+            }
         return result
 
     def get_stats(self) -> dict:
         """統計情報を取得"""
-        with sqlite3.connect(self.db_path) as conn:
+        with self._connect() as conn:
             total = conn.execute("SELECT COUNT(*) FROM papers").fetchone()[0]
             notified = conn.execute("SELECT COUNT(*) FROM papers WHERE notified = 1").fetchone()[0]
             by_journal = dict(conn.execute(

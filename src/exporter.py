@@ -7,6 +7,7 @@ from datetime import datetime
 import pandas as pd
 
 from .parser import Paper
+from .utils import resolve_path
 
 logger = logging.getLogger(__name__)
 
@@ -16,8 +17,8 @@ class ExcelExporter:
 
     def __init__(self, config: dict):
         export_config = config.get("export", {})
-        self.output_dir = Path(export_config.get("output_dir", "output"))
-        self.output_dir.mkdir(parents=True, exist_ok=True)
+        # 他の出力先と同じくプロジェクトルート基準で解決する（カレントディレクトリに依存させない）
+        self.output_dir = resolve_path(export_config.get("output_dir", "output"))
 
     def export(self, papers: list[Paper], dry_run: bool = False) -> Path | None:
         """新着論文をExcelファイルに出力"""
@@ -67,6 +68,7 @@ class ExcelExporter:
             df = df.sort_values(["Journal", "Title"])
 
             # Excelに出力
+            self.output_dir.mkdir(parents=True, exist_ok=True)
             with pd.ExcelWriter(output_path, engine="openpyxl") as writer:
                 df.to_excel(writer, index=False, sheet_name="New Papers")
 
@@ -78,6 +80,14 @@ class ExcelExporter:
                 worksheet.column_dimensions["D"].width = 50  # Authors
                 worksheet.column_dimensions["E"].width = 25  # DOI
                 worksheet.column_dimensions["F"].width = 50  # URL
+
+                # 見出し行の固定・オートフィルタ・URLのハイパーリンク化
+                worksheet.freeze_panes = "A2"
+                worksheet.auto_filter.ref = worksheet.dimensions
+                for (cell,) in worksheet.iter_rows(min_row=2, min_col=6, max_col=6):
+                    if cell.value:
+                        cell.hyperlink = cell.value
+                        cell.style = "Hyperlink"
 
             logger.info(f"Exported {len(papers)} papers to {output_path}")
             print(f"\n{len(papers)}件の新着論文を出力しました: {output_path}")

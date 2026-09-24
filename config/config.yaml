@@ -2,12 +2,13 @@
 export:
   output_dir: "output"   # 出力先フォルダ（日付入りExcelファイルが保存される）
 
-# HTML出力設定（GitHub Pages用）
+# HTML出力設定（GitHub Pages用）。index.html に加え latest.md / papers.json / llms.txt も出力する
 html_export:
   output_dir: "docs"           # HTML出力先フォルダ
   template_dir: "templates"    # Jinja2テンプレートフォルダ
-  days_back: 7                    # デフォルト表示日数
-  selectable_days_range: [1, 30]  # 選択可能な日数範囲（スライダーUI：1〜30日）
+  site_url: "https://shimi-toshi.github.io/journal-tracker/"  # llms.txt 等に載せる公開URL
+  days_back: 7                    # デフォルト表示日数（latest.md の対象期間も兼ねる）
+  selectable_days_range: [1, 30]  # 選択可能な日数範囲（スライダーUI：1〜30日）。papers.json の期間も兼ねる
   max_publication_lag_days: 60    # 取得日よりこの日数以上前に公表された論文は新着扱いしない（CrossRef等のバックカタログ再登録対策）
   failure_threshold: 7            # 連続失敗がこの回数以上で「長期エラー」と表示（毎日1回実行のため回数≒日数）
   # selectable_days: [7, 14, 30] # 個別指定（ドロップダウンUI）も引き続き利用可能
@@ -17,13 +18,36 @@ html_export:
 database:
   path: "data/papers.db"
 
+# 実行レポート（logs/run_report_*.json、最新30件を保持）
+logs:
+  output_dir: "logs"
+
 # ジャーナルリスト設定（Excelファイル）
 journals:
   excel_path: "Accounting_Journals_URL_List.xlsx"
 
 # 取得設定
 fetch:
-  days_back: 7           # 何日前までの論文を取得するか
-  timeout: 30            # HTTPリクエストのタイムアウト（秒）
+  days_back: 7             # 何日前までの論文を取得するか（CrossRef初回登録日基準）
+  max_catchup_days: 30     # 最後の取得成功から間が空いた誌は、この日数を上限に遡って取得する
+  timeout: 30              # HTTPリクエストのタイムアウト（秒）
+  rate_limit_seconds: 1.0  # ジャーナル間の待機秒（0で無効）
+
+# 論文以外の項目の除外（取得時はDBに保存せず、表示時は既存行も隠す）
+filter:
+  # タイトル先頭からの正規表現（大文字小文字無視）。訂正記事（Erratum/Corrigendum）は除外しない
+  exclude_title_patterns:
+    - '^editorial board$'
+    - '^editorial data$'
+    - '^issue information\b'
+    - '^announcements?$'
+    - '^american finance association$'
+    - '^acknowledge?ments?$'
+    - '^(front|back) matter$'
+    - '^masthead$'
+    - '^table of contents$'
+    - '^call for papers\b'
+    - '^\d{4} excellence in refereeing$'
+    - '^\d{4} report to readers$'
 
 google_analytics: G-QJXZKZBS7D
