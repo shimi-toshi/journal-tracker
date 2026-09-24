@@ -2,16 +2,24 @@ name: Update Journal Tracker Pages
 
 on:
   schedule:
-    # 毎日 UTC 9:00 (JST 18:00) に実行
-    - cron: '0 9 * * *'
+    # 毎日 UTC 9:17 (JST 18:17) に実行。毎時0分はGitHub側が混雑し遅延しやすいため少しずらす
+    - cron: '17 9 * * *'
   workflow_dispatch:  # 手動実行も可能
 
 permissions:
   contents: write
 
+# 定時実行と手動実行が重なると data/papers.db（バイナリ）の push が競合するため直列化する
+concurrency:
+  group: update-pages
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    env:
+      # 生成時刻・fetched_at・「直近N日」の日付をすべてJSTで揃える
+      TZ: Asia/Tokyo
 
     steps:
       - name: Checkout repository
@@ -21,6 +29,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+          cache: pip
 
       - name: Install dependencies
         run: pip install -r requirements.txt
@@ -36,8 +45,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add docs/index.html
-          git add -f data/papers.db  # .gitignoreで除外されているためforce add
+          git add docs/
+          # data/ は .gitignore 対象のため force add（last_run.json はエージェントの現状把握用）
+          git add -f data/papers.db data/last_run.json
           if ! git diff --staged --quiet; then
             git commit -m "Update paper list $(date +%Y-%m-%d)"
             git pull --rebase

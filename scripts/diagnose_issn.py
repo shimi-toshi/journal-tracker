@@ -12,7 +12,13 @@ ISSNが誤っている／別誌のものだと、HTTPは200でも次のように
   - 全ISSNで works=0（＝そのISSN群では取得不能）
   - いずれかのISSNにCrossRefが結び付ける誌名が、こちらの誌名と一致しない（＝混入リスク）
 
-を検出する。あわせて現在のDB登録件数も並記する。判定は目安で、最終判断（Excel修正）は人手で。
+  - 直近 RECENT_DAYS 日の登録が全ISSNで0件（＝ISSNが旧誌/旧レコードのもので、現行論文は別ISSNに登録）
+  - CrossRefの journal 記録が示す兄弟ISSN（print/electronic）がExcelに無い（＝片側ISSNにしか
+    works が無い誌で取りこぼす）。例: AAAJ は旧ISSN 0951-3574 のままで2026年以降の論文を全て取りこぼし、
+    AEL は works が Online ISSN にしか無いのに Print ISSN しか登録していなかった。
+
+を検出する。あわせて現在のDB登録件数も並記する。判定は目安で、最終判断（Excel修正）はエージェント/人が
+CrossRef の journal 記録（https://api.crossref.org/journals/{issn}）と出版社HPで確認して行う。
 
 使い方（リポジトリルートから）:
     python -m scripts.diagnose_issn                 # 全誌を診断
@@ -27,14 +33,19 @@ import re
 import sqlite3
 import sys
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from datetime import datetime, timedelta
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 from src.utils import ensure_data_dir, load_config, load_journals_from_excel
 
 CROSSREF_WORKS = "https://api.crossref.org/works"
 CROSSREF_JOURNALS = "https://api.crossref.org/journals/{issn}"
+# この日数内の新規登録が全ISSNで0件なら「現行論文が別ISSNにある」疑い（年刊の誌では正常なこともある）
+RECENT_DAYS = 365
 
 _WORD = re.compile(r"[a-z0-9]+")
 # 誌名一致判定で無視する汎用語
@@ -48,6 +59,7 @@ class IssnProbe:
     issn: str
     works: int | None = None  # 登録件数（None=未照会/エラー）
     title: str | None = None  # CrossRefが結び付ける誌名（None=journal記録なし）
+    sibling_issns: list[str] = field(default_factory=list)  # journal記録上の全ISSN（print/electronic）
     error: str | None = None
 
 
@@ -73,6 +85,11 @@ class CrossRefProber:
         self.timeout = timeout
         self.sleep = sleep
         self.session = requests.Session()
+        # 429/5xx は Retry-After を尊重して再試行（本番の CrossRefFetcher と同じ方針）
+        retry = Retry(total=4, connect=0, read=0, status=4, backoff_factor=2,
+                      status_forcelist=[429, 500, 502, 503, 504], allowed_methods=["GET"],
+                      respect_retry_after_header=True)
+        self.session.mount("https://", HTTPAdapter(max_retries=retry))
         ua = f"JournalTracker/1.0 (mailto:{email})" if email else "JournalTracker/1.0"
         self.session.headers.update({"User-Agent": ua})
 
@@ -82,17 +99,22 @@ class CrossRefProber:
             time.sleep(self.sleep)
         return resp
 
-    def works_count(self, issns: list[str]) -> int | None:
-        """ISSN群（OR）の登録件数。production の取得クエリと同じ併記方式。"""
+    def works_count(self, issns: list[str], since: str | None = None) -> int | None:
+        """ISSN群（OR）の登録件数。production の取得クエリと同じ併記方式。
+
+        since（YYYY-MM-DD）を指定すると、その日以降に初回登録(created)された件数を返す。
+        """
         if not issns:
             return None
         filt = ",".join(f"issn:{issn}" for issn in issns)
+        if since:
+            filt += f",from-created-date:{since}"
         try:
             resp = self._get(CROSSREF_WORKS, params={"filter": filt, "rows": 0})
             resp.raise_for_status()
             return resp.json().get("message", {}).get("total-results")
         except requests.RequestException:
-            return None
+            return None  # 照会エラー（0件とは区別する）
 
     def probe(self, issn: str) -> IssnProbe:
         result = IssnProbe(issn=issn)
@@ -106,7 +128,9 @@ class CrossRefProber:
         try:
             resp = self._get(CROSSREF_JOURNALS.format(issn=issn))
             if resp.status_code == 200:
-                result.title = resp.json().get("message", {}).get("title")
+                message = resp.json().get("message", {})
+                result.title = message.get("title")
+                result.sibling_issns = [i for i in message.get("ISSN", []) if i]
         except requests.RequestException:
             pass
         return result
@@ -136,7 +160,7 @@ def main() -> int:
     config = load_config(args.config)
     excel_path = config.get("journals", {}).get("excel_path", "Accounting_Journals_URL_List.xlsx")
     timeout = config.get("fetch", {}).get("timeout", 30)
-    email = os.environ.get("CROSSREF_EMAIL", config.get("email", {}).get("sender_email", ""))
+    email = os.environ.get("CROSSREF_EMAIL", "")
 
     journals = load_journals_from_excel(excel_path)
     if args.limit > 0:
@@ -153,19 +177,32 @@ def main() -> int:
         # 各ISSNを個別照会（誌名一致の確認用）し、取得件数はproduction同様のOR併記で測る
         probes = [prober.probe(i) for i in issns]
         or_works = prober.works_count(issns)
+        since = (datetime.now() - timedelta(days=RECENT_DAYS)).strftime("%Y-%m-%d")
+        recent_works = prober.works_count(issns, since=since) if (or_works or 0) > 0 else None
+        # 同じ誌の兄弟ISSN（誌名が一致する journal 記録のもの）でExcelに無いもの
+        missing_siblings = sorted({
+            s for p in probes if _title_matches(j.name, p.title)
+            for s in p.sibling_issns if s not in issns
+        })
 
         verdict = "OK"
         if not issns:
             verdict = "ISSN未設定"
         elif any(p.error for p in probes):
             verdict = "照会エラー(" + next(p.error for p in probes if p.error) + ")"
-        elif (or_works or 0) == 0:
+        elif or_works is None:
+            verdict = "照会エラー(件数取得に失敗。時間をおいて再実行)"
+        elif or_works == 0:
             verdict = "全ISSNで0件（取得不能）"
         else:
             mismatched = [p for p in probes if not _title_matches(j.name, p.title)]
             if mismatched:
                 m = mismatched[0]
                 verdict = f"誌名不一致(ISSN {m.issn}→CrossRef='{m.title}')"
+            elif recent_works == 0:
+                verdict = f"直近{RECENT_DAYS}日の登録0件（旧ISSNの疑い。現行ISSNを確認）"
+            elif missing_siblings:
+                verdict = f"兄弟ISSNがExcelに無い: {','.join(missing_siblings)}（追加を検討）"
 
         is_problem = verdict != "OK"
         if is_problem:
@@ -176,7 +213,7 @@ def main() -> int:
         flag = "  " if not is_problem else "⚠ "
         print(
             f"{flag}{j.name[:50]:50} issns={','.join(issns) or '∅':23} "
-            f"works={or_works} DB={db_counts.get(j.name, 0)}  → {verdict}"
+            f"works={or_works} recent={recent_works} DB={db_counts.get(j.name, 0)}  → {verdict}"
         )
 
     print(f"\n要確認: {len(problems)} 誌")
