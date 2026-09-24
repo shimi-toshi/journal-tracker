@@ -1,0 +1,11 @@
+# Accounting & Finance Journal Tracker
+
+> 会計・ファイナンス主要ジャーナルの新着論文一覧（CrossRefから毎日自動取得）。対象は会計・ファイナンスの主要誌（ABDC/ABS評価付き）で、毎日18時(JST)頃に更新される。
+
+最終更新: 2026-09-25 08:45 (JST)。「新着」は本サイトが論文を初めて取得した日（CrossRefへの初回登録日ベース）を基準とし、公表日が古い再登録論文や Editorial Board 等の論文以外の項目は除外している。
+
+## Data
+
+- [latest.md](https://shimi-toshi.github.io/journal-tracker/latest.md): 直近7日の新着を誌ごとに列挙したMarkdown（タイトル・著者・公表日・DOI）。まずこれを読むのが最も効率的
+- [papers.json](https://shimi-toshi.github.io/journal-tracker/papers.json): 直近30日分の全データ（アブストラクト・ABDC/ABS・取得日付き）。絞り込みや集計に
+- [index.html](https://shimi-toshi.github.io/journal-tracker/): 人間向けの閲覧ページ（日数スライダー・検索はJavaScript）

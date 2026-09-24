@@ -1,0 +1,17 @@
+{
+  "started_at": "2026-09-25T08:43:51.979582",
+  "duration_sec": 78.154,
+  "journals_total": 67,
+  "fetched_count": 148,
+  "excluded_non_research_count": 6,
+  "inserted_count": 17,
+  "failed_journals": [],
+  "failed_journals_count": 0,
+  "skipped_journals": [],
+  "skipped_journals_count": 0,
+  "long_term_failing_journals": [],
+  "long_term_failing_journals_count": 0,
+  "catchup_journals": {},
+  "dry_run": false,
+  "exit_code": 0
+}
