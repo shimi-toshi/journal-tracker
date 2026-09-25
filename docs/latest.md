@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-09-25 08:45 (JST)
-- 対象: 2026-09-19 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 134件 / 全67誌
+- 生成日時: 2026-09-25 23:40 (JST)
+- 対象: 2026-09-19 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 147件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -26,6 +26,7 @@
 
 ## Review of Accounting Studies (ABDC A* / ABS 4)
 
+- Analyst visibility and earnings forecast quality — Qiang Cheng, Tian Deng, Sterling Huang, An-Ping Lin (2026/09/25) https://doi.org/10.1007/s11142-026-09981-0
 - Retail investor trading and market reactions to earnings announcements — Henry L. Friedman, Zitong Zeng (2026/09/22) https://doi.org/10.1007/s11142-026-09994-9
 
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
@@ -44,6 +45,9 @@
 - Local Newspaper Closures and Financial Adviser Misconduct — Jianlei Han, Zheyao Pan, Huixuan Zhang (2026/09/01) https://doi.org/10.1016/j.bar.2026.101974
 - DeepCare: Do Artificial Intelligence firms safeguard employee rights? — Kai Xing, Zhengyang Lei, Hanxiong Zhang, Fulong Xiao (2026/09/01) https://doi.org/10.1016/j.bar.2026.101977
 - Strategic Alignment and Environmental Disclosure Substantiveness: A Deep Learning Approach — Ningzhi Wang, Wenruo Wu, Jian Zhang, Xinyu Zhu (2026/09/01) https://doi.org/10.1016/j.bar.2026.101975
+- Inheriting from Bankrupt Firms? Evidence on Long-term Performance of Local Firms — Zhexu Ai (2026/09/01) https://doi.org/10.1016/j.bar.2026.101979
+- Geopolitical Risk and Firms’ Eco-Innovation: International Evidence — Muhammad Saleem, Searat Ali, Abdullah Al Mumun, David Tan (2026/09/01) https://doi.org/10.1016/j.bar.2026.101978
+- Earliest-announcer audits, information spillovers, and audit quality — Joe Cho, Jongwon Park (2026/09/01) https://doi.org/10.1016/j.bar.2026.101976
 
 ## Management Accounting Research (ABDC A* / ABS 3)
 
@@ -135,6 +139,7 @@
 
 ## Asian Review of Accounting (ABDC B / ABS 2)
 
+- Stakeholder proximity and non-GAAP earnings disclosure — Lori Leonard, Li Sun (2026/09/28) https://doi.org/10.1108/ara-01-2026-0016
 - When risk silences optimism: supply chain disruption risk and the reduction of abnormal managerial tone — Jingyi Guan, Yiwei Liu, Xueying Wen (2026/09/25) https://doi.org/10.1108/ara-10-2025-0365
 - Heterogeneous firm responses to a soft greenhouse gas disclosure regime: evidence from Hong Kong — Jerry Chen (2026/09/22) https://doi.org/10.1108/ara-04-2026-0169
 
@@ -163,6 +168,7 @@
 
 ## Journal of Public Budgeting, Accounting and Financial Management (ABDC B / ABS 2)
 
+- When accounting becomes material: managing resource scarcity and patient flow in healthcare organizations — Sofia Hellqvist, Monika Kurkkio, Amanda Curry (2026/09/28) https://doi.org/10.1108/jpbafm-12-2025-0368
 - Accounting and local democracy in England: the contested purposes of local authority accounts — Laurence Ferry, Thomas Ahrens, James Brackley, Henry Midgley (2026/09/23) https://doi.org/10.1108/jpbafm-11-2025-0322
 
 ## Sustainability Accounting, Management and Policy Journal (ABDC B / ABS 2)
@@ -186,6 +192,9 @@
 
 ## Review of Financial Studies (ABDC A* / ABS 4)
 
+- Universal Portfolio Shrinkage — Bryan Kelly, Semyon Malamud, Mo Pourmohammadi, Fabio Trojani (2026/09/24) https://doi.org/10.1093/rfs/hhag084
+- Original Sin Redux: Role of Duration Risk\* — Carol Bertaut, Valentina Bruno, Hyun Song Shin (2026/09/24) https://doi.org/10.1093/rfs/hhag088
+- Affordable Housing, Unaffordable Credit? Concentration and High-Cost Lending for Manufactured Homes — Sebastian Doerr, Andreas Fuster (2026/09/24) https://doi.org/10.1093/rfs/hhag087
 - Adverse Selection and the Government Intervention Trap — Fenghua Song, Anjan Thakor (2026/09/19) https://doi.org/10.1093/rfs/hhag081
 - Corporate Bond Multipliers: Substitutes Matter — Manav Chaudhary, Julie Zhiyu Fu, Jian Li (2026/09/19) https://doi.org/10.1093/rfs/hhag082
 - Optimal Time-Consistent Debt Policies — Andrey Malenko, Anton Tsoy (2026/09/18) https://doi.org/10.1093/rfs/hhag083
@@ -212,6 +221,7 @@
 - Fundamental Sentiment and Cryptocurrency Risk Premia — Ilias Filippou, My T. Nguyen, Ganesh Viswanath-Natraj (2026/09/01) https://doi.org/10.1016/j.jbankfin.2026.107832
 - Foreign reserves as a monetary policy buffer — Tianhang Zhou, Sihao Du, Jie Li (2026/09/01) https://doi.org/10.1016/j.jbankfin.2026.107833
 - When ambiguity strikes: Climate-transition ambiguity and green-brown return spreads — Garvin Kruthof (2026/09/01) https://doi.org/10.1016/j.jbankfin.2026.107828
+- The unintended environmental benefit of short sales constraints: Evidence from plant-level toxic chemical releases — Jieying Hong (2026/09/01) https://doi.org/10.1016/j.jbankfin.2026.107824
 
 ## Financial Analysts Journal (ABDC A / ABS 3)
 
@@ -267,3 +277,6 @@
 - Nonparametric conditional tests of intermediary asset pricing — Kiryoung Lee (2026/09/01) https://doi.org/10.1016/j.frl.2026.110805
 - Bank-firm digital synergy in credit relationships: Evidence from corporate leverage manipulation — Yiming Lu, Yu Wang (2026/09/01) https://doi.org/10.1016/j.frl.2026.110836
 - Is net inflation the right statistic for credit spreads, or are the two sides of inflation better? — Ricardo Quineche, Romina Garibay (2026/09/01) https://doi.org/10.1016/j.frl.2026.110802
+- Green Signaling and Forward-Looking Disclosure: Evidence from a Government Green Certification Program — Tong Zhu, Shanshan Ren, Xi Liu (2026/09/01) https://doi.org/10.1016/j.frl.2026.110838
+- Programmable Money and Endogenous Bank Fragility: The Paradox of Friction in CBDC Design — Saurabh Ahluwalia (2026/09/01) https://doi.org/10.1016/j.frl.2026.110837
+- The Implementation of the New Securities Law, Government Guidance Funds, and Firm-Level Total Factor Productivity — Ying Zhang, Jiaojiao Li (2026/09/01) https://doi.org/10.1016/j.frl.2026.110832
