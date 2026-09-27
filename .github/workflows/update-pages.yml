@@ -2,8 +2,8 @@ name: Update Journal Tracker Pages
 
 on:
   schedule:
-    # 毎日 UTC 9:17 (JST 18:17) に実行。毎時0分はGitHub側が混雑し遅延しやすいため少しずらす
-    - cron: '17 9 * * *'
+    # 毎日 UTC 20:17 (JST 翌5:17) に実行。毎時0分はGitHub側が混雑し遅延しやすいため少しずらす
+    - cron: '17 20 * * *'
   workflow_dispatch:  # 手動実行も可能
 
 permissions:

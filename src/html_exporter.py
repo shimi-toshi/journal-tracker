@@ -306,7 +306,7 @@ class HtmlExporter:
             f"# {SITE_TITLE}",
             "",
             f"> {SITE_DESCRIPTION}。対象は会計・ファイナンスの主要誌（ABDC/ABS評価付き）で、"
-            "毎日18時(JST)頃に更新される。",
+            "毎日5時(JST)頃に更新される。",
             "",
             f"最終更新: {generated_at.strftime('%Y-%m-%d %H:%M')} ({_tz_label(generated_at)})。"
             "「新着」は本サイトが論文を初めて取得した日（CrossRefへの初回登録日ベース）を基準とし、"

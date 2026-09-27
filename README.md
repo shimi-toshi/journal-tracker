@@ -134,7 +134,7 @@ Windows では `run_tracker.bat` からも実行できます。対象誌は `Acc
 
 ## 自動更新（GitHub Actions）
 
-`.github/workflows/update-pages.yml` が毎日 JST 18:17 頃に実行され、`docs/`（公開ページ）と `data/`（DB・直近の実行結果）を更新します。
+`.github/workflows/update-pages.yml` が毎日 JST 5:17 頃に実行され、`docs/`（公開ページ）と `data/`（DB・直近の実行結果）を更新します。
 手動実行（workflow_dispatch）も可能です。
 
 リポジトリの Settings → Secrets and variables → Actions に `CROSSREF_EMAIL`（連絡先メールアドレス）を登録すると、
