@@ -130,7 +130,7 @@ journal_status(journal_name TEXT PK, last_success_at, last_error_at, last_error_
 - ISSNを併記すると OR になるため、**別誌のISSN**を入れると他誌の論文が混入する（`--self-check` が同一ISSNの重複を検知）。
 - Excelセルの前後空白・タブ・空セル（`utils._cell` が吸収）。
 - GitHub Pages は `docs/` 以下を**すべて公開**する。保守用ファイルを置かない。
-- Actions の cron は混雑で遅延する（毎時0分を避けて 20:17 UTC = JST 5:17）。
+- Actions の cron は混雑で遅延する（毎時0分を避けて 20:17 UTC = JST 5:17）。旧設定の 9:17 UTC では実測で3.5〜6時間遅れていた（2026-09）。実際の実行時刻は `data/last_run.json` の `started_at` で確認できる。
 - CrossRef は無認証だと 429 を返しやすい。スクリプトからの連続照会は `--sleep 1.0` 以上＋`CROSSREF_EMAIL` 設定で。
 
 ## 6. 既知の課題・改善バックログ（完了したら削除、見つけたら追記）
