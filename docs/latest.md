@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-10-03 08:47 (JST)
-- 対象: 2026-09-27 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 98件 / 全67誌
+- 生成日時: 2026-10-04 08:05 (JST)
+- 対象: 2026-09-28 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 106件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -23,6 +23,7 @@
 
 ## Contemporary Accounting Research (ABDC A* / ABS 4)
 
+- Specialists' Evidence Evaluation and Judgments in Audits — Tim D. Bauer, Cassandra Estep, Emily E. Griffith (2026/10/03) https://doi.org/10.1111/1911-3846.70077
 - Collaborative Innovation and R&D Disclosures: Evidence From Co‐Patents — Caroline Lee, Zhongnan Xiang (2026/09/29) https://doi.org/10.1111/1911-3846.70084
 - Opportunities for Enhancing Professional Skepticism Prior to Entering the Accounting Profession — Allen D. Blay, M. G. Fennema, Michelle McAllister (2026/09/29) https://doi.org/10.1111/1911-3846.70083
 - Estimating the Private Value of Financial Statement Statistics — Russell Lundholm, Xin Zheng (2026/09/28) https://doi.org/10.1111/1911-3846.70087
@@ -70,6 +71,10 @@
 - From Vision to Practice: How Sociotechnical Imaginaries Influence Municipal Healthcare Control — Roy‐Ivar Andreassen, Per Ståle Knardal, Hakim Lyngstadås, Charlotte Morland (2026/09/28) https://doi.org/10.1111/faam.70053
 - Zooming Into Standard Implementation: Materiality and Institutional Work in Mandatory Charity Performance Reporting — Cherrie Yang, Carolyn Cordery (2026/09/27) https://doi.org/10.1111/faam.70052
 
+## Journal of Accounting and Public Policy (ABDC A* / ABS 3)
+
+- The information relevance of GAAP-based aggregate spending measures for state economic growth — Won Jung Kim (2026/11/01) https://doi.org/10.1016/j.jaccpubpol.2026.107479
+
 ## Journal of Accounting Literature (ABDC A / ABS 3)
 
 - Bad news travels fast: comment letters, investor trading behavior, and stock liquidity — Shouyu Yao, Chaoshin Chiao, Chunfeng Wang, Feiyang Cheng, Pan Huang (2026/10/02) https://doi.org/10.1108/jal-10-2025-0553
@@ -90,6 +95,7 @@
 
 ## Journal of Contemporary Accounting and Economics (ABDC A / ABS 2)
 
+- Current expected credit loss (CECL) and discretionary loan loss provision — Suyi Liu, Justin Jin, S.M.Khalid Nainar, Tingying Zhou (2026/10/01) https://doi.org/10.1016/j.jcae.2026.100600
 - CEO voluntary departures and cost of equity capital — Yan Yu, Yong Sun, Qian Sun (2026/09/01) https://doi.org/10.1016/j.jcae.2026.100598
 
 ## Journal of Management Control (ABDC A / ABS 2)
@@ -107,6 +113,10 @@
 ## Accounting Research Journal (ABDC B / ABS 2)
 
 - Does supply chain digitalization affect corporate tax avoidance? — Shu Shang, Yanxi Li (2026/10/05) https://doi.org/10.1108/arj-01-2026-0123
+
+## Accounting, Economics and Law: A Convivium (ABDC B / ABS 2)
+
+- Perspectives on Credit Ratings: A Response to Reviews on “Rating Politics” — Zsófia Barta (2026/10/05) https://doi.org/10.1515/ael-2026-0109
 
 ## Asia-Pacific Journal of Accounting and Economics (ABDC B / ABS 2)
 
@@ -179,6 +189,8 @@
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
+- Earnings preview ban: Analyst consequences of restricting pre-earnings private communication — Kotaro Miwa, Hidenori Takahashi (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103402
+- Interlocking shareholder networks and corporate strategic risk-taking: Evidence from ex ante strategic resource commitments — Puxuan Wang, Xiaoqian Zhang, Shuangjin Wang, Maggie Foley (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103401
 - Bank enforcement actions, supervisory deterrence, and corporate maturity mismatch — Yuanbiao Huang, Zeguang Li, Jinlei Li (2026/09/01) https://doi.org/10.1016/j.pacfin.2026.103397
 - Lead and succeed: R&D executives and bank digital transformation — Qiong Zheng, Yawen Li, Yufei Xia (2026/09/01) https://doi.org/10.1016/j.pacfin.2026.103396
 - Stock price synchronicity and internet penetration: International evidence — Axel Grossmann, Thanh Ngo (2026/09/01) https://doi.org/10.1016/j.pacfin.2026.103398
@@ -197,6 +209,8 @@
 - Public data openness and land finance dependence: A double machine learning approach — Xu Zou, Xiaoping Shi, Zongyao Yang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110875
 - Evidence on the joint value of narrative disclosures and financial indicators for corporate fraud screening — Qiyan Huang, Yingjie Tian (2026/10/01) https://doi.org/10.1016/j.frl.2026.110852
 - Deferred tax assets and banks’ risk: The role of accounting standards — Tiago F.A. Matos, João C.A. Teixeira, Tiago M. Dutra, Mário J.C. Fernandes, Sai Palepu, Rafaela F.C.S. Esteves (2026/10/01) https://doi.org/10.1016/j.frl.2026.110854
+- National Digitalization Proxies and Banking System Nonperforming Loan Ratio Forecasts — Fanglan Xu, Yuhan Lei (2026/10/01) https://doi.org/10.1016/j.frl.2026.110879
+- When Regret Becomes Salient: Predicting the Cross-Section of Returns — Yusung Ha, Donghoon Kim (2026/10/01) https://doi.org/10.1016/j.frl.2026.110881
 - How Do Patient Institutional Investors Mitigate Corporate Digital Transformation Hype? From the Perspective of Ownership Stability — Sihan Zhang, Kongwen Wang, Zhibin Chen (2026/09/01) https://doi.org/10.1016/j.frl.2026.110847
 - The Impact of Green Finance Reform and Innovation Pilot Zones on Environmental Information Disclosure Quality — Ziyi Zhai, Mohamed Omran (2026/09/01) https://doi.org/10.1016/j.frl.2026.110842
 - AI Boom, Geopolitical Risk, and the Copper Futures Term Structure under Low-Inventory Conditions — Meiling Cai, Xundi Diao (2026/09/01) https://doi.org/10.1016/j.frl.2026.110845
