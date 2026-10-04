@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-10-04 08:05 (JST)
-- 対象: 2026-09-28 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 106件 / 全67誌
+- 生成日時: 2026-10-05 08:11 (JST)
+- 対象: 2026-09-29 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 102件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -69,7 +69,6 @@
 - Performance Measurement Systems and Academic Managers’ Gaming Behavior — Shahenda Shehata, Lee D. Parker (2026/09/30) https://doi.org/10.1111/faam.70056
 - The Influence of Hard and Soft Power on the Organizational Effectiveness of State Corporations in Kenya — Robert Arasa, Angela Ndunge, Loice Vihenda Wafula (2026/09/30) https://doi.org/10.1111/faam.70057
 - From Vision to Practice: How Sociotechnical Imaginaries Influence Municipal Healthcare Control — Roy‐Ivar Andreassen, Per Ståle Knardal, Hakim Lyngstadås, Charlotte Morland (2026/09/28) https://doi.org/10.1111/faam.70053
-- Zooming Into Standard Implementation: Materiality and Institutional Work in Mandatory Charity Performance Reporting — Cherrie Yang, Carolyn Cordery (2026/09/27) https://doi.org/10.1111/faam.70052
 
 ## Journal of Accounting and Public Policy (ABDC A* / ABS 3)
 
@@ -81,7 +80,6 @@
 
 ## Journal of International Accounting, Auditing and Taxation (ABDC B / ABS 3)
 
-- Non-audit services and employee share ownership in the French civil law system: An agency theory perspective — Joseph Abdelnour, Nicolas Aubert, Domenico Campa (2026/09/01) https://doi.org/10.1016/j.intaccaudtax.2026.100793
 - The financial transaction tax in Spain — Ana-María Fuertes, Marcos González-Fernández, M.-Dolores Robles (2026/09/01) https://doi.org/10.1016/j.intaccaudtax.2026.100792
 
 ## Accounting and Finance (ABDC A / ABS 2)
@@ -146,6 +144,7 @@
 
 ## Journal of Public Budgeting, Accounting and Financial Management (ABDC B / ABS 2)
 
+- Power, inclusion and the role of SMEs in European public procurement — Natalia Arias, Manuel J. García Rodríguez, Ana Yetano (2026/10/05) https://doi.org/10.1108/jpbafm-06-2025-0169
 - Corrigendum: Towards a greener archipelago: strengthening Indonesia's environmental quality through fiscal transfers (2026/10/01) https://doi.org/10.1108/jpbafm-09-2026-0472
 - Unpacking nonprofit organizational resilience: toward a typology of response strategies — Trang Hoang, Elizabeth Searing, Craig Maher, Josué Mulumba Katchy (2026/09/30) https://doi.org/10.1108/jpbafm-11-2025-0345
 - Government accounting practices and social SDG achievements in the EU — Sandra Cohen, Antonia Markogiannopoulou, Thekla Paraponti (2026/09/30) https://doi.org/10.1108/jpbafm-01-2026-0041
@@ -173,10 +172,6 @@
 - Flow Diversification — Sunil Wahal, Albert Y. Wang (2026/09/29) https://doi.org/10.1017/s0022109026103172
 - Resolution Design and Investment in Banking Groups – CORRIGENDUM — Albert Banal-Estañol, Gyöngyi Lóránth, David Pothier (2026/09/29) https://doi.org/10.1017/s0022109026103378
 
-## Review of Finance (ABDC A* / ABS 3)
-
-- Forbearance and the Cost of Credit — Pedro Gete, Andrey Pavlov, Athena Tsouderou, Susan Wachter (2026/09/26) https://doi.org/10.1093/rof/rfag044
-
 ## Journal of Corporate Finance (ABDC A* / ABS 3)
 
 - Monetary policy and mergers and acquisitions — Johannes J. Fischer, Carl-Wolfram Horn (2026/09/01) https://doi.org/10.1016/j.jcorpfin.2026.103096
@@ -191,8 +186,6 @@
 
 - Earnings preview ban: Analyst consequences of restricting pre-earnings private communication — Kotaro Miwa, Hidenori Takahashi (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103402
 - Interlocking shareholder networks and corporate strategic risk-taking: Evidence from ex ante strategic resource commitments — Puxuan Wang, Xiaoqian Zhang, Shuangjin Wang, Maggie Foley (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103401
-- Bank enforcement actions, supervisory deterrence, and corporate maturity mismatch — Yuanbiao Huang, Zeguang Li, Jinlei Li (2026/09/01) https://doi.org/10.1016/j.pacfin.2026.103397
-- Lead and succeed: R&D executives and bank digital transformation — Qiong Zheng, Yawen Li, Yufei Xia (2026/09/01) https://doi.org/10.1016/j.pacfin.2026.103396
 - Stock price synchronicity and internet penetration: International evidence — Axel Grossmann, Thanh Ngo (2026/09/01) https://doi.org/10.1016/j.pacfin.2026.103398
 - Does open government data spur M&A? Evidence from public data platforms established by local governments in China — Tingyong Zhong, Fuqi Ma, Erik Devos, Yun Ke (2026/09/01) https://doi.org/10.1016/j.pacfin.2026.103399
 - R&D catering and opportunistic insider selling — Hanqi Li, Luo Qi, Minhua Zhang (2026/09/01) https://doi.org/10.1016/j.pacfin.2026.103400
@@ -211,8 +204,8 @@
 - Deferred tax assets and banks’ risk: The role of accounting standards — Tiago F.A. Matos, João C.A. Teixeira, Tiago M. Dutra, Mário J.C. Fernandes, Sai Palepu, Rafaela F.C.S. Esteves (2026/10/01) https://doi.org/10.1016/j.frl.2026.110854
 - National Digitalization Proxies and Banking System Nonperforming Loan Ratio Forecasts — Fanglan Xu, Yuhan Lei (2026/10/01) https://doi.org/10.1016/j.frl.2026.110879
 - When Regret Becomes Salient: Predicting the Cross-Section of Returns — Yusung Ha, Donghoon Kim (2026/10/01) https://doi.org/10.1016/j.frl.2026.110881
-- How Do Patient Institutional Investors Mitigate Corporate Digital Transformation Hype? From the Perspective of Ownership Stability — Sihan Zhang, Kongwen Wang, Zhibin Chen (2026/09/01) https://doi.org/10.1016/j.frl.2026.110847
-- The Impact of Green Finance Reform and Innovation Pilot Zones on Environmental Information Disclosure Quality — Ziyi Zhai, Mohamed Omran (2026/09/01) https://doi.org/10.1016/j.frl.2026.110842
+- Macroprudential Policy and Financial Risk: The Moderating Role of Financial Innovation — Jinghao Yang, Jun Wen, Xinxin Zhao, Xiaozhou Zhou (2026/10/01) https://doi.org/10.1016/j.frl.2026.110880
+- Finite-Sample Risk Estimation and Investment Responses — Jimmy Teng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110882
 - AI Boom, Geopolitical Risk, and the Copper Futures Term Structure under Low-Inventory Conditions — Meiling Cai, Xundi Diao (2026/09/01) https://doi.org/10.1016/j.frl.2026.110845
 - Cooperative investment and financing under behavioral biases — Julien Cadot, Arnaud Féral (2026/09/01) https://doi.org/10.1016/j.frl.2026.110833
 - Stock exchange governance pressure and the valuation of liquid assets: Evidence from Japanese listed firms — Hideo Nakamura, Katsutoshi Shimizu (2026/09/01) https://doi.org/10.1016/j.frl.2026.110825
