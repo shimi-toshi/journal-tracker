@@ -1,10 +1,10 @@
 {
-  "started_at": "2026-10-07T08:49:07.444630",
-  "duration_sec": 75.473,
+  "started_at": "2026-10-08T09:12:11.199954",
+  "duration_sec": 71.404,
   "journals_total": 67,
   "fetched_count": 90,
   "excluded_non_research_count": 2,
-  "inserted_count": 17,
+  "inserted_count": 26,
   "failed_journals": [],
   "failed_journals_count": 0,
   "skipped_journals": [],
