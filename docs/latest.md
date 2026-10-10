@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-10-10 09:03 (JST)
-- 対象: 2026-10-04 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 99件 / 全67誌
+- 生成日時: 2026-10-11 08:34 (JST)
+- 対象: 2026-10-05 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 103件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -23,10 +23,15 @@
 ## Contemporary Accounting Research (ABDC A* / ABS 4)
 
 - Choosing the Stage: The Strategic Role of Disclosure Venues in Guidance Revisions — Akash Chattopadhyay, Nayana Reiter, Mani Sethuraman (2026/10/08) https://doi.org/10.1111/1911-3846.70088
-- Specialists' Evidence Evaluation and Judgments in Audits — Tim D. Bauer, Cassandra Estep, Emily E. Griffith (2026/10/03) https://doi.org/10.1111/1911-3846.70077
+
+## Review of Accounting Studies (ABDC A* / ABS 4)
+
+- So similar, yet so different: comparing the US GAAP and IFRS experience at eliciting greater transparency on pension asset disclosures — Divya Anantharaman, Elizabeth Chuk, Tonni Shijun Xia (2026/10/10) https://doi.org/10.1007/s11142-026-09992-x
 
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
 
+- Socio-spatial inequality: the case of Indonesian railway's reform — Muhammad Muttaqin (2026/10/13) https://doi.org/10.1108/aaaj-11-2025-8618
+- The evolution of CFO role-identities under financialisation — Marie Redon, Nicolas Berland (2026/10/13) https://doi.org/10.1108/aaaj-10-2024-7456
 - Board sustainability expertise: how shareholder and employee representatives shape supervisory board practice in codetermined German firms — Jan Marvin Apel (2026/10/12) https://doi.org/10.1108/aaaj-01-2026-8767
 - Netnography in accounting and accountability research: methodological application and future directions — Giulia Leoni (2026/10/08) https://doi.org/10.1108/aaaj-04-2026-9175
 
@@ -40,6 +45,13 @@
 
 - Regulatory minority shareholder and audit fees: Evidence from the China Securities Investor Services Center — Xiang Zhang, Chongjie Xu, Cheng Xiang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101983
 - Employees’ voluntary disclosure about business outlook and labour hiring efficiency — Boochun Jung, Yiding Wang, Sijing Wei, Jiarui (Iris) Zhang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101984
+- Large Language Models as Research Assistants: The Risk of Topic-Overclassification in Financial Disclosure Research — Anne d'Arcy, Christian Haas, Nicolaus Wallner (2026/10/01) https://doi.org/10.1016/j.bar.2026.101986
+
+## Journal of Business Finance & Accounting (ABDC A* / ABS 3)
+
+- To Acquire or to Ally? Foreign Competition and Firm Boundary — Hanwen Sun, Yue Xiang, Fangming Xu, Chenjian Zhang (2026/10/10) https://doi.org/10.1111/jbfa.70091
+- Rhetorical Contests Over Environmental and Social Proposals in Proxy Statements — Sudipta Basu, Alice Lee, Todd Schifeling (2026/10/10) https://doi.org/10.1111/jbfa.70088
+- Random Disclosure Costs: A Unified Theory of Disclosure — Jeremy Bertomeu, Edwige Cheynel, Keri Hu (2026/10/10) https://doi.org/10.1111/jbfa.70090
 
 ## The European Accounting Review (ABDC A* / ABS 3)
 
@@ -58,7 +70,7 @@
 
 ## Journal of Accounting and Public Policy (ABDC A* / ABS 3)
 
-- The information relevance of GAAP-based aggregate spending measures for state economic growth — Won Jung Kim (2026/11/01) https://doi.org/10.1016/j.jaccpubpol.2026.107479
+- U.S. sanctions and firm offshore activities: A firm-country analysis using natural language processing — Ling Tuo, Weiwei Wang, Joseph H. Zhang (2026/11/01) https://doi.org/10.1016/j.jaccpubpol.2026.107482
 
 ## Journal of Accounting Literature (ABDC A / ABS 3)
 
@@ -87,7 +99,6 @@
 
 ## Journal of Contemporary Accounting and Economics (ABDC A / ABS 2)
 
-- Current expected credit loss (CECL) and discretionary loan loss provision — Suyi Liu, Justin Jin, S.M.Khalid Nainar, Tingying Zhou (2026/10/01) https://doi.org/10.1016/j.jcae.2026.100600
 - Does rank-and-file employees' equity compensation matter for asymmetric cost behavior? Evidence from stock options — Kyeongheum Ra, Grace Goun Kim, Jinah Hwang (2026/10/01) https://doi.org/10.1016/j.jcae.2026.100599
 - Analyst narratives and incremental information: Evidence from textual analysis in narrative disclosures — Xingzhi Qi, Yongjie Zhang (2026/10/01) https://doi.org/10.1016/j.jcae.2026.100602
 
@@ -98,10 +109,6 @@
 ## Journal of Management Control (ABDC A / ABS 2)
 
 - Management control in startups: a structured literature review — Anderson Betti Frare, Deoclécio Junior Cardoso da Silva, Ana Paula Capuano da Cruz, Vagner Horz, Chris Akroyd (2026/10/05) https://doi.org/10.1007/s00187-026-00430-2
-
-## Accounting, Economics and Law: A Convivium (ABDC B / ABS 2)
-
-- Perspectives on Credit Ratings: A Response to Reviews on “Rating Politics” — Zsófia Barta (2026/10/05) https://doi.org/10.1515/ael-2026-0109
 
 ## International Journal of Accounting and Information Management (ABDC B / ABS 2)
 
@@ -151,12 +158,14 @@
 
 ## Review of Finance (ABDC A* / ABS 3)
 
+- Competing Digital Money — Jon Frost, Jean-Charles Rochet, Hyun Song Shin, Marianne Verdier (2026/10/10) https://doi.org/10.1093/rof/rfag046
 - The Depositary of Last Resort — Pamfili Antipa, Kilian Rieder (2026/10/09) https://doi.org/10.1093/rof/rfag047
 - Creation After Destruction? Financial Intermediation and Firm Entry After Bank Cleanups — Nishant Kashyap, Prasanna Tantri (2026/10/05) https://doi.org/10.1093/rof/rfag045
 
 ## Journal of Corporate Finance (ABDC A* / ABS 3)
 
 - Courts and chains: The real effects of judicial independence on supply chain stability — Binyan Ling, Donghui Li, Ting Yang, Kai Wu (2026/10/01) https://doi.org/10.1016/j.jcorpfin.2026.103101
+- Shareholder empowerment and ownership structure in a free-contracting environment — Mike Burkart, Salvatore Miglietta, Charlotte Ostergaard (2026/10/01) https://doi.org/10.1016/j.jcorpfin.2026.103100
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
@@ -169,16 +178,13 @@
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
-- Earnings preview ban: Analyst consequences of restricting pre-earnings private communication — Kotaro Miwa, Hidenori Takahashi (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103402
-- Interlocking shareholder networks and corporate strategic risk-taking: Evidence from ex ante strategic resource commitments — Puxuan Wang, Xiaoqian Zhang, Shuangjin Wang, Maggie Foley (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103401
 - Can FinTech mitigate systemic risk? Evidence from macroprudential policies and bank business diversification — Xiaoming Zhang, Yongqi He, Chien-Chiang Lee (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103408
 - Capturing time-varying uncertainty: Does hyperparameter retuning frequency matter? Evidence from China’s high-frequency data — Lingbing Feng, Wuyan Tao, Haochen Li, Yuhao Zheng (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103407
 - Market integration, ambiguity, and expected returns: Evidence from the stock connect in China — Jianhua Mei, Nikolai Sheung-Chi Chow (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103404
+- Big-data-driven decision-making capability and corporate bond spreads: The complementary role of local digital financial inclusion — Guowei Cai, Ruishan Zhang, Ying Liu (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103410
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- National Digitalization Proxies and Banking System Nonperforming Loan Ratio Forecasts — Fanglan Xu, Yuhan Lei (2026/10/01) https://doi.org/10.1016/j.frl.2026.110879
-- When Regret Becomes Salient: Predicting the Cross-Section of Returns — Yusung Ha, Donghoon Kim (2026/10/01) https://doi.org/10.1016/j.frl.2026.110881
 - Macroprudential Policy and Financial Risk: The Moderating Role of Financial Innovation — Jinghao Yang, Jun Wen, Xinxin Zhao, Xiaozhou Zhou (2026/10/01) https://doi.org/10.1016/j.frl.2026.110880
 - Finite-Sample Risk Estimation and Investment Responses — Jimmy Teng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110882
 - Beyond Readability: Managerial Disclosure Cohesion and Information Asymmetry — Li Dang, Chuancai Zhang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110883
@@ -208,3 +214,4 @@
 - Science and Technology Finance Policy and Local Financial Vulnerability: Evidence from China’s Pilot Program Integrating Science and Technology with Finance — Da Xu, ZhanYi Pang, Jinwu Xiong (2026/10/01) https://doi.org/10.1016/j.frl.2026.110904
 - Do Foreign Uncertainty Spillovers Shape Big Tech Credit? — Siti Nurazira Mohd Daud, Abd Halim Ahmad (2026/10/01) https://doi.org/10.1016/j.frl.2026.110903
 - Diversified but crowded: Evidence from 13F holdings — Liang Hu, Yinru Shen (2026/10/01) https://doi.org/10.1016/j.frl.2026.110885
+- Imported financial risk in global foreign exchange markets: A time-frequency network analysis — Zhongzhe Ouyang, Yuqi Guo, Yaoxun Deng, Qijun Zeng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110908
