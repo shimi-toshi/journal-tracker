@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-10-11 08:34 (JST)
-- 対象: 2026-10-05 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 103件 / 全67誌
+- 生成日時: 2026-10-12 08:40 (JST)
+- 対象: 2026-10-06 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 111件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -46,6 +46,7 @@
 - Regulatory minority shareholder and audit fees: Evidence from the China Securities Investor Services Center — Xiang Zhang, Chongjie Xu, Cheng Xiang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101983
 - Employees’ voluntary disclosure about business outlook and labour hiring efficiency — Boochun Jung, Yiding Wang, Sijing Wei, Jiarui (Iris) Zhang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101984
 - Large Language Models as Research Assistants: The Risk of Topic-Overclassification in Financial Disclosure Research — Anne d'Arcy, Christian Haas, Nicolaus Wallner (2026/10/01) https://doi.org/10.1016/j.bar.2026.101986
+- Voice vs. Tone: Measuring Modality Mismatch via Large Audio Language Model — Qingchong Chen, Xiong Xiong, Yumeng Zhang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101982
 
 ## Journal of Business Finance & Accounting (ABDC A* / ABS 3)
 
@@ -131,7 +132,6 @@
 ## Journal of Public Budgeting, Accounting and Financial Management (ABDC B / ABS 2)
 
 - Exploring the local government accounting literacy of accounting teachers in a developing country — Ririn Susanti, Irwan Taufiq Ritonga, Nia Pramita Sari (2026/10/07) https://doi.org/10.1108/jpbafm-03-2026-0113
-- Power, inclusion and the role of SMEs in European public procurement — Natalia Arias, Manuel J. García Rodríguez, Ana Yetano (2026/10/05) https://doi.org/10.1108/jpbafm-06-2025-0169
 
 ## Sustainability Accounting, Management and Policy Journal (ABDC B / ABS 2)
 
@@ -166,6 +166,7 @@
 
 - Courts and chains: The real effects of judicial independence on supply chain stability — Binyan Ling, Donghui Li, Ting Yang, Kai Wu (2026/10/01) https://doi.org/10.1016/j.jcorpfin.2026.103101
 - Shareholder empowerment and ownership structure in a free-contracting environment — Mike Burkart, Salvatore Miglietta, Charlotte Ostergaard (2026/10/01) https://doi.org/10.1016/j.jcorpfin.2026.103100
+- Limits to LTD, loan supply, and real effects: Banks vs. nonbanks — Kyriakos C. Neanidis (2026/10/01) https://doi.org/10.1016/j.jcorpfin.2026.103102
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
@@ -185,8 +186,6 @@
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- Macroprudential Policy and Financial Risk: The Moderating Role of Financial Innovation — Jinghao Yang, Jun Wen, Xinxin Zhao, Xiaozhou Zhou (2026/10/01) https://doi.org/10.1016/j.frl.2026.110880
-- Finite-Sample Risk Estimation and Investment Responses — Jimmy Teng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110882
 - Beyond Readability: Managerial Disclosure Cohesion and Information Asymmetry — Li Dang, Chuancai Zhang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110883
 - Environmental Emergency Preparedness Disclosure, Green Fund Participation, and Financing Costs — Ding Zhang, Xusheng Xie, Liwei Liu (2026/10/01) https://doi.org/10.1016/j.frl.2026.110884
 - Digital Supply Chain Finance: A Catalyst for Corporate Investment Efficiency — Changjun Zheng, Chen Liu, Rao Zhang, Xiaoxu Guo (2026/10/01) https://doi.org/10.1016/j.frl.2026.110889
@@ -215,3 +214,12 @@
 - Do Foreign Uncertainty Spillovers Shape Big Tech Credit? — Siti Nurazira Mohd Daud, Abd Halim Ahmad (2026/10/01) https://doi.org/10.1016/j.frl.2026.110903
 - Diversified but crowded: Evidence from 13F holdings — Liang Hu, Yinru Shen (2026/10/01) https://doi.org/10.1016/j.frl.2026.110885
 - Imported financial risk in global foreign exchange markets: A time-frequency network analysis — Zhongzhe Ouyang, Yuqi Guo, Yaoxun Deng, Qijun Zeng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110908
+- Corporate Digital Transformation and Digital Asset Investment: Evidence from Cultural Enterprises — Mei Wang, Xueji Peng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110920
+- Inclusive Finance, High-Speed Rail, and the Tourism Economy: A Financing Constraints Alleviation Perspective — Zhihong Zhu, Baoli Zhu (2026/10/01) https://doi.org/10.1016/j.frl.2026.110919
+- Artificial Intelligence Development, Digital Transformation, and Firms’ Knowledge Absorptive Capacity — Jun Zhai, Chunyan Zhou, Zili Wang, Liming Sun (2026/10/01) https://doi.org/10.1016/j.frl.2026.110921
+- Green Certification, litigation risk, and corporate external financing dependency — Siheng Wang, Wenqi Du (2026/10/01) https://doi.org/10.1016/j.frl.2026.110913
+- Patient Capital, Corporate Social Responsibility and Financial Asset Allocation — Ming Liu, Yuxin Li, Yongxiang Ji, Xinjie Wang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110917
+- Supply Chain Finance, Contract Disputes, and Legal Remedies for Innovative Technology Enterprises — Yu Chen, Mengwei He, Junfeng Cheng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110915
+- Ecological Compensation and Regional Coordinated Development: Financial Development as a Moderator — Fang Yang, Hanfei Li (2026/10/01) https://doi.org/10.1016/j.frl.2026.110912
+- Are green institutional holdings consistently associated with lower carbon intensity? Evidence across the corporate life cycle — Yamin Xie (2026/10/01) https://doi.org/10.1016/j.frl.2026.110916
+- Wage Arrears of Migrant Workers, Digital Government Construction and Government Fiscal-financial Intervention Intensity: A Quasi-natural Experiment — Mengjia Wang, Linyi Xiao, Ni Zhang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110914
