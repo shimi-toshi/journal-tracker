@@ -1,9 +1,9 @@
 {
-  "started_at": "2026-10-15T08:13:56.412047",
-  "duration_sec": 81.132,
+  "started_at": "2026-10-16T08:04:11.082557",
+  "duration_sec": 82.388,
   "journals_total": 67,
-  "fetched_count": 102,
-  "excluded_non_research_count": 1,
+  "fetched_count": 98,
+  "excluded_non_research_count": 2,
   "inserted_count": 12,
   "failed_journals": [],
   "failed_journals_count": 0,
