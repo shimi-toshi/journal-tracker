@@ -1,13 +1,14 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-10-17 07:52 (JST)
-- 対象: 2026-10-11 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 95件 / 全67誌
+- 生成日時: 2026-10-18 07:19 (JST)
+- 対象: 2026-10-12 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 89件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
 ## Accounting, Organizations and Society (ABDC A* / ABS 4*)
 
 - How do audit committee members' and audit partners' communication styles jointly influence client managers’ negotiation behavior? — Abhijit Das, Soon-Yeow Phang (2026/12/01) https://doi.org/10.1016/j.aos.2026.101664
+- Combining management control practices for organizational learning: A situational strength perspective — Flavia Schmid, Frank H.M. Verbeeten, Klaus Möller (2026/12/01) https://doi.org/10.1016/j.aos.2026.101662
 
 ## Journal of Accounting and Economics (ABDC A* / ABS 4*)
 
@@ -30,30 +31,14 @@
 - Would a Balanced PCAOB Inspection Approach Increase Auditors' Use of Innovative Audit Procedures? — Yoon Ju Kang, M. David Piercey (2026/10/13) https://doi.org/10.1111/1911-3846.70091
 - Could That Happen to Me? Auditor Response When Colleagues Are Named in Lawsuits — Brant E. Christensen, Nathan G. Lundstrom, Nathan J. Newton (2026/10/13) https://doi.org/10.1111/1911-3846.70093
 
-## Review of Accounting Studies (ABDC A* / ABS 4)
-
-- So similar, yet so different: comparing the US GAAP and IFRS experience at eliciting greater transparency on pension asset disclosures — Divya Anantharaman, Elizabeth Chuk, Tonni Shijun Xia (2026/10/10) https://doi.org/10.1007/s11142-026-09992-x
-
-## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
-
-- Socio-spatial inequality: the case of Indonesian railway's reform — Muhammad Muttaqin (2026/10/13) https://doi.org/10.1108/aaaj-11-2025-8618
-- The evolution of CFO role-identities under financialisation — Marie Redon, Nicolas Berland (2026/10/13) https://doi.org/10.1108/aaaj-10-2024-7456
-
 ## Auditing: A Journal of Practice and Theory (ABDC A* / ABS 3)
 
 - Audit Oversight under One Roof: The Impact of Engagement Quality Reviewer Proximity — Yue Qi, Timothy A. Seidel, Joseph H. Zhang, Junsheng Zhang (2026/10/01) https://doi.org/10.2308/ajpt-2025-085
 
 ## British Accounting Review (ABDC A* / ABS 3)
 
-- Large Language Models as Research Assistants: The Risk of Topic-Overclassification in Financial Disclosure Research — Anne d'Arcy, Christian Haas, Nicolaus Wallner (2026/10/01) https://doi.org/10.1016/j.bar.2026.101986
 - Voice vs. Tone: Measuring Modality Mismatch via Large Audio Language Model — Qingchong Chen, Xiong Xiong, Yumeng Zhang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101982
 - Beyond Compliance: The Impact of Sustainable Water Management Performance on Firm Value amid Global Water Challenges — Sudipta Bose, Sajal Kumar Dey (2026/10/01) https://doi.org/10.1016/j.bar.2026.101985
-
-## Journal of Business Finance & Accounting (ABDC A* / ABS 3)
-
-- To Acquire or to Ally? Foreign Competition and Firm Boundary — Hanwen Sun, Yue Xiang, Fangming Xu, Chenjian Zhang (2026/10/10) https://doi.org/10.1111/jbfa.70091
-- Rhetorical Contests Over Environmental and Social Proposals in Proxy Statements — Sudipta Basu, Alice Lee, Todd Schifeling (2026/10/10) https://doi.org/10.1111/jbfa.70088
-- Random Disclosure Costs: A Unified Theory of Disclosure — Jeremy Bertomeu, Edwige Cheynel, Keri Hu (2026/10/10) https://doi.org/10.1111/jbfa.70090
 
 ## Accounting Horizons (ABDC A / ABS 3)
 
@@ -69,7 +54,6 @@
 
 ## Journal of Accounting and Public Policy (ABDC A* / ABS 3)
 
-- U.S. sanctions and firm offshore activities: A firm-country analysis using natural language processing — Ling Tuo, Weiwei Wang, Joseph H. Zhang (2026/11/01) https://doi.org/10.1016/j.jaccpubpol.2026.107482
 - The real effects of long-term stock price informativeness: evidence from green innovation in China — Ying Fang, Xiangyu Wang, Duoduo Yu (2026/11/01) https://doi.org/10.1016/j.jaccpubpol.2026.107481
 
 ## Journal of Accounting Auditing and Finance (ABDC A / ABS 3)
@@ -160,11 +144,9 @@
 ## Review of Finance (ABDC A* / ABS 3)
 
 - Measuring Measurement Error — N Aaron Pancost, Garrett Schaller (2026/10/16) https://doi.org/10.1093/rof/rfag049
-- Competing Digital Money — Jon Frost, Jean-Charles Rochet, Hyun Song Shin, Marianne Verdier (2026/10/10) https://doi.org/10.1093/rof/rfag046
 
 ## Journal of Corporate Finance (ABDC A* / ABS 3)
 
-- Shareholder empowerment and ownership structure in a free-contracting environment — Mike Burkart, Salvatore Miglietta, Charlotte Ostergaard (2026/10/01) https://doi.org/10.1016/j.jcorpfin.2026.103100
 - Limits to LTD, loan supply, and real effects: Banks vs. nonbanks — Kyriakos C. Neanidis (2026/10/01) https://doi.org/10.1016/j.jcorpfin.2026.103102
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
@@ -178,13 +160,12 @@
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
-- Big-data-driven decision-making capability and corporate bond spreads: The complementary role of local digital financial inclusion — Guowei Cai, Ruishan Zhang, Ying Liu (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103410
 - Uncertainty and tail spillovers: Dynamic connectedness between DeFi tokens and BRICS equity markets — Weiping Li, Ziying Lian, Junbo Wang, Wenhao Wang (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103405
 - Legal enforcement and the governance role of underwriter reputation: Evidence from China's securities law reform — Yun-Lang Wu, Han Yan, Hanjun Xu, Wenshuai Xu (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103403
+- FinTech regulatory innovation and credit allocation efficiency in China's regulatory sandbox: A pre-registered report — Fengming Tao, Jize Xie, Dan Zhu, Shixin Li (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103414
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- Imported financial risk in global foreign exchange markets: A time-frequency network analysis — Zhongzhe Ouyang, Yuqi Guo, Yaoxun Deng, Qijun Zeng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110908
 - Corporate Digital Transformation and Digital Asset Investment: Evidence from Cultural Enterprises — Mei Wang, Xueji Peng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110920
 - Inclusive Finance, High-Speed Rail, and the Tourism Economy: A Financing Constraints Alleviation Perspective — Zhihong Zhu, Baoli Zhu (2026/10/01) https://doi.org/10.1016/j.frl.2026.110919
 - Artificial Intelligence Development, Digital Transformation, and Firms’ Knowledge Absorptive Capacity — Jun Zhai, Chunyan Zhou, Zili Wang, Liming Sun (2026/10/01) https://doi.org/10.1016/j.frl.2026.110921
@@ -213,3 +194,7 @@
 - The marginal value of the quarterly auditor review — Yasuhiro Ohta (2026/10/01) https://doi.org/10.1016/j.frl.2026.110874
 - Government-guided fund and patient capital agglomeration: Evidence from listed firms in China — Liujun Zheng, Bin Li (2026/10/01) https://doi.org/10.1016/j.frl.2026.110902
 - Corporate board oversight and disclosure complexity — Habeeb Yahya, Toufiq Nazrul (2026/10/01) https://doi.org/10.1016/j.frl.2026.110926
+- Digital Investment, AI Talent Density, and Corporate ESG Performance: An Industry Spillover Effect Perspective — Fufei Yang, Chaobo Zhou (2026/10/01) https://doi.org/10.1016/j.frl.2026.110952
+- Customer Mergers and Acquisitions and Supplier Innovation: Micro Evidence from Chinese Inventors — He Deng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110953
+- Building Export Resilience via Standards Harmonization: The Role of Regional Financial Development — Zeshi Yang, Jiahao Guo (2026/10/01) https://doi.org/10.1016/j.frl.2026.110951
+- Asymmetric Effects of Policy Uncertainty on Aggregate Earnings — Wilson Kang, Jing Wang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110930
