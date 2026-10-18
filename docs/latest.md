@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-10-18 07:19 (JST)
-- 対象: 2026-10-12 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 89件 / 全67誌
+- 生成日時: 2026-10-19 07:27 (JST)
+- 対象: 2026-10-13 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 83件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -37,8 +37,8 @@
 
 ## British Accounting Review (ABDC A* / ABS 3)
 
-- Voice vs. Tone: Measuring Modality Mismatch via Large Audio Language Model — Qingchong Chen, Xiong Xiong, Yumeng Zhang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101982
 - Beyond Compliance: The Impact of Sustainable Water Management Performance on Firm Value amid Global Water Challenges — Sudipta Bose, Sajal Kumar Dey (2026/10/01) https://doi.org/10.1016/j.bar.2026.101985
+- From Hype to Hesitation: Negative Effects of AI Incidents in Crowdfunding — Yue Han, Wenyao Hu, Heng Emily Wang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101987
 
 ## Accounting Horizons (ABDC A / ABS 3)
 
@@ -95,6 +95,10 @@
 
 - Can ChatGPT be skeptical? A case-based evaluation of generative AI in financial statement auditing — Lane F. Grey, Yueqi Li (2026/10/13) https://doi.org/10.1108/arj-12-2025-0527
 
+## Accounting, Economics and Law: A Convivium (ABDC B / ABS 2)
+
+- Cryptocurrencies and the Future of Money as a Public Good — Luca Fantacci, Jacopo Maria Magurno (2026/10/19) https://doi.org/10.1515/ael-2025-0058
+
 ## Asian Review of Accounting (ABDC B / ABS 2)
 
 - Guest editorial: Accounting, auditing and financial management under digital governance — Jean Jinghan Chen (2026/10/16) https://doi.org/10.1108/ara-10-2026-479
@@ -140,14 +144,11 @@
 - Heterogeneous beliefs, asset prices, and business cycles — Saki Bigio, Dejanir Silva, Eduardo Zilberman (2026/11/01) https://doi.org/10.1016/j.jfineco.2026.104382
 - Charitable capital allocation: Evidence from private foundations — Zhongjin (Gene) Lu, Steven Malliaris (2026/11/01) https://doi.org/10.1016/j.jfineco.2026.104377
 - Disagreement of disagreement — Christian L. Goulding, Campbell R. Harvey, Hrvoje Kurtović (2026/11/01) https://doi.org/10.1016/j.jfineco.2026.104379
+- Corrigendum to “Removing the fine print: Disclosure, standardized products, and consumer outcomes” \[Journal of Financial Economics, volume 185 (November 2026) Article 104353\] — Sheisha Kulkarni, Santiago Truffa, Gonzalo Iberti (2026/10/01) https://doi.org/10.1016/j.jfineco.2026.104385
 
 ## Review of Finance (ABDC A* / ABS 3)
 
 - Measuring Measurement Error — N Aaron Pancost, Garrett Schaller (2026/10/16) https://doi.org/10.1093/rof/rfag049
-
-## Journal of Corporate Finance (ABDC A* / ABS 3)
-
-- Limits to LTD, loan supply, and real effects: Banks vs. nonbanks — Kyriakos C. Neanidis (2026/10/01) https://doi.org/10.1016/j.jcorpfin.2026.103102
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
@@ -163,18 +164,11 @@
 - Uncertainty and tail spillovers: Dynamic connectedness between DeFi tokens and BRICS equity markets — Weiping Li, Ziying Lian, Junbo Wang, Wenhao Wang (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103405
 - Legal enforcement and the governance role of underwriter reputation: Evidence from China's securities law reform — Yun-Lang Wu, Han Yan, Hanjun Xu, Wenshuai Xu (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103403
 - FinTech regulatory innovation and credit allocation efficiency in China's regulatory sandbox: A pre-registered report — Fengming Tao, Jize Xie, Dan Zhu, Shixin Li (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103414
+- Manipulation or market stress? On-chain evidence from Asia-Pacific cryptocurrency shocks — Eyyüp Ensari Şahin (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103413
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- Corporate Digital Transformation and Digital Asset Investment: Evidence from Cultural Enterprises — Mei Wang, Xueji Peng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110920
-- Inclusive Finance, High-Speed Rail, and the Tourism Economy: A Financing Constraints Alleviation Perspective — Zhihong Zhu, Baoli Zhu (2026/10/01) https://doi.org/10.1016/j.frl.2026.110919
-- Artificial Intelligence Development, Digital Transformation, and Firms’ Knowledge Absorptive Capacity — Jun Zhai, Chunyan Zhou, Zili Wang, Liming Sun (2026/10/01) https://doi.org/10.1016/j.frl.2026.110921
-- Green Certification, litigation risk, and corporate external financing dependency — Siheng Wang, Wenqi Du (2026/10/01) https://doi.org/10.1016/j.frl.2026.110913
-- Patient Capital, Corporate Social Responsibility and Financial Asset Allocation — Ming Liu, Yuxin Li, Yongxiang Ji, Xinjie Wang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110917
-- Supply Chain Finance, Contract Disputes, and Legal Remedies for Innovative Technology Enterprises — Yu Chen, Mengwei He, Junfeng Cheng (2026/10/01) https://doi.org/10.1016/j.frl.2026.110915
-- Ecological Compensation and Regional Coordinated Development: Financial Development as a Moderator — Fang Yang, Hanfei Li (2026/10/01) https://doi.org/10.1016/j.frl.2026.110912
-- Are green institutional holdings consistently associated with lower carbon intensity? Evidence across the corporate life cycle — Yamin Xie (2026/10/01) https://doi.org/10.1016/j.frl.2026.110916
-- Wage Arrears of Migrant Workers, Digital Government Construction and Government Fiscal-financial Intervention Intensity: A Quasi-natural Experiment — Mengjia Wang, Linyi Xiao, Ni Zhang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110914
+- Reproducible LLM-based measurement depends on the serving stack — Hsiang-Chieh Yang (2026/12/01) https://doi.org/10.1016/j.frl.2026.110909
 - Do climate-related risks and policy dynamics reshape bank income structure? Evidence from U.S. banks’ non-interest income activities — Konstantinos Michail Kapetanakis, Christos Floros (2026/10/01) https://doi.org/10.1016/j.frl.2026.110925
 - Does commodity futures internationalization reshape uncertainty transmission? Evidence from China — Ranran Guo, Tianjun Lu (2026/10/01) https://doi.org/10.1016/j.frl.2026.110892
 - Public Debt, Entry Regulation, and Entrepreneurship: A Threshold Model — Jonathan Munemo, Eugene Bempong Nyantakyi (2026/10/01) https://doi.org/10.1016/j.frl.2026.110922
