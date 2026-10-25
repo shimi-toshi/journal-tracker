@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-10-25 07:29 (JST)
-- 対象: 2026-10-19 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 109件 / 全67誌
+- 生成日時: 2026-10-26 07:34 (JST)
+- 対象: 2026-10-20 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 108件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -27,12 +27,12 @@
 
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
 
+- Cultural intermediation through indigenous values-based accountability: the case of Bangarra Dance Theatre — Brian Anthony Burfitt, Paul Andon, Conor Clune, Joshua Duke, Jan Mouritsen (2026/10/27) https://doi.org/10.1108/aaaj-07-2025-8134
 - Sustainability accounting and reporting: organisational identity construction and enactment in local governments — Ana Rita Domingues, Rebecca Levy Orelli, Pasquale Ruggiero (2026/10/22) https://doi.org/10.1108/aaaj-09-2023-6645
 - Expense disclosures and the social meaning of charitable donations — Sarah Adams, Matthew Hall, Wenshi He, Richard Pucci (2026/10/20) https://doi.org/10.1108/aaaj-03-2025-7801
 
 ## British Accounting Review (ABDC A* / ABS 3)
 
-- From Hype to Hesitation: Negative Effects of AI Incidents in Crowdfunding — Yue Han, Wenyao Hu, Heng Emily Wang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101987
 - Culturally Inherited Language Negativity and Management Forecasts — Long Chen, Yiming Gong, Yihuan Mao, Albert Tsang (2026/10/01) https://doi.org/10.1016/j.bar.2026.101988
 - Firm Exposure to Government Agencies and Asymmetric Cost Behaviour — Awad Elsayed Awad Ibrahim, Hesham Ali (2026/10/01) https://doi.org/10.1016/j.bar.2026.101989
 
@@ -112,10 +112,6 @@
 - Caught in the crossfire: Geopolitical risk and firm performance, and the lifeline of risk management and sustainability strategies — Faisal Khan, Dalia Hemdan, Hashim Khan (2026/10/26) https://doi.org/10.1108/arj-12-2025-0543
 - Financial support or innovation hindrance? Impact of venture capital’s discounted subscription in private placements on corporate innovation — Jingyi Guan, Shuyang Chen, Xueying Wen (2026/10/21) https://doi.org/10.1108/arj-03-2026-0214
 
-## Accounting, Economics and Law: A Convivium (ABDC B / ABS 2)
-
-- Cryptocurrencies and the Future of Money as a Public Good — Luca Fantacci, Jacopo Maria Magurno (2026/10/19) https://doi.org/10.1515/ael-2025-0058
-
 ## Asia-Pacific Journal of Accounting and Economics (ABDC B / ABS 2)
 
 - Client exposure to random inspection and auditor responses: evidence from China — Wunhong Su, Chen Yin, Liuzhen Zhang (2026/10/19) https://doi.org/10.1080/16081625.2026.2736826
@@ -140,6 +136,11 @@
 - Converging standards, diverging outcomes? An empirical analysis of interoperability in sustainability reporting — Matteo Augello, Elisabetta Mafrolla (2026/10/23) https://doi.org/10.1108/jaar-08-2025-0446
 - Determinants of green behaviour in the finance sector: moderating role of environmentally-specific servant leadership — Subburaj Alagarsamy, Nisha Prakash, Aparna Hawaldar (2026/10/20) https://doi.org/10.1108/jaar-06-2025-0332
 
+## Journal of Public Budgeting, Accounting and Financial Management (ABDC B / ABS 2)
+
+- Microfinance sustainability amid gender inequalities in G20 emerging economies: the role of female board representation and voice and accountability — Kuldeep Singh, Arpita Sharma (2026/10/27) https://doi.org/10.1108/jpbafm-06-2025-0159
+- Discretion, rotational programs and reported corruption in public procurement: an analysis of Italian municipalities — Diletta Vito, Daniele Tammaro, Giuseppe D’Onza (2026/10/27) https://doi.org/10.1108/jpbafm-02-2026-0057
+
 ## Sustainability Accounting, Management and Policy Journal (ABDC B / ABS 2)
 
 - Cultivating strength inside and out: green credit interest subsidy policies and corporate energy efficiency – new evidence from China — Kai Wan, Xiaolin Yu (2026/10/27) https://doi.org/10.1108/sampj-12-2025-1943
@@ -154,7 +155,6 @@
 
 - Political Voice and (Mortgage) Market Participation: Evidence from the dilution of Voting Rights Act — Seongjin Park, Arkodipta Sarkar, Nishant Vats (2026/12/01) https://doi.org/10.1016/j.jfineco.2026.104387
 - Do long-term yields help to estimate short-term risk premia? — Andrea Berardi, Roger Brown, Stephen M. Schaefer (2026/12/01) https://doi.org/10.1016/j.jfineco.2026.104386
-- Corrigendum to “Removing the fine print: Disclosure, standardized products, and consumer outcomes” \[Journal of Financial Economics, volume 185 (November 2026) Article 104353\] — Sheisha Kulkarni, Santiago Truffa, Gonzalo Iberti (2026/10/01) https://doi.org/10.1016/j.jfineco.2026.104385
 
 ## Review of Financial Studies (ABDC A* / ABS 4)
 
@@ -174,7 +174,6 @@
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
-- Manipulation or market stress? On-chain evidence from Asia-Pacific cryptocurrency shocks — Eyyüp Ensari Şahin (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103413
 - Does generative AI improve price discovery? Evidence from China’s investor platforms: A pre-registered report — Yingshuang Tan, Wei Song (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103411
 - The bright side of complexity: Evidence from trade credit — Yuxi Zhang, Joye Khoo, Adrian Wai Kong Cheung (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103409
 - AI herding in financial markets: An experiment with large language models — Leping Zhang, Guangyou Zhou (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103415
@@ -182,7 +181,6 @@
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- Reproducible LLM-based measurement depends on the serving stack — Hsiang-Chieh Yang (2026/12/01) https://doi.org/10.1016/j.frl.2026.110909
 - How does big data application affect industrial chain integration? — Tao Zhao, Huan Wen, Shengnan Ren, Xiaozhen Jiang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110965
 - Financial resume and innovation risk-taking: How executive background shapes corporate decision making? — Xiaozhen Jiang, Lingni Wan, Tianming Huang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110968
 - Market Competitiveness Effects of Cross-border Mergers and Acquisitions: A Supply Chain Integration Perspective — Shan Huang, Wang Li, Qian Chen, Yue Liu, Yan Ding (2026/10/01) https://doi.org/10.1016/j.frl.2026.110962
@@ -215,3 +213,4 @@
 - Ruin avoidance in Goal-Based Wealth Management: A life-cycle approach — Philippe Bertrand (2026/10/01) https://doi.org/10.1016/j.frl.2026.110980
 - How Does Green Finance Affect Corporate Tax Avoidance? Evidence form China’s A-share Listed Firms — Xudong Zhu, Dingrong Liu, Jingyuan Yu (2026/10/01) https://doi.org/10.1016/j.frl.2026.110982
 - When Geopolitical Stress Hits Defense Technology: Multiscale Evidence from Cybersecurity, Aerospace, and Semiconductor Markets — Nader Naifar (2026/10/01) https://doi.org/10.1016/j.frl.2026.110989
+- Factor momentum and stock momentum in the UK: Spanning and its limits — James Foye (2026/10/01) https://doi.org/10.1016/j.frl.2026.110991
