@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-10-31 08:47 (JST)
-- 対象: 2026-10-25 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 106件 / 全67誌
+- 生成日時: 2026-11-01 08:25 (JST)
+- 対象: 2026-10-26 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 103件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -21,7 +21,6 @@
 - Mandatory Disclosure and Peer Firms' Learning From Stock Prices — Jaewoo Kim, Hunter Pearson, Brady Twedt (2026/10/30) https://doi.org/10.1111/1911-3846.70094
 - Whose Job Is It, Anyway? The Effect of the Review Process on Employee Performance — Adam Bross, Ryan D. Sommerfeldt (2026/10/29) https://doi.org/10.1111/1911-3846.70095
 - Do PCAOB Inspection Deficiencies Related to Management Review Controls Affect Financial Reporting Decisions? Evidence From Goodwill Impairments — Kenneth L. Bills, Chris E. Hogan, Jennifer E. Puccia (2026/10/27) https://doi.org/10.1111/1911-3846.70098
-- Measurement Error, Manipulation, and the Value of Short‐Term Performance in Job Retention — Naomi Rothenberg (2026/10/24) https://doi.org/10.1111/1911-3846.70096
 
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
 
@@ -36,14 +35,6 @@
 - Remote Auditing and Audit Quality: Evidence from the Field — Yige Jin, Gaoliang Tian, Donghui Wu, Xiangang Xin (2026/10/01) https://doi.org/10.2308/ajpt-2022-097
 - Client-Engaged Specialists, Estimation Risk, and Auditor Attention — Zeping Pan (2026/10/01) https://doi.org/10.2308/ajpt-2025-055
 - Do Auditors Treat Clients Engaging in Research and Development Differently When Issuing Going Concern Modifications? — Scott N. Bronson, Adi N. S. Masli, Christopher J. Rossetti (2026/10/01) https://doi.org/10.2308/ajpt-2022-172
-
-## British Accounting Review (ABDC A* / ABS 3)
-
-- Firm Exposure to Government Agencies and Asymmetric Cost Behaviour — Awad Elsayed Awad Ibrahim, Hesham Ali (2026/10/01) https://doi.org/10.1016/j.bar.2026.101989
-
-## Journal of Business Finance & Accounting (ABDC A* / ABS 3)
-
-- The Effects of Promotion Patterns Within Audit Firms on Audit Adjustments: Insights Into Promotion Speed and Flexibility — Yingwen Deng, Ziyi Zhang, Xinyi Li, Min Zhang (2026/10/24) https://doi.org/10.1111/jbfa.70092
 
 ## Accounting Horizons (ABDC A / ABS 3)
 
@@ -91,7 +82,6 @@
 ## Managerial Auditing Journal (ABDC A / ABS 2)
 
 - Audit committees and climate risk disclosure: a transformer-based textual analysis approach — Damian Honey, Hussain Muhammad, Stefania Migliori (2026/10/29) https://doi.org/10.1108/maj-08-2025-4955
-- Negative press coverage, litigation risk, and audit opinions in China — Shang Gao, Qiliang Liu, Hong Xie, Jianping Zhang (2026/10/27) https://doi.org/10.1108/maj-04-2025-4786
 
 ## Accounting Research Journal (ABDC B / ABS 2)
 
@@ -100,10 +90,6 @@
 ## Asian Review of Accounting (ABDC B / ABS 2)
 
 - Political connection, earnings volatility and short-term debt — Kumari Pushplata, Abhijeet Chandra, Akash Singh Yadav (2026/10/27) https://doi.org/10.1108/ara-12-2025-0467
-
-## Australian Accounting Review (ABDC B / ABS 2)
-
-- The Frequency of Voluntary Disclosures and the Information Discovery Role of Analysts: A Study of Monthly Comparable Store Sales Disclosures — Philip Keejae Hong, Sam Lee, Gregory W. Martin (2026/10/24) https://doi.org/10.1111/auar.70037
 
 ## Current Issues in Auditing (ABDC B / ABS 2)
 
@@ -137,7 +123,6 @@
 - Heterogeneity in organizational responses to legally mandated hybrid practices: the example of the EU Taxonomy Regulation — Matthias Fertig-Müller, Michelle Palharini, Peter Wehnert (2026/10/29) https://doi.org/10.1108/sampj-04-2025-0572
 - Caught in ESG trap? Evidence from earnings pressure by examining CEO overconfidence and pay slice — Heng-Yu Chang, Wenting Liu (2026/10/28) https://doi.org/10.1108/sampj-07-2025-0969
 - Small caps, large climate data gaps: disclosure shortfalls and investment implications amid regulation retreats — Huong Dieu Dang, Jan Heldmann (2026/10/28) https://doi.org/10.1108/sampj-05-2025-0648
-- Cultivating strength inside and out: green credit interest subsidy policies and corporate energy efficiency – new evidence from China — Kai Wan, Xiaolin Yu (2026/10/27) https://doi.org/10.1108/sampj-12-2025-1943
 
 ## Journal of Finance (ABDC A* / ABS 4*)
 
@@ -174,13 +159,13 @@
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
-- Realized Semi-coskewnesses and the Cross-section of Expected Stock Returns — Weiyi Liu, Huilin Zhou, Ronghua Luo, Xuan Liang (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107848
 - Robust portfolio choice under a continuum of downside risk preferences — Chenling Huang, Jonathan Yu-Meng Li, Tiantian Mao (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107845
 - Environmental Regulation and the Pollution Premium in China — Xili Zhang, Ruiting Zhang, Li Guo, Donghui Li, Ya Li (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107853
+- Cross-Border Regulatory Cooperation and Firm Cross-Listing Decisions — Xiaoqi Chen, Yangyang Chen, Jeffrey Pittman, Bin Yang (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107855
+- Monetary Policy and The Green Paradox — Dimitrios Gounopoulos, Dimitris Konstantios, Nikos Paltalidis (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107856
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
-- Consensus validation in mutual fund governance: A pre-registered report — John Adams, Sattar Mansi, Takeshi Nishikawa (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103416
 - Supply chain finance and corporate investment efficiency: evidence from China — Tiecheng Leng, Hongjie Fan, Yurou Zhang, Ruishan Zhang (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103419
 - Government bank lending and corporate investment during a crisis: evidence from Japan — Yupeng Lin, Anand Srinivasan, Chang Wang, Takeshi Yamada (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103418
 - Valuing convertible bonds: a least squares Monte Carlo simulation approach and market mispricing analysis — Wenlan Wang, Chao Lu, Canyang Liu, Tingzhu Liu (2026/10/01) https://doi.org/10.1016/j.pacfin.2026.103420
@@ -198,10 +183,6 @@
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- FinTech-Enabling Conditions, Institutional Quality, and Economic Readiness to Climate Change: Is There a U-Shaped Nexus? Evidence from 114 Countries — Shuang Ai, Yifan Zhang, Shi Li Pro (2026/10/01) https://doi.org/10.1016/j.frl.2026.110990
-- Ruin avoidance in Goal-Based Wealth Management: A life-cycle approach — Philippe Bertrand (2026/10/01) https://doi.org/10.1016/j.frl.2026.110980
-- How Does Green Finance Affect Corporate Tax Avoidance? Evidence form China’s A-share Listed Firms — Xudong Zhu, Dingrong Liu, Jingyuan Yu (2026/10/01) https://doi.org/10.1016/j.frl.2026.110982
-- When Geopolitical Stress Hits Defense Technology: Multiscale Evidence from Cybersecurity, Aerospace, and Semiconductor Markets — Nader Naifar (2026/10/01) https://doi.org/10.1016/j.frl.2026.110989
 - Factor momentum and stock momentum in the UK: Spanning and its limits — James Foye (2026/10/01) https://doi.org/10.1016/j.frl.2026.110991
 - Machine learning predictive uncertainty and stock returns: Evidence from LightGBM entropy in the U.S. market — Haoyu Wang, Dejun Xie, Wenze Xiong, Jiale Zhang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110955
 - International equity factor performance: Do risk and mispricing labels add information? — Kei Nakagawa (2026/10/01) https://doi.org/10.1016/j.frl.2026.110979
@@ -221,3 +202,10 @@
 - Pareto frontier of portfolio investment under volatility uncertainty and short-sale prohibition — Jing He, Shuzhen Yang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110997
 - Biodiversity risk and corporate cost stickiness: Evidence from China — Yufeng Chen, Xiaoyu Yao, Chuwen Wang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110999
 - Factor themes and the principal-component structure of factor momentum — Hyeonjun Kim, Doojin Ryu (2026/10/01) https://doi.org/10.1016/j.frl.2026.111012
+- Hierarchical State-owned Patient Capital and Corporate Innovation: The Moderating Role of Social Trust — Cong Cui, Jiahui Li (2026/10/01) https://doi.org/10.1016/j.frl.2026.111023
+- What markets priced at first IFRS 9 and IFRS 17 disclosure: Evidence from European insurers — Stefan Veith (2026/10/01) https://doi.org/10.1016/j.frl.2026.110992
+- AI-signaling premium in economics and finance research — Andres Alonso-Robisco, Carlos Esparcia, Francisco Jareño (2026/10/01) https://doi.org/10.1016/j.frl.2026.110995
+- Payment-term power premium and supplier financial risk: Supply chain finance as a double-edged sword — Yaolei Huang, Shiting Peng, Yongliang Zhao (2026/10/01) https://doi.org/10.1016/j.frl.2026.111020
+- Digital Financial Inclusion and Rural Household Consumption Reallocation — Liu Jianting, Xia Yuxin (2026/10/01) https://doi.org/10.1016/j.frl.2026.111022
+- Digital Government Construction, Inclusive Finance, and Environmental Pollution:A Financial Channel Perspective — Runkun Liu, Ao Yang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111021
+- The Impact of Local Government Behavior under Ecological Accountability on Heavily Polluting Corporate Financialization — Miao Zhang, Changhong Peng (2026/10/01) https://doi.org/10.1016/j.frl.2026.111017
