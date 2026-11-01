@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-11-01 08:25 (JST)
-- 対象: 2026-10-26 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 103件 / 全67誌
+- 生成日時: 2026-11-02 08:36 (JST)
+- 対象: 2026-10-27 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 110件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -24,11 +24,11 @@
 
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
 
+- Binding the present and orchestrating the future: accounting as a technology of government in water sustainability — Leonardo Rinaldi, Emilio Passetti (2026/11/03) https://doi.org/10.1108/aaaj-06-2025-8095
 - Cisnormative accounting organizations: recording the experiences of transgender people in Brazil — Juh Círico, Marli Auxiliadora da Silva, Silvia Pereira de Castro Casa Nova (2026/10/30) https://doi.org/10.1108/aaaj-04-2024-7007
 - Constructing sustainability expertise: capital conversion and the making of a sustainability CFO — Chaya Jayathileka, Rakshitha Hitibandara, Sashika Withanage (2026/10/30) https://doi.org/10.1108/aaaj-10-2025-8426
 - Accounting for the working conditions of social compliance auditors investigating modern slavery in supply chains — Pavel Castka, Grant Michelson, Xiaoli Zhao, Cory Searcy (2026/10/29) https://doi.org/10.1108/aaaj-07-2025-8130
 - The great slowdown? Trajectories of sustainability reporting boundary change from a value chain perspective 1990–2020 — Emelie Havemo, Jakob Rehme (2026/10/29) https://doi.org/10.1108/aaaj-01-2024-6861
-- Cultural intermediation through indigenous values-based accountability: the case of Bangarra Dance Theatre — Brian Anthony Burfitt, Paul Andon, Conor Clune, Joshua Duke, Jan Mouritsen (2026/10/27) https://doi.org/10.1108/aaaj-07-2025-8134
 
 ## Auditing: A Journal of Practice and Theory (ABDC A* / ABS 3)
 
@@ -113,11 +113,6 @@
 
 - Financial accountability and revenue paying behavior of citizens in local governments in Ghana: the role of trust and information technology — Nora Danso, John Kwaku Amoh, Lexis Alexander Tetteh, Paul Muda, Gorkel Obro-Adibo (2026/10/29) https://doi.org/10.1108/jaar-10-2025-0566
 
-## Journal of Public Budgeting, Accounting and Financial Management (ABDC B / ABS 2)
-
-- Microfinance sustainability amid gender inequalities in G20 emerging economies: the role of female board representation and voice and accountability — Kuldeep Singh, Arpita Sharma (2026/10/27) https://doi.org/10.1108/jpbafm-06-2025-0159
-- Discretion, rotational programs and reported corruption in public procurement: an analysis of Italian municipalities — Diletta Vito, Daniele Tammaro, Giuseppe D’Onza (2026/10/27) https://doi.org/10.1108/jpbafm-02-2026-0057
-
 ## Sustainability Accounting, Management and Policy Journal (ABDC B / ABS 2)
 
 - Heterogeneity in organizational responses to legally mandated hybrid practices: the example of the EU Taxonomy Regulation — Matthias Fertig-Müller, Michelle Palharini, Peter Wehnert (2026/10/29) https://doi.org/10.1108/sampj-04-2025-0572
@@ -159,6 +154,7 @@
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
+- Inside the Boardroom: Evidence from the Board Structure and Meeting Minutes of Community Banks — Rosalind L. Bennett, Manju Puri, Paul E. Soto (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107851
 - Robust portfolio choice under a continuum of downside risk preferences — Chenling Huang, Jonathan Yu-Meng Li, Tiantian Mao (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107845
 - Environmental Regulation and the Pollution Premium in China — Xili Zhang, Ruiting Zhang, Li Guo, Donghui Li, Ya Li (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107853
 - Cross-Border Regulatory Cooperation and Firm Cross-Listing Decisions — Xiaoqi Chen, Yangyang Chen, Jeffrey Pittman, Bin Yang (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107855
@@ -183,7 +179,13 @@
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- Factor momentum and stock momentum in the UK: Spanning and its limits — James Foye (2026/10/01) https://doi.org/10.1016/j.frl.2026.110991
+- Artificial Intelligence Applications, Regulatory Technology, and Financial Fraud — Linyi Xiao, Meiyang Cao, Qianyu Zhu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111029
+- ESG Investment and Employment in the High-Tech Industry: Examining the Mediating Role of Foreign Direct Investment — Haitian Zhang, Benxue Wang (2026/11/01) https://doi.org/10.1016/j.frl.2026.111034
+- Employee Skills Training, Inclusive Financial Development, and Corporate Human Capital Upgrading — Di Fan, Nazrul Hisyam Ab Razak, Wei Ni Soh (2026/11/01) https://doi.org/10.1016/j.frl.2026.111033
+- A modified Sharpe framework incorporating carbon exposure — Emrah ÖGET, Ersin KANAT, Ferdi KESİKOĞLU (2026/11/01) https://doi.org/10.1016/j.frl.2026.111031
+- The Impact of AI Investment on Organizational Inertia in Enterprises — Zheng Cao, Zhen Yang, Weiyu Gu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111027
+- Policy regime dependence in sustainability index return predictability: evidence from China — Yusen Tan, Binsheng Qian (2026/11/01) https://doi.org/10.1016/j.frl.2026.111026
+- Standard-setting network centrality and the cost of debt: Evidence from China — Wei LI, Haifeng WANG, Yuhao CHENG, Zhefan LU (2026/11/01) https://doi.org/10.1016/j.frl.2026.111030
 - Machine learning predictive uncertainty and stock returns: Evidence from LightGBM entropy in the U.S. market — Haoyu Wang, Dejun Xie, Wenze Xiong, Jiale Zhang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110955
 - International equity factor performance: Do risk and mispricing labels add information? — Kei Nakagawa (2026/10/01) https://doi.org/10.1016/j.frl.2026.110979
 - Systematic monetary policy and the spillover effects of fiscal policy — Yang Yang, Liqi Shen, Ren Zhang (2026/10/01) https://doi.org/10.1016/j.frl.2026.110988
@@ -209,3 +211,5 @@
 - Digital Financial Inclusion and Rural Household Consumption Reallocation — Liu Jianting, Xia Yuxin (2026/10/01) https://doi.org/10.1016/j.frl.2026.111022
 - Digital Government Construction, Inclusive Finance, and Environmental Pollution:A Financial Channel Perspective — Runkun Liu, Ao Yang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111021
 - The Impact of Local Government Behavior under Ecological Accountability on Heavily Polluting Corporate Financialization — Miao Zhang, Changhong Peng (2026/10/01) https://doi.org/10.1016/j.frl.2026.111017
+- Banking Competition and Interregional Patent Transfers: Evidence from Chinese Prefecture-Level Cities — Mingwei Du, Changzhao Qian, Xiaojiao Liub, Wei Wang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111028
+- Bitcoin Pass-Through in Corporate Equities: Exploratory Evidence — Li Li, Keming Liang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111025
