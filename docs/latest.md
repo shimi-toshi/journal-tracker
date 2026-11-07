@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-11-07 09:08 (JST)
-- 対象: 2026-11-01 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 105件 / 全67誌
+- 生成日時: 2026-11-08 08:39 (JST)
+- 対象: 2026-11-02 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 106件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -27,6 +27,10 @@
 
 - Accounting and the fragmented self: institutional opacity, spiritual inequality and moral burden in Islamic finance — Umair Riaz (2026/11/05) https://doi.org/10.1108/aaaj-09-2025-8309
 - Binding the present and orchestrating the future: accounting as a technology of government in water sustainability — Leonardo Rinaldi, Emilio Passetti (2026/11/03) https://doi.org/10.1108/aaaj-06-2025-8095
+
+## British Accounting Review (ABDC A* / ABS 3)
+
+- Scorecard Integration and Cross-Functional Coordination: Joint Effects on Managerial Commitment to ESG Goals — Rui Ding, Jeff Coulton, Gary Monroe (2026/11/01) https://doi.org/10.1016/j.bar.2026.101990
 
 ## Journal of Business Finance & Accounting (ABDC A* / ABS 3)
 
@@ -70,6 +74,8 @@
 
 ## Accounting and Finance (ABDC A / ABS 2)
 
+- AI Disclosure, Signal Quality and Washing: Evidence From Chinese Listed Firms — Tingyong Zhong, Ping Yang, Meiyi Wu, Jiachuang Chen (2026/11/06) https://doi.org/10.1111/acfi.70296
+- Supply Chain Digital Transformation Misalignment and Supplier Greenwashing: A Dual‐Path Perspective — Cheng Liu, Siyuan Dong, Xinyi Gao (2026/11/06) https://doi.org/10.1111/acfi.70305
 - False Green, True Damage: The Erosion of Supplier Sustainability Through Greenwashing Spillovers in Supply Chains — Hui Huang, Sensheng Li, Cheng Xiang, Zhuoyao Xin (2026/11/05) https://doi.org/10.1111/acfi.70309
 - Investor Perspectives on Human Capital Disclosures: Australian Evidence — Dean Hanlon, Mehdi Khedmati, Edwin KiaYang Lim, Eka Nugraha Tan (2026/11/03) https://doi.org/10.1111/acfi.70304
 - Correction to ‘ CEO Organizational Identification and Corporate Innovation Investment’ (2026/11/02) https://doi.org/10.1111/acfi.70298
@@ -83,6 +89,10 @@
 ## International Journal of Auditing (ABDC A / ABS 2)
 
 - Audit Team Paradox‐in‐Virtuality and Audit Quality Threatening Behaviour — Alice Annelin (2026/11/04) https://doi.org/10.1111/ijau.70049
+
+## Journal of Contemporary Accounting and Economics (ABDC A / ABS 2)
+
+- Corporate AI adoption and ESG rating disagreement: Evidence from China — Qingdong Xiao, Qiujin Wu (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100609
 
 ## Accounting Research Journal (ABDC B / ABS 2)
 
@@ -117,6 +127,7 @@
 
 ## Journal of Public Budgeting, Accounting and Financial Management (ABDC B / ABS 2)
 
+- Toward resilient inter-organizational collaboration through boundary work: the perspective of frontline managers — Kristina Frid, Anna Glenngård, Elin K. Funck (2026/11/10) https://doi.org/10.1108/jpbafm-10-2025-0276
 - Climate reporting in public sector organisations: identity construction and changes — Wei Qian, Ming Xue, Cherrie Yang (2026/11/09) https://doi.org/10.1108/jpbafm-03-2026-0140
 
 ## Sustainability Accounting, Management and Policy Journal (ABDC B / ABS 2)
@@ -166,12 +177,12 @@
 - Firm productivity and bank lending — Orhun Sevinc, İbrahim Yarba (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107850
 - Ambiguity, financial uncertainty, and business cycles: An event constraint approach — Takao Asano, Xiaojing Cai, Ryuta Sakemoto (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107847
 - High-frequency price discovery in fragmented crypto markets — Carol Alexander, Daniel Heck, Andreas Kaeck, Ryan Riordan (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107849
-- Cross-Border Regulatory Cooperation and Firm Cross-Listing Decisions — Xiaoqi Chen, Yangyang Chen, Jeffrey Pittman, Bin Yang (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107855
-- Monetary Policy and The Green Paradox — Dimitrios Gounopoulos, Dimitris Konstantios, Nikos Paltalidis (2026/10/01) https://doi.org/10.1016/j.jbankfin.2026.107856
+- Business Strategy and Loan Contracting — Jeong-Bon Kim, Chong Wang, Feng (Harry) Wu (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107864
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
 - Digital transformation, repricing mismatch, and Bank interest rate risk: Evidence from Chinese commercial banks — Liu Fangjia, Ruan Jia, Yi Jiaquan (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103422
+- AI-related investor inquiries and corporate AI washing: Monitoring versus catering: A pre-registered report — Hang Chen, Qinyang Li, Ziqian Rong, Furong Wang (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103427
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
@@ -205,12 +216,8 @@
 - Does Executive Misconduct Increase Corporate Debt Financing Costs? — Chenglong Sun, Rongzhi Zhu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111046
 - More Signals, Less Substance: Artificial Intelligence, Corporate Financialization, and Green Innovation Bubbles — Xuan Tian, Huichao Wu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111045
 - Attribution of political risk in institutional investors’ portfolios — Yuntaek Pae, Wonseok Choi (2026/11/01) https://doi.org/10.1016/j.frl.2026.111048
-- Hierarchical State-owned Patient Capital and Corporate Innovation: The Moderating Role of Social Trust — Cong Cui, Jiahui Li (2026/10/01) https://doi.org/10.1016/j.frl.2026.111023
-- What markets priced at first IFRS 9 and IFRS 17 disclosure: Evidence from European insurers — Stefan Veith (2026/10/01) https://doi.org/10.1016/j.frl.2026.110992
-- AI-signaling premium in economics and finance research — Andres Alonso-Robisco, Carlos Esparcia, Francisco Jareño (2026/10/01) https://doi.org/10.1016/j.frl.2026.110995
-- Payment-term power premium and supplier financial risk: Supply chain finance as a double-edged sword — Yaolei Huang, Shiting Peng, Yongliang Zhao (2026/10/01) https://doi.org/10.1016/j.frl.2026.111020
-- Digital Financial Inclusion and Rural Household Consumption Reallocation — Liu Jianting, Xia Yuxin (2026/10/01) https://doi.org/10.1016/j.frl.2026.111022
-- Digital Government Construction, Inclusive Finance, and Environmental Pollution:A Financial Channel Perspective — Runkun Liu, Ao Yang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111021
-- The Impact of Local Government Behavior under Ecological Accountability on Heavily Polluting Corporate Financialization — Miao Zhang, Changhong Peng (2026/10/01) https://doi.org/10.1016/j.frl.2026.111017
+- Childhood savings-account provision and inequality across age-defined generations — Stephen Agnew (2026/11/01) https://doi.org/10.1016/j.frl.2026.111053
+- Digital Rural Development and the Return of Talent: Inclusive Finance as a Moderator — Jian Li, Mingxia Zou, Jiali Li, Chao Tan (2026/11/01) https://doi.org/10.1016/j.frl.2026.111054
+- Core deposits and deposit costs during monetary tightening — Yuanzheng Zhu, Qiao Hu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111019
 - Banking Competition and Interregional Patent Transfers: Evidence from Chinese Prefecture-Level Cities — Mingwei Du, Changzhao Qian, Xiaojiao Liub, Wei Wang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111028
 - Bitcoin Pass-Through in Corporate Equities: Exploratory Evidence — Li Li, Keming Liang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111025
