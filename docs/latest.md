@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-11-08 08:39 (JST)
-- 対象: 2026-11-02 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 106件 / 全67誌
+- 生成日時: 2026-11-09 08:43 (JST)
+- 対象: 2026-11-03 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 95件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -26,7 +26,6 @@
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
 
 - Accounting and the fragmented self: institutional opacity, spiritual inequality and moral burden in Islamic finance — Umair Riaz (2026/11/05) https://doi.org/10.1108/aaaj-09-2025-8309
-- Binding the present and orchestrating the future: accounting as a technology of government in water sustainability — Leonardo Rinaldi, Emilio Passetti (2026/11/03) https://doi.org/10.1108/aaaj-06-2025-8095
 
 ## British Accounting Review (ABDC A* / ABS 3)
 
@@ -173,7 +172,6 @@
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
-- Inside the Boardroom: Evidence from the Board Structure and Meeting Minutes of Community Banks — Rosalind L. Bennett, Manju Puri, Paul E. Soto (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107851
 - Firm productivity and bank lending — Orhun Sevinc, İbrahim Yarba (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107850
 - Ambiguity, financial uncertainty, and business cycles: An event constraint approach — Takao Asano, Xiaojing Cai, Ryuta Sakemoto (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107847
 - High-frequency price discovery in fragmented crypto markets — Carol Alexander, Daniel Heck, Andreas Kaeck, Ryan Riordan (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107849
@@ -186,13 +184,6 @@
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- Artificial Intelligence Applications, Regulatory Technology, and Financial Fraud — Linyi Xiao, Meiyang Cao, Qianyu Zhu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111029
-- ESG Investment and Employment in the High-Tech Industry: Examining the Mediating Role of Foreign Direct Investment — Haitian Zhang, Benxue Wang (2026/11/01) https://doi.org/10.1016/j.frl.2026.111034
-- Employee Skills Training, Inclusive Financial Development, and Corporate Human Capital Upgrading — Di Fan, Nazrul Hisyam Ab Razak, Wei Ni Soh (2026/11/01) https://doi.org/10.1016/j.frl.2026.111033
-- A modified Sharpe framework incorporating carbon exposure — Emrah ÖGET, Ersin KANAT, Ferdi KESİKOĞLU (2026/11/01) https://doi.org/10.1016/j.frl.2026.111031
-- The Impact of AI Investment on Organizational Inertia in Enterprises — Zheng Cao, Zhen Yang, Weiyu Gu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111027
-- Policy regime dependence in sustainability index return predictability: evidence from China — Yusen Tan, Binsheng Qian (2026/11/01) https://doi.org/10.1016/j.frl.2026.111026
-- Standard-setting network centrality and the cost of debt: Evidence from China — Wei LI, Haifeng WANG, Yuhao CHENG, Zhefan LU (2026/11/01) https://doi.org/10.1016/j.frl.2026.111030
 - AI Narratives and Firm Vertical Specialization — Jia Guo, Ying Li, Yujing Xu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111038
 - Credit Default Swaps and R&D Investment under Product Market Competition — Archana Kumari, Surender Rao Komera, Udayan Sharma (2026/11/01) https://doi.org/10.1016/j.frl.2026.111024
 - The threshold effect of AI software and hardware capital stocks on business model innovation — Tao Guo, Zeqing Gao (2026/11/01) https://doi.org/10.1016/j.frl.2026.111039
@@ -219,5 +210,3 @@
 - Childhood savings-account provision and inequality across age-defined generations — Stephen Agnew (2026/11/01) https://doi.org/10.1016/j.frl.2026.111053
 - Digital Rural Development and the Return of Talent: Inclusive Finance as a Moderator — Jian Li, Mingxia Zou, Jiali Li, Chao Tan (2026/11/01) https://doi.org/10.1016/j.frl.2026.111054
 - Core deposits and deposit costs during monetary tightening — Yuanzheng Zhu, Qiao Hu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111019
-- Banking Competition and Interregional Patent Transfers: Evidence from Chinese Prefecture-Level Cities — Mingwei Du, Changzhao Qian, Xiaojiao Liub, Wei Wang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111028
-- Bitcoin Pass-Through in Corporate Equities: Exploratory Evidence — Li Li, Keming Liang (2026/10/01) https://doi.org/10.1016/j.frl.2026.111025
