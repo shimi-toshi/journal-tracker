@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-11-14 09:54 (JST)
-- 対象: 2026-11-08 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 90件 / 全67誌
+- 生成日時: 2026-11-15 08:55 (JST)
+- 対象: 2026-11-09 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 89件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -24,6 +24,7 @@
 
 ## Review of Accounting Studies (ABDC A* / ABS 4)
 
+- From incidents to outcomes: consumer reactions and firm responses to negative environmental and social practices — Zhanbing Xiao, Xin Zheng, Yuxiang Zheng (2026/11/14) https://doi.org/10.1007/s11142-026-09998-5
 - Auditors’ (non)responses to public warnings of audit risk: evidence from short-selling campaigns — Dan Li, Shiva Rajgopal, Suraj Srinivasan, Wuyang Zhao (2026/11/12) https://doi.org/10.1007/s11142-026-09996-7
 
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
@@ -39,10 +40,6 @@
 
 - Does Releasing Earnings When the Audit Is Less Complete Increase Audit Costs? — Ashleigh Bakke, Scott N. Bronson, Adi N. S. Masli, Joseph H. Schroeder (2026/11/01) https://doi.org/10.2308/ajpt-2024-102
 - Audit Team Research: A Systematic Review of the Literature and Directions for Future Research — Monika Causholli, Denise Hanes Downey, Kris Hoang, Ulrike Thürheimer, Ann Vanstraelen (2026/11/01) https://doi.org/10.2308/ajpt-2025-167
-
-## British Accounting Review (ABDC A* / ABS 3)
-
-- Scorecard Integration and Cross-Functional Coordination: Joint Effects on Managerial Commitment to ESG Goals — Rui Ding, Jeff Coulton, Gary Monroe (2026/11/01) https://doi.org/10.1016/j.bar.2026.101990
 
 ## Journal of Business Finance & Accounting (ABDC A* / ABS 3)
 
@@ -78,11 +75,10 @@
 
 ## Accounting and Finance (ABDC A / ABS 2)
 
+- Corporate Blockchain Disclosure and Investor Site Visits — Yujia Cui, Hui (Sophia) Guo, Yuhang Ma, Haoyan Zhang (2026/11/13) https://doi.org/10.1111/acfi.70308
 - Government‐Certified Information and Bank Lending to SMEs : Evidence From China's Innovation Points System — Zishuai Wang, Yuantong Guo (2026/11/11) https://doi.org/10.1111/acfi.70310
 - Correction to ‘Tax Authority Governance and Corporate Internal Control Quality’ (2026/11/10) https://doi.org/10.1111/acfi.70297
 - Earnings Call Tone and Investors' Reliance on Mandatory Disclosures — Wenyao Hu (2026/11/10) https://doi.org/10.1111/acfi.70307
-- AI Disclosure, Signal Quality and Washing: Evidence From Chinese Listed Firms — Tingyong Zhong, Ping Yang, Meiyi Wu, Jiachuang Chen (2026/11/06) https://doi.org/10.1111/acfi.70296
-- Supply Chain Digital Transformation Misalignment and Supplier Greenwashing: A Dual‐Path Perspective — Cheng Liu, Siyuan Dong, Xinyi Gao (2026/11/06) https://doi.org/10.1111/acfi.70305
 
 ## International Journal of Auditing (ABDC A / ABS 2)
 
@@ -90,7 +86,6 @@
 
 ## Journal of Contemporary Accounting and Economics (ABDC A / ABS 2)
 
-- Corporate AI adoption and ESG rating disagreement: Evidence from China — Qingdong Xiao, Qiujin Wu (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100609
 - Traffic toll: how traffic congestion shapes corporate cash holding policies — Viet Tuan Pham (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100610
 - The persistence of equity book to market ratios above one – the adaptation option and entrenched management — Mitchell Oler (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100608
 
@@ -122,6 +117,7 @@
 
 ## Journal of Accounting & Organizational Change (ABDC B / ABS 2)
 
+- Management accountants’ identity in the Global South under digital and sustainability transformation: evidence from Asia Pacific — Iwan Suhardjo, Desi Adhariani (2026/11/17) https://doi.org/10.1108/jaoc-01-2026-0069
 - Unraveling performance asymmetry: environmental accounting and knowledge management as economic and environmental decision-support tools in an emerging market — Kwabena Agyarko Gyekye, Reon Matemane (2026/11/12) https://doi.org/10.1108/jaoc-08-2025-0282
 
 ## Journal of Accounting in Emerging Economies (ABDC B / ABS 2)
@@ -139,7 +135,10 @@
 ## Journal of Public Budgeting, Accounting and Financial Management (ABDC B / ABS 2)
 
 - The changing role of commonwealth CFOs: reflections from the Allan Barton memorial lecture and implications for public sector accounting — Angela Tan-Kantor (2026/11/16) https://doi.org/10.1108/jpbafm-08-2026-0363
-- Toward resilient inter-organizational collaboration through boundary work: the perspective of frontline managers — Kristina Frid, Anna Glenngård, Elin K. Funck (2026/11/10) https://doi.org/10.1108/jpbafm-10-2025-0276
+
+## Sustainability Accounting, Management and Policy Journal (ABDC B / ABS 2)
+
+- Setting corporate sustainability targets: a qualitative analysis of sustainability reporting in the automotive industry — Annika Busche, Holger Hoppe, Frank Schiemann (2026/11/17) https://doi.org/10.1108/sampj-02-2025-0223
 
 ## Journal of Finance (ABDC A* / ABS 4*)
 
@@ -172,20 +171,17 @@
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
-- Business Strategy and Loan Contracting — Jeong-Bon Kim, Chong Wang, Feng (Harry) Wu (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107864
 - Bimodality everywhere: International evidence of Deep Momentum — Chulwoo Han, Chang Qin (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107852
 - Discount window stigma: Small vs. large banks — Mehdi Beyhaghi, Jeffrey R. Gerlach (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107854
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
-- AI-related investor inquiries and corporate AI washing: Monitoring versus catering: A pre-registered report — Hang Chen, Qinyang Li, Ziqian Rong, Furong Wang (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103427
 - Factor geography and time-varying portfolio efficiency: evidence from international markets — Yoon K. Choi, Paulo Guimarães (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103426
+- Breaking inequity, correcting biases: How deregulation reshapes ownership discrimination in bank branch distribution — Lei An, Zhuolei Li, Jing Lu (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103429
+- The determinants and consequences of mutual fund launches: evidence from Japan — Anju Anan (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103432
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- Childhood savings-account provision and inequality across age-defined generations — Stephen Agnew (2026/11/01) https://doi.org/10.1016/j.frl.2026.111053
-- Digital Rural Development and the Return of Talent: Inclusive Finance as a Moderator — Jian Li, Mingxia Zou, Jiali Li, Chao Tan (2026/11/01) https://doi.org/10.1016/j.frl.2026.111054
-- Core deposits and deposit costs during monetary tightening — Yuanzheng Zhu, Qiao Hu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111019
 - Artificial Intelligence Investment and Corporate Financial Performance: Insights from Executives' Digital Background — Yuling Shi, Li Li, Baijingxuan Li (2026/11/01) https://doi.org/10.1016/j.frl.2026.111060
 - Large Language Models and Corporate Green Innovation: Evidence from Chinese Listed Firms — Lina Song, Chunyan Xia (2026/11/01) https://doi.org/10.1016/j.frl.2026.111058
 - Investors’ Perceived Value of Founder CEOs: Evidence from Natural Experiments — Md Masud Karim (2026/11/01) https://doi.org/10.1016/j.frl.2026.111069
@@ -205,3 +201,6 @@
 - Open weights, control rights, and firm value — David Kuo Chuen Lee, Yang Li, Ziliang Yu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111051
 - Government-Guided Funds and Technological Innovation of SRCI Enterprises: Selection Effect or Nurturing Effect? — Guangyu Li, Jun Zhang, Jincheng Li, Jingyi Zun (2026/11/01) https://doi.org/10.1016/j.frl.2026.111091
 - Climate Risk Perception, Green Finance Policy, and Corporate Green Innovation — Meng Li (2026/11/01) https://doi.org/10.1016/j.frl.2026.111082
+- Common ownership and portfolio selling in tokenized real estate — Monghwan Seo, Geonwoo Kim (2026/11/01) https://doi.org/10.1016/j.frl.2026.111070
+- Internal Pay Disparity and the Design of Bond Covenants — Yanyi Ye, Ningyu Ma, Hucheng Li (2026/11/01) https://doi.org/10.1016/j.frl.2026.111093
+- Public Data Openness, Inclusive Finance and Entrepreneurial Activity — Qier An, Weimin Li (2026/11/01) https://doi.org/10.1016/j.frl.2026.111081
