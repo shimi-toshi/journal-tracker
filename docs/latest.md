@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-11-15 08:55 (JST)
-- 対象: 2026-11-09 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 89件 / 全67誌
+- 生成日時: 2026-11-16 08:59 (JST)
+- 対象: 2026-11-10 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 92件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -88,6 +88,7 @@
 
 - Traffic toll: how traffic congestion shapes corporate cash holding policies — Viet Tuan Pham (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100610
 - The persistence of equity book to market ratios above one – the adaptation option and entrenched management — Mitchell Oler (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100608
+- Gambling culture and management earnings forecasts: Evidence from China — Jichen Huang, Shengnian Wang, Yueying Li (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100611
 
 ## Journal of Management Control (ABDC A / ABS 2)
 
@@ -179,6 +180,8 @@
 - Factor geography and time-varying portfolio efficiency: evidence from international markets — Yoon K. Choi, Paulo Guimarães (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103426
 - Breaking inequity, correcting biases: How deregulation reshapes ownership discrimination in bank branch distribution — Lei An, Zhuolei Li, Jing Lu (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103429
 - The determinants and consequences of mutual fund launches: evidence from Japan — Anju Anan (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103432
+- Making room for firm-specific information: algorithmic trading regulation and stock price synchronicity: a pre-registered report — Yunxiang Liao, Junqi Dong, Ruitao Li, Xiaohua Dong (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103434
+- Peer effects of state-owned enterprises on private enterprises’ corporate social responsibility decisions: A pre-registered report — Jia Ma, Hongxing Zhou, Shangyao Yu (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103433
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
