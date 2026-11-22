@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-11-21 10:31 (JST)
-- 対象: 2026-11-15 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 91件 / 全67誌
+- 生成日時: 2026-11-22 09:21 (JST)
+- 対象: 2026-11-16 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 88件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -25,7 +25,7 @@
 
 ## Review of Accounting Studies (ABDC A* / ABS 4)
 
-- From incidents to outcomes: consumer reactions and firm responses to negative environmental and social practices — Zhanbing Xiao, Xin Zheng, Yuxiang Zheng (2026/11/14) https://doi.org/10.1007/s11142-026-09998-5
+- Disclosing work-from-home flexibility to compete for talent? Evidence from job postings — Charles Ham, Rebecca N. Hann, Wenfeng Wang, Jingwen Yang (2026/11/21) https://doi.org/10.1007/s11142-026-10001-4
 
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
 
@@ -80,7 +80,6 @@
 ## Accounting and Finance (ABDC A / ABS 2)
 
 - Do Boilerplate Green Narratives Affect Responsible Investment Decisions? Evidence From ESG Mutual Funds in China — Ming Qian, Zeyi Wei, Yanping Wang (2026/11/19) https://doi.org/10.1111/acfi.70312
-- Corporate Blockchain Disclosure and Investor Site Visits — Yujia Cui, Hui (Sophia) Guo, Yuhang Ma, Haoyan Zhang (2026/11/13) https://doi.org/10.1111/acfi.70308
 
 ## International Journal of Auditing (ABDC A / ABS 2)
 
@@ -117,7 +116,6 @@
 ## Journal of Accounting & Organizational Change (ABDC B / ABS 2)
 
 - Corrigendum: Organizational change factors and their impact on artificial intelligence adoption in management accounting (2026/11/20) https://doi.org/10.1108/jaoc-09-2026-0630
-- Management accountants’ identity in the Global South under digital and sustainability transformation: evidence from Asia Pacific — Iwan Suhardjo, Desi Adhariani (2026/11/17) https://doi.org/10.1108/jaoc-01-2026-0069
 - Assessing the challenges and lessons learned from the implementation of accrual-based accounting in Indonesian local governments — Victor Pattiasina, Basuki Basuki (2026/11/17) https://doi.org/10.1108/jaoc-05-2025-0141
 - ESG-based pay, corporate sustainability performance and moderating impact of institutions: insights from top global companies — Olajumoke Oyewo, Vincent Tawiah, Babajide Oyewo (2026/11/17) https://doi.org/10.1108/jaoc-06-2025-0215
 
@@ -133,11 +131,11 @@
 ## Sustainability Accounting, Management and Policy Journal (ABDC B / ABS 2)
 
 - Climate policy uncertainty and corporate boilerplate information disclosure strategies: a perspective on attention-based view — Yunge Hu, Duo Wang, Yanxi Li (2026/11/23) https://doi.org/10.1108/sampj-01-2026-0173
-- Setting corporate sustainability targets: a qualitative analysis of sustainability reporting in the automotive industry — Annika Busche, Holger Hoppe, Frank Schiemann (2026/11/17) https://doi.org/10.1108/sampj-02-2025-0223
 
 ## Journal of Financial Economics (ABDC A* / ABS 4*)
 
 - Time-series efficient factors — Sina Ehsani, Serhiy Kozak, Juhani Linnainmaa (2027/01/01) https://doi.org/10.1016/j.jfineco.2026.104395
+- Populism, polarization and green investment — Anders Anderson, David T. Robinson (2027/01/01) https://doi.org/10.1016/j.jfineco.2026.104404
 
 ## Journal of Financial and Quantitative Analysis (ABDC A* / ABS 4)
 
@@ -157,11 +155,10 @@
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
 - Product scope, product switching, and ownership structure — Tianyu Cai, Jinzhao Du, Leo Liu, Fariborz Moshirian (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107857
+- Safe distance to systemic risk — Sylvain Benoit, Renzhi Liu (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107865
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
-- Breaking inequity, correcting biases: How deregulation reshapes ownership discrimination in bank branch distribution — Lei An, Zhuolei Li, Jing Lu (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103429
-- The determinants and consequences of mutual fund launches: evidence from Japan — Anju Anan (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103432
 - Making room for firm-specific information: algorithmic trading regulation and stock price synchronicity: a pre-registered report — Yunxiang Liao, Junqi Dong, Ruitao Li, Xiaohua Dong (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103434
 - Peer effects of state-owned enterprises on private enterprises’ corporate social responsibility decisions: A pre-registered report — Jia Ma, Hongxing Zhou, Shangyao Yu (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103433
 - Skin in the game or selling commitment? Managerial ownership disclosure and investor response in Chinese mutual funds — Binxu Wang, Yuxin Xie, Jinlin Fu, Dairui Dong (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103428
@@ -178,9 +175,6 @@
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
-- Common ownership and portfolio selling in tokenized real estate — Monghwan Seo, Geonwoo Kim (2026/11/01) https://doi.org/10.1016/j.frl.2026.111070
-- Internal Pay Disparity and the Design of Bond Covenants — Yanyi Ye, Ningyu Ma, Hucheng Li (2026/11/01) https://doi.org/10.1016/j.frl.2026.111093
-- Public Data Openness, Inclusive Finance and Entrepreneurial Activity — Qier An, Weimin Li (2026/11/01) https://doi.org/10.1016/j.frl.2026.111081
 - Why Is Corporate AI Disclosure Value-Relevant? Evidence from AI-Specific Innovation — Hyemin Jeong, Heungju Park, Kyojik Song (2026/11/01) https://doi.org/10.1016/j.frl.2026.111097
 - Climate risk pricing: Evidence from commodity options — Xin Gao, Bingxin Li, Kaitao Lin, Rui Liu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111064
 - Fokker–Planck diffusion dynamics of S&P 500 sector return distributions via physicsinformed neural networks — Dong-Jun Kim, Sun Yong Choi (2026/11/01) https://doi.org/10.1016/j.frl.2026.111059
@@ -203,3 +197,6 @@
 - Capital-implied lending capacity under stress: Evidence from the EU-wide stress test — Lukáš Pfeifer (2026/11/01) https://doi.org/10.1016/j.frl.2026.111113
 - Challenging Bitcoin's Dominance: Ethereum's Evolving Market Influence Post-Berlin Upgrade — Liron Amor, Koresh Galil, Offer Shapir (2026/11/01) https://doi.org/10.1016/j.frl.2026.111114
 - Rethinking quantile-on-quantile connectedness — Giovanni Bonaccolto, Massimiliano Caporin, Rangan Gupta (2026/11/01) https://doi.org/10.1016/j.frl.2026.111095
+- Human Capital and Municipal Bond Pricing: Evidence from China's College Enrollment Expansion — Yue Fang, Zhenguo Wu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111129
+- Do Climate-Risk Signals Predict ESG ETF Volatility? Evidence from Regularized Panel Machine Learning — Zhida Gao, Wei Kang, Xin Sheng (2026/11/01) https://doi.org/10.1016/j.frl.2026.111122
+- Can objective-oriented intraday weighting improve joint VaR–ES forecasts? Evidence from FZ0-targeted bespoke realized measures — Shang Jin, Zhimin Wu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111094
