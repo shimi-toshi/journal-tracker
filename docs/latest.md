@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-11-22 09:21 (JST)
-- 対象: 2026-11-16 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 88件 / 全67誌
+- 生成日時: 2026-11-23 09:53 (JST)
+- 対象: 2026-11-17 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 91件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -88,11 +88,12 @@
 
 ## Journal of Contemporary Accounting and Economics (ABDC A / ABS 2)
 
-- Gambling culture and management earnings forecasts: Evidence from China — Jichen Huang, Shengnian Wang, Yueying Li (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100611
 - Firm-level biodiversity risk disclosure and stock price synchronicity — Dehua Xia, Shaohai Lei, Thi Thanh Nhan Dong, Xiaoru Lin (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100612
+- Can AI disclosure curb managerial myopia? the role of external monitoring — Feng Zhao, Dandan Nan, Yao Wu (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100613
 
 ## Managerial Auditing Journal (ABDC A / ABS 2)
 
+- Big 4 office agglomeration and asymmetric pricing dynamics in local audit markets — Xudong Li, Jiaxin Liu (2026/11/24) https://doi.org/10.1108/maj-11-2025-5072
 - Speaking up and being heard: the impact of communication on auditor integrity actions — Limei Che, Ida Eyde Haug, Tobias Svanström (2026/11/18) https://doi.org/10.1108/maj-08-2025-4950
 
 ## Accounting Research Journal (ABDC B / ABS 2)
@@ -115,6 +116,7 @@
 
 ## Journal of Accounting & Organizational Change (ABDC B / ABS 2)
 
+- From net show to net zero: conceptualising corporate climate accountability — Ayu Aryista Dewi, Made Aristia Prayudi, Hisky Ryan Kawulur, Putu Agus Ardiana (2026/11/24) https://doi.org/10.1108/jaoc-11-2025-0492
 - Corrigendum: Organizational change factors and their impact on artificial intelligence adoption in management accounting (2026/11/20) https://doi.org/10.1108/jaoc-09-2026-0630
 - Assessing the challenges and lessons learned from the implementation of accrual-based accounting in Indonesian local governments — Victor Pattiasina, Basuki Basuki (2026/11/17) https://doi.org/10.1108/jaoc-05-2025-0141
 - ESG-based pay, corporate sustainability performance and moderating impact of institutions: insights from top global companies — Olajumoke Oyewo, Vincent Tawiah, Babajide Oyewo (2026/11/17) https://doi.org/10.1108/jaoc-06-2025-0215
@@ -151,6 +153,7 @@
 - Climate extrapolation and relative asset prices: Evidence from Bordeaux Premier Cru wine auctions — Gertjan Verdickt (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103110
 - Good news, better credit? The role of internet media tone in trade credit financing — Lu Li, Dinh Phan, Thao Tran, Gaoping Zheng (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103109
 - The supply chain of credit: Collateral-based easing and firms' trade credit provision — Shouyu Yao, Ankun Dong, Jia Li, Chunfeng Wang, Duc Khuong Nguyen (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103111
+- Inflation, debt overhang and corporate investment — Biao Chen, Feng Jiao, Junjie Liu, Chuanqian Zhang (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103114
 
 ## Journal of Banking and Finance (ABDC A* / ABS 3)
 
@@ -159,8 +162,6 @@
 
 ## Pacific Basin Finance Journal (ABDC A / ABS 2)
 
-- Making room for firm-specific information: algorithmic trading regulation and stock price synchronicity: a pre-registered report — Yunxiang Liao, Junqi Dong, Ruitao Li, Xiaohua Dong (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103434
-- Peer effects of state-owned enterprises on private enterprises’ corporate social responsibility decisions: A pre-registered report — Jia Ma, Hongxing Zhou, Shangyao Yu (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103433
 - Skin in the game or selling commitment? Managerial ownership disclosure and investor response in Chinese mutual funds — Binxu Wang, Yuxin Xie, Jinlin Fu, Dairui Dong (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103428
 - Incorporating multidimensional language characteristics into financial distress prediction: A study based on word embedding and explainable machine learning approaches — Lianlian Wang, Wei-Qiang Huang (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103431
 - Shareholder-oriented monitoring and trade credit financing in China: A pre-registered report — Xingye Li, Miaomiao Wei, Chunhong Zhang (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103437
@@ -168,6 +169,7 @@
 - More risk revealed, greater resilience? Digital judicial disclosure and stock price crash risk — Sirui Cheng, Shanmin Li, Hengyu Zhang, Yuchen Zhao (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103436
 - Digital noise and investment distortions: the impact of internet “Water Army” activity on corporate investment efficiency — Yuliang Zhao, Siyi Lv (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103440
 - MD&A sentiment analysis in china using BERT-based models: Implications for firm and competitor investment decisions — Qi Zhang, Yupeng Liu, Feng Ye, Guoying Sun (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103430
+- Tax enforcement standardization and corporate financialization: Quasi-experimental evidence from China — Meixi Chen, Qiqi Luo, Zhihua Wei, Aimin Zeng (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103441
 
 ## Journal of the Japanese and International Economies (ABDC A / ABS 2)
 
@@ -200,3 +202,4 @@
 - Human Capital and Municipal Bond Pricing: Evidence from China's College Enrollment Expansion — Yue Fang, Zhenguo Wu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111129
 - Do Climate-Risk Signals Predict ESG ETF Volatility? Evidence from Regularized Panel Machine Learning — Zhida Gao, Wei Kang, Xin Sheng (2026/11/01) https://doi.org/10.1016/j.frl.2026.111122
 - Can objective-oriented intraday weighting improve joint VaR–ES forecasts? Evidence from FZ0-targeted bespoke realized measures — Shang Jin, Zhimin Wu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111094
+- Greener Loans, Hidden Climate Risk — Binghong Li, An Zheng, Yihan Wang (2026/11/01) https://doi.org/10.1016/j.frl.2026.111130
