@@ -1,7 +1,7 @@
 # Accounting & Finance Journal Tracker — 直近7日の新着論文
 
-- 生成日時: 2026-11-27 11:52 (JST)
-- 対象: 2026-11-21 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 107件 / 全67誌
+- 生成日時: 2026-11-28 11:41 (JST)
+- 対象: 2026-11-22 以降に本サイトが新規取得した論文（CrossRef初回登録ベース） 103件 / 全67誌
 - 形式: 誌ごとに「タイトル — 著者 (公表日) DOI」。公表日が月のみの論文は日=01で表示
 - アブストラクト・ランク・直近30日分は https://shimi-toshi.github.io/journal-tracker/papers.json を参照
 
@@ -15,7 +15,6 @@
 
 ## The Accounting Review (ABDC A* / ABS 4*)
 
-- The Effect of Cost Elasticity Choice on Loss Reversal — Edmond Tapero, Dan Weiss (2026/11/01) https://doi.org/10.2308/tar-2024-0581
 - Rational Information Acquisition Screens — Paul E. Fischer, Mirko S. Heinle, Jung Min Kim, Christina Zhu (2026/11/01) https://doi.org/10.2308/tar-2024-0799
 - Environmental, Social, and Governance Ratings of Environmental, Social, and Governance Index Providers — Sonakshi Agrawal, Lisa Yao Liu, Shivaram Rajgopal, Suhas A. Sridharan, Yifan Yan, Teri Lombardi Yohn (2026/11/01) https://doi.org/10.2308/tar-2023-0522
 
@@ -28,15 +27,10 @@
 ## Accounting Auditing and Accountability Journal (ABDC A* / ABS 3)
 
 - Implementation of the United Nations Sustainable Development Goals: selected case studies from Pakistan and Chile — Furqan Asad Suhail, Camila Mateluna-Sánchez, Mirna Jabbour, David Gary Yates, Ataur Belal, Sanjay V Lanka (2026/11/30) https://doi.org/10.1108/aaaj-09-2024-7374
-- Management consultants – monsters or benign change agents? The case of the NSW transport asset holding entity — Ann Martin-Sardesai, Adam Robert Lucas, James Guthrie (2026/11/23) https://doi.org/10.1108/aaaj-02-2026-8860
 
 ## Auditing: A Journal of Practice and Theory (ABDC A* / ABS 3)
 
 - Alternative Data as Audit Risk Signals: Evidence from Online-Sales Data — Yating Guo, Shirley Jiexuan Wang, Le Zhao (2026/11/01) https://doi.org/10.2308/ajpt-2024-095
-
-## Journal of Business Finance & Accounting (ABDC A* / ABS 3)
-
-- How Generative AI Reshapes Analysts’ Information Intermediation: Evidence From China — Xiaomin Hu, Faqin Lan, Shengdi Zhou (2026/11/19) https://doi.org/10.1111/jbfa.70101
 
 ## The European Accounting Review (ABDC A* / ABS 3)
 
@@ -53,29 +47,28 @@
 ## Journal of Accounting and Public Policy (ABDC A* / ABS 3)
 
 - Regulatory burden and risk disclosure: evidence from earnings calls — Omar Alkous, Ishmael Tingbani, Ahmad Alshehabi (2026/11/01) https://doi.org/10.1016/j.jaccpubpol.2026.107486
+- Investor commitment to responsible investing and investee ESG disclosure — Dirk E. Black, Helena Isidro, Ana Marques (2026/11/01) https://doi.org/10.1016/j.jaccpubpol.2026.107488
 
 ## Journal of Accounting Literature (ABDC A / ABS 3)
 
 - Internationalising accounting and finance education under conditional globalisation — Rakesh Gupta, Chen Xu (2026/11/27) https://doi.org/10.1108/jal-08-2026-0508
 - Climate change policy and climate risk disclosure: evidence from machine learning and textual analysis — Farhan Hussain, Zhifang Zhou, Tao Zhang (2026/11/26) https://doi.org/10.1108/jal-04-2026-0227
 - Data-driven capability and corporate cost stickiness: evidence from information processing, expectation revision, and governance transparency — Yongbin Cai, Xiaohe Qi, Xitao Ma (2026/11/24) https://doi.org/10.1108/jal-05-2026-0276
-- From exposure to imprint: CEO formative experiences and the architecture of accounting and financial decisions — Lam Thanh Nguyen, Rakesh Gupta, Phung Dinh Tran (2026/11/23) https://doi.org/10.1108/jal-08-2026-0531
 
 ## The International Journal of Accounting (ABDC A / ABS 3)
 
+- Disclosures of Clinical Trials and Analysts’ Target Prices — Michel Dubois, Adam Aoun, Alain Schatt (2026/11/25) https://doi.org/10.1142/s1094406026500101
 - Board Interlocks and Corporate Risk Disclosures — Amin Tavakkolnia, Dieter Smeulders (2026/11/24) https://doi.org/10.1142/s1094406026500083
-- Author Index Volume 61 (2026) (2026/11/20) https://doi.org/10.1142/s1094406026990015
+- Discussion: Disclosures of Clinical Trials and Analysts’ Target Prices — Steven Vanhaverbeke (2026/11/24) https://doi.org/10.1142/s109440602680003x
 
 ## Accounting Forum (ABDC B / ABS 3)
 
 - “Not your accountant’s classroom”: everyday resistance and decolonising neoliberalism in UK accounting education — Olajide Dahunsi, Olumuyiwa Samuel Oladele, Ngozi Odiaka, Oluwamayowa Olarewaju (2026/11/26) https://doi.org/10.1080/01559982.2026.2749919
-- Structuring corporate social performance: a definitional framework from five decades of research — Youssef Lagsaibi, Simon Alcouffe, Marie Boitier (2026/11/20) https://doi.org/10.1080/01559982.2026.2746313
 
 ## Accounting and Finance (ABDC A / ABS 2)
 
 - Climate Finance Accountability, Transnational Governance and Supreme Audit Institutions — Dessalegn Mihret, Tesfaye Lemma, Lina Xu, Lan Anh Nguyen, Dorel Balliu (2026/11/25) https://doi.org/10.1111/acfi.70311
 - Disclosure as a Signal, Innovation as Validation: Climate Disclosure by China's Heavily Polluting Firms and Green Investor Engagement — Sha Tang, Abdullahi D. Ahmed, Chante Jian Ding (2026/11/24) https://doi.org/10.1111/acfi.70315
-- Do Boilerplate Green Narratives Affect Responsible Investment Decisions? Evidence From ESG Mutual Funds in China — Ming Qian, Zeyi Wei, Yanping Wang (2026/11/19) https://doi.org/10.1111/acfi.70312
 
 ## Accounting in Europe (ABDC A / ABS 2)
 
@@ -85,13 +78,8 @@
 
 - Audit time pressure and geographic proximity between audit offices — Kristyn Calabrese, Kimberly S. Krieg (2026/12/01) https://doi.org/10.1016/j.adiac.2026.100909
 
-## International Journal of Auditing (ABDC A / ABS 2)
-
-- Resolving Human and Machine Disagreements in Auditing Through the Human and Artificial Intelligence Audit Judgment Resolution Framework — Michaella Selasi Genego, Cornelius Adorm‐Takyi, Emmanuel Yaw Arhin, Vincent Adela, Fredrick Asare‐Appiah (2026/11/19) https://doi.org/10.1111/ijau.70052
-
 ## Journal of Contemporary Accounting and Economics (ABDC A / ABS 2)
 
-- Firm-level biodiversity risk disclosure and stock price synchronicity — Dehua Xia, Shaohai Lei, Thi Thanh Nhan Dong, Xiaoru Lin (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100612
 - Can AI disclosure curb managerial myopia? the role of external monitoring — Feng Zhao, Dandan Nan, Yao Wu (2026/11/01) https://doi.org/10.1016/j.jcae.2026.100613
 
 ## Journal of Management Control (ABDC A / ABS 2)
@@ -100,6 +88,7 @@
 
 ## Managerial Auditing Journal (ABDC A / ABS 2)
 
+- How does the net income reconciliation from IFRS to US GAAP affect audit report lag? — Kam-Wah Lai (2026/12/01) https://doi.org/10.1108/maj-04-2026-5419
 - Big 4 office agglomeration and asymmetric pricing dynamics in local audit markets — Xudong Li, Jiaxin Liu (2026/11/24) https://doi.org/10.1108/maj-11-2025-5072
 
 ## Accounting and the Public Interest (ABDC B / ABS 2)
@@ -139,6 +128,10 @@
 
 - Overcoming information asymmetries through non-financial statement assurance: empirical evidence from German listed firms — Markus Mottinger, Markus Isack, Marcel Steller (2026/11/30) https://doi.org/10.1108/jaar-05-2025-0217
 
+## Journal of Public Budgeting, Accounting and Financial Management (ABDC B / ABS 2)
+
+- From disclosure to fiscal discipline: how accounting standards shape public pension plan management — Trang Hoang, Gang Chen (2026/11/30) https://doi.org/10.1108/jpbafm-04-2026-0157
+
 ## Journal of Financial Economics (ABDC A* / ABS 4*)
 
 - Populism, polarization and green investment — Anders Anderson, David T. Robinson (2027/01/01) https://doi.org/10.1016/j.jfineco.2026.104404
@@ -161,9 +154,6 @@
 
 ## Journal of Corporate Finance (ABDC A* / ABS 3)
 
-- Climate extrapolation and relative asset prices: Evidence from Bordeaux Premier Cru wine auctions — Gertjan Verdickt (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103110
-- Good news, better credit? The role of internet media tone in trade credit financing — Lu Li, Dinh Phan, Thao Tran, Gaoping Zheng (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103109
-- The supply chain of credit: Collateral-based easing and firms' trade credit provision — Shouyu Yao, Ankun Dong, Jia Li, Chunfeng Wang, Duc Khuong Nguyen (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103111
 - Inflation, debt overhang and corporate investment — Biao Chen, Feng Jiao, Junjie Liu, Chuanqian Zhang (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103114
 - Strengthening pledgee rights and stock price crash risk — Chinmoy Ghosh, R. Shruti, M. Thenmozhi (2026/11/01) https://doi.org/10.1016/j.jcorpfin.2026.103116
 
@@ -175,6 +165,7 @@
 - Structural changes in energy commodity correlations and macroeconomic fundamentals: Advancing risk management in turbulent times — Malvina Marchese, Ioannis Kyriakou, Michael Tamvakis, Francesca Di Iorio (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107866
 - Corporate bond ETFs, bond liquidity, and ETF trading volume — Thomas Marta (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107867
 - Bank CEO turnover: The role of shareholders — Oskar Kowalewski, Dorota Skała (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107871
+- Options traders, short-term reversals, and return predictability — Yufeng Han, Dayong Huang, Xiao Xiao (2026/11/01) https://doi.org/10.1016/j.jbankfin.2026.107870
 
 ## Financial Analysts Journal (ABDC A / ABS 3)
 
@@ -192,19 +183,11 @@
 - Equity market liberalization and trade credit provision — Rongyu Cui, Yiping Huang, Yanyang Tao (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103442
 - A study on the impact of the Bank of Korea's monetary policy on the mortgage loans: Evidence from Korea — Ji-Yong Seo (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103435
 - When monetary easing comes with bad news: Household liquidity and consumption in China — Shengqiang Su, Chengxi Wu, Shuwei Zhan, Yueli Xu, Lu Qiu (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103448
-
-## Journal of the Japanese and International Economies (ABDC A / ABS 2)
-
-- The Impact of the Overtime Cap on Working Hours in Japan — Erina Inoue (2026/11/01) https://doi.org/10.1016/j.jjie.2026.101452
+- Pricing implicit guarantees in bond book-building: Evidence from offshore Chinese local government financing vehicle bonds — Robert Verner, Jozef Zuzik, Roland Weiss (2026/11/01) https://doi.org/10.1016/j.pacfin.2026.103450
 
 ## Finance Research Letters (ABDC A / ABS 2)
 
 - Point-in-Time Retrieval-Augmented Earnings expectations — SeongHyun Kim, SeungBin Hong (2026/12/01) https://doi.org/10.1016/j.frl.2026.111102
-- LLMs in stock selection: Complements or substitutes for machine learning? — Jinwon An, Seongeun Kim (2026/11/01) https://doi.org/10.1016/j.frl.2026.111056
-- The Spear and the Shield: How Corporate Digital Investment Bridges the Profit-Green Divide — Guangying Li, Sen Li, Shuhong Wang (2026/11/01) https://doi.org/10.1016/j.frl.2026.111112
-- Capital-implied lending capacity under stress: Evidence from the EU-wide stress test — Lukáš Pfeifer (2026/11/01) https://doi.org/10.1016/j.frl.2026.111113
-- Challenging Bitcoin's Dominance: Ethereum's Evolving Market Influence Post-Berlin Upgrade — Liron Amor, Koresh Galil, Offer Shapir (2026/11/01) https://doi.org/10.1016/j.frl.2026.111114
-- Rethinking quantile-on-quantile connectedness — Giovanni Bonaccolto, Massimiliano Caporin, Rangan Gupta (2026/11/01) https://doi.org/10.1016/j.frl.2026.111095
 - Human Capital and Municipal Bond Pricing: Evidence from China's College Enrollment Expansion — Yue Fang, Zhenguo Wu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111129
 - Do Climate-Risk Signals Predict ESG ETF Volatility? Evidence from Regularized Panel Machine Learning — Zhida Gao, Wei Kang, Xin Sheng (2026/11/01) https://doi.org/10.1016/j.frl.2026.111122
 - Can objective-oriented intraday weighting improve joint VaR–ES forecasts? Evidence from FZ0-targeted bespoke realized measures — Shang Jin, Zhimin Wu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111094
@@ -228,3 +211,10 @@
 - Primary token issuance and liquidity-segmented returns in crypto markets — Kyeong Hun Kim, Wonguk Lee, Byung Hwa Lim (2026/11/01) https://doi.org/10.1016/j.frl.2026.111103
 - From New York to Tokyo: Cross-market sector predictability — Kei Nakagawa, Yuki Takemoto, Kenji Kubo, Masahiro Kato (2026/11/01) https://doi.org/10.1016/j.frl.2026.111104
 - IPO information disclosure non‑compliance risk and voluntary sponsor co-investment — Lu Han, Jingjing Zuo, Xiaoli Qiao (2026/11/01) https://doi.org/10.1016/j.frl.2026.111144
+- Product and Spatial Components of Internal Relative-Price Persistence — Xijing Chu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111157
+- Digital Finance and SME Digital Innovation: Examining the Moderating Role of Firm-Level Tax Support — Yunyun Jia, Xiao Fang (2026/11/01) https://doi.org/10.1016/j.frl.2026.111156
+- Can Financial Development Unblock the Transmission Chain of Digital Policy? A Quasi-Natural Experiment from Digital Village Pilots — Kun Hou, JingBo Xu (2026/11/01) https://doi.org/10.1016/j.frl.2026.111153
+- Sustainable Finance Development and Corporate Labor Employment — Ying Xue, Xinyi Zhang (2026/11/01) https://doi.org/10.1016/j.frl.2026.111151
+- Retirement Discourse and Stock Market Uncertainty: Pensions, Stocks and Social Security — Mario A. Ortez, Michael L. Smith, Nicole Olynk Widmar (2026/11/01) https://doi.org/10.1016/j.frl.2026.111154
+- Artificial Intelligence Pilot Zones and Corporate Financing Frictions: Signaling and Liquidity Channels — Changping Lu, Xin Zhang (2026/11/01) https://doi.org/10.1016/j.frl.2026.111152
+- Shock transmission and portfolio trade-offs in ESG–Shariah and Islamic equity markets — Zakaria Boulanouar, Ahmed Ghorbel, Fahmi Ghallabi, Saqib Farid (2026/11/01) https://doi.org/10.1016/j.frl.2026.111150
